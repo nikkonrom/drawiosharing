@@ -3,9 +3,49 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.Common", "ITechArt.Common\ITechArt.Common.csproj", "{94A9AFDF-EC33-420D-8B92-71DEA763B294}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B88555C2-982F-4C6E-88A5-B31DFFCCFFAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DrawIoSharing", "DrawIoSharing", "{3E18B807-1678-48BC-87F9-107B4F13C9F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.DrawIoSharing.Repositories", "ITechArt.DrawIoSharing.Repositories\ITechArt.DrawIoSharing.Repositories.csproj", "{650FD09E-FE57-49E2-8485-040446FE41C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.Repositories", "ITechArt.Repositories\ITechArt.Repositories.csproj", "{D354D449-6B30-4BA0-828C-D66A2AB9A445}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.DrawIoSharing.Foundation", "ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj", "{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94A9AFDF-EC33-420D-8B92-71DEA763B294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A9AFDF-EC33-420D-8B92-71DEA763B294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A9AFDF-EC33-420D-8B92-71DEA763B294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A9AFDF-EC33-420D-8B92-71DEA763B294}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650FD09E-FE57-49E2-8485-040446FE41C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650FD09E-FE57-49E2-8485-040446FE41C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650FD09E-FE57-49E2-8485-040446FE41C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650FD09E-FE57-49E2-8485-040446FE41C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D354D449-6B30-4BA0-828C-D66A2AB9A445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D354D449-6B30-4BA0-828C-D66A2AB9A445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D354D449-6B30-4BA0-828C-D66A2AB9A445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D354D449-6B30-4BA0-828C-D66A2AB9A445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94A9AFDF-EC33-420D-8B92-71DEA763B294} = {B88555C2-982F-4C6E-88A5-B31DFFCCFFAB}
+		{650FD09E-FE57-49E2-8485-040446FE41C8} = {3E18B807-1678-48BC-87F9-107B4F13C9F1}
+		{D354D449-6B30-4BA0-828C-D66A2AB9A445} = {B88555C2-982F-4C6E-88A5-B31DFFCCFFAB}
+		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF} = {3E18B807-1678-48BC-87F9-107B4F13C9F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A62E2A20-2323-47DF-A8D4-6ABBE3AD483B}
