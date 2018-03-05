@@ -10,7 +10,6 @@ namespace ITechArt.Repositories
     {
         IRepository<TEntity> Repository<TEntity>() where TEntity : class;
         void Save();
-        void Dispose(bool disposing);
-        new void Dispose();
+        
     }
 }
