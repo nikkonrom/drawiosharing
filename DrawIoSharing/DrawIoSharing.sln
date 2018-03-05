@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.Repositories", "IT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.DrawIoSharing.Foundation", "ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj", "{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITechArt.DrawIoSharing.WebApp", "ITechArt.DrawIoSharing.WebApp\ITechArt.DrawIoSharing.WebApp.csproj", "{2F0852B1-B2CC-41E5-9A98-8393543A3BD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0852B1-B2CC-41E5-9A98-8393543A3BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0852B1-B2CC-41E5-9A98-8393543A3BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0852B1-B2CC-41E5-9A98-8393543A3BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0852B1-B2CC-41E5-9A98-8393543A3BD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{650FD09E-FE57-49E2-8485-040446FE41C8} = {3E18B807-1678-48BC-87F9-107B4F13C9F1}
 		{D354D449-6B30-4BA0-828C-D66A2AB9A445} = {B88555C2-982F-4C6E-88A5-B31DFFCCFFAB}
 		{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF} = {3E18B807-1678-48BC-87F9-107B4F13C9F1}
+		{2F0852B1-B2CC-41E5-9A98-8393543A3BD5} = {3E18B807-1678-48BC-87F9-107B4F13C9F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A62E2A20-2323-47DF-A8D4-6ABBE3AD483B}
