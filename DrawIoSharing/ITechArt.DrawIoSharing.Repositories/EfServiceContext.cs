@@ -4,11 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ITechArt.DrawIoSharing.Foundation;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class EFServiceContext : DbContext
+    public class EFServiceContext : DbContext
     {
+        public EFServiceContext() : base("DefaultConnection") { }
 
+        public DbSet<User> Users { get; set; }
     }
 }

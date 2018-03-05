@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ITechArt.DrawIoSharing.WebApp.Utils;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
 
 namespace ITechArt.DrawIoSharing.WebApp
 {
@@ -13,6 +17,10 @@ namespace ITechArt.DrawIoSharing.WebApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            NinjectModule registrations = new NinjectRegistrations();
+            var kernel = new StandardKernel(registrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

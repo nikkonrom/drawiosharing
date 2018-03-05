@@ -8,7 +8,7 @@ using ITechArt.Repositories;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class EFUnitOfWork : IUnitOfWork
+    public class EFUnitOfWork : IUnitOfWork
     {
         private Dictionary<Type, object> _repositories;
 

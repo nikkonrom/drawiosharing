@@ -108,6 +108,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\NinjectRegistrations .cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -125,9 +126,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
+      <Project>{6e5e024f-b9f0-4ab5-9e7d-6140a1cd33af}</Project>
+      <Name>ITechArt.DrawIoSharing.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ITechArt.DrawIoSharing.Repositories\ITechArt.DrawIoSharing.Repositories.csproj">
       <Project>{650fd09e-fe57-49e2-8485-040446fe41c8}</Project>
       <Name>ITechArt.DrawIoSharing.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
+      <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>
+      <Name>ITechArt.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

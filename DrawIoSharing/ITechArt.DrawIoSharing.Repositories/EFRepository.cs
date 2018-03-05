@@ -8,7 +8,7 @@ using ITechArt.Repositories;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly EFServiceContext _dataContext;
         private readonly DbSet<TEntity> _dbSet;
@@ -21,6 +21,7 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
+            
             return _dbSet.AsNoTracking().ToList();
         }
 
