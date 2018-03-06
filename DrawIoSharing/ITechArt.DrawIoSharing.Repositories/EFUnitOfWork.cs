@@ -33,7 +33,7 @@ namespace ITechArt.DrawIoSharing.Repositories
             _repositories = new Dictionary<Type, object>();
         }
 
-        public void Save()
+        public void Commit()
         {
             _dataContext.SaveChanges();
         }

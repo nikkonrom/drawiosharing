@@ -2,7 +2,7 @@
 
 namespace ITechArt.Common
 {
-    enum LoggingEventType
+    public enum LoggingEventType
     {
         Debug,
         Information,
@@ -10,7 +10,6 @@ namespace ITechArt.Common
         Error,
         Fatal
     }
-
 
     public interface ILogger
     {

@@ -132,6 +132,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
+      <Project>{94A9AFDF-EC33-420D-8B92-71DEA763B294}</Project>
+      <Name>ITechArt.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
       <Project>{6e5e024f-b9f0-4ab5-9e7d-6140a1cd33af}</Project>
       <Name>ITechArt.DrawIoSharing.Foundation</Name>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ITechArt.Common;
 using ITechArt.DrawIoSharing.Foundation;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Repositories;
@@ -15,6 +16,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
         {
             Bind<IRepository<User>>().To<EFRepository<User>>();
             Bind<IUnitOfWork>().To<EFUnitOfWork>();
+            Bind<ILogger>().To<Log4NetAdapter>();
         }
     }
 }

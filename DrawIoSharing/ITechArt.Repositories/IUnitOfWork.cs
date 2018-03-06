@@ -9,7 +9,7 @@ namespace ITechArt.Repositories
     public interface IUnitOfWork : IDisposable
     {
         IRepository<TEntity> Repository<TEntity>() where TEntity : class;
-        void Save();
+        void Commit();
         
     }
 }
