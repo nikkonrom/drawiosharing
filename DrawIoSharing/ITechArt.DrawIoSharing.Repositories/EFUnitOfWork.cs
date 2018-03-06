@@ -27,6 +27,12 @@ namespace ITechArt.DrawIoSharing.Repositories
             return repository;
         }
 
+        public EFUnitOfWork()
+        {
+            _dataContext = new EFServiceContext();
+            _repositories = new Dictionary<Type, object>();
+        }
+
         public void Save()
         {
             _dataContext.SaveChanges();

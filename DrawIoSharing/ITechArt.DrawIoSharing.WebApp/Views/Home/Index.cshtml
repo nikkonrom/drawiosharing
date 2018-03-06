@@ -12,7 +12,20 @@
 </head>
 <body>
 <div>
-    
+    <h3>Users</h3>
+    <table>
+        <tr>
+            <td><p>ID</p></td>
+            <td><p>Name</p></td><td></td>
+        </tr>
+        @foreach (ITechArt.DrawIoSharing.Foundation.User user in Model)
+        {
+            <tr>
+                <td><p>@user.Id</p></td>
+                <td><p>@user.Username</p></td>
+            </tr>
+        }
+    </table>
 </div>
 </body>
 </html>

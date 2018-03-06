@@ -21,7 +21,6 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            
             return _dbSet.AsNoTracking().ToList();
         }
 
