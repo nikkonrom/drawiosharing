@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ITechArt.Common;
+using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
-using ITechArt.DrawIoSharing.Repositories;
-using ITechArt.DrawIoSharing.Foundation;
-using Ninject;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {

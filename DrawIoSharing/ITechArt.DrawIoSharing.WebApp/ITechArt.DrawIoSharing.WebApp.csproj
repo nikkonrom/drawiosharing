@@ -50,6 +50,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -135,6 +138,10 @@
     <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
       <Project>{94A9AFDF-EC33-420D-8B92-71DEA763B294}</Project>
       <Name>ITechArt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
+      <Project>{E9EF15B5-4B1D-415D-8CCD-D4557B36A1F9}</Project>
+      <Name>ITechArt.DrawIoSharing.DomainModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
       <Project>{6e5e024f-b9f0-4ab5-9e7d-6140a1cd33af}</Project>

@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ITechArt.DrawIoSharing.Foundation;
+using ITechArt.DrawIoSharing.DomainModel;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {

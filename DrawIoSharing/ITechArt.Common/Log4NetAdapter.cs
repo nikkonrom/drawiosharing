@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
 
 namespace ITechArt.Common
 {
     public class Log4NetAdapter : ILogger
     {
         private readonly log4net.ILog _adapter;
+
+        public Log4NetAdapter()
+        {
+            _adapter = log4net.LogManager.GetLogger("Logger");
+        }
 
         public void Log(LogEntry entry)
         {

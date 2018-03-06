@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
-      <Project>{6e5e024f-b9f0-4ab5-9e7d-6140a1cd33af}</Project>
-      <Name>ITechArt.DrawIoSharing.Foundation</Name>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
+      <Project>{e9ef15b5-4b1d-415d-8ccd-d4557b36a1f9}</Project>
+      <Name>ITechArt.DrawIoSharing.DomainModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
       <Project>{d354d449-6b30-4ba0-828c-d66a2ab9a445}</Project>
