@@ -25,13 +25,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         public ActionResult Index()
         {
-            User user1 = new User { Username = "Tom"};
-            User user2 = new User { Username = "Sam"};
-
-            _unitOfWork.Repository<User>().Create(user1);
-            _unitOfWork.Save();
-            
-
             return View(_unitOfWork.Repository<User>().GetAll());
         }
     }

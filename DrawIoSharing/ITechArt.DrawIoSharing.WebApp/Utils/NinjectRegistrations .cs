@@ -13,7 +13,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
     {
         public override void Load()
         {
-            Bind<IRepository<User>>().To<EFRepository<User>>(); //???
+            Bind<IRepository<User>>().To<EFRepository<User>>();
             Bind<IUnitOfWork>().To<EFUnitOfWork>();
         }
     }
