@@ -1,5 +1,4 @@
 ﻿using ITechArt.Common;
-using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Repositories;
 using Ninject.Modules;
@@ -10,7 +9,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
     {
         public override void Load()
         {
-            Bind<IRepository<User>>().To<EFRepository<User>>();
+            //Bind<IRepository<User>>().To<EFRepository<User>>();
             Bind<IUnitOfWork>().To<EFUnitOfWork>();
             Bind<ILogger>().To<Log4NetAdapter>();
         }

@@ -18,6 +18,8 @@ namespace ITechArt.DrawIoSharing.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            log4net.Config.XmlConfigurator.Configure();
+
             NinjectModule registrations = new NinjectRegistrations();
             var kernel = new StandardKernel(registrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));

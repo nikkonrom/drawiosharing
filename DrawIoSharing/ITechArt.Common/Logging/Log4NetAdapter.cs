@@ -14,7 +14,7 @@ namespace ITechArt.Common
 
         public Log4NetAdapter()
         {
-            _adapter = log4net.LogManager.GetLogger("Logger");
+            _adapter = log4net.LogManager.GetLogger(typeof(Log4NetAdapter));
         }
 
         public void Log(LogEntry entry)
