@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using ITechArt.Common.Logging;
 
-namespace ITechArt.Common
+namespace ITechArt.Common.Logging
 {
     public enum LoggingEventType
     {
@@ -13,6 +13,7 @@ namespace ITechArt.Common
 
     public interface ILogger
     {
+
         void Log(LogEntry entry);
     }
 }

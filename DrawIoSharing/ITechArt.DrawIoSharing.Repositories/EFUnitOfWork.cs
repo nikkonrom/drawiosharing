@@ -10,22 +10,12 @@ namespace ITechArt.DrawIoSharing.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private Dictionary<Type, object> _repositories;
-
-        private EFServiceContext _dataContext;
 
         private bool _disposed;
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class
-        {
-            if (_repositories.Keys.Contains(typeof(TEntity)))
-                return _repositories[typeof(TEntity)] as IRepository<TEntity>;
+        private Dictionary<Type, object> _repositories;
+        private EFServiceContext _dataContext;
 
-            IRepository<TEntity> repository = new EFRepository<TEntity>(_dataContext);
-            _repositories.Add(typeof(TEntity), repository);
-
-            return repository;
-        }
 
         public EFUnitOfWork()
         {
@@ -33,22 +23,37 @@ namespace ITechArt.DrawIoSharing.Repositories
             _repositories = new Dictionary<Type, object>();
         }
 
+
+        public IRepositoryAsync<TEntity> GetRepository<TEntity>() where TEntity : class
+        {
+            if (_repositories.Keys.Contains(typeof(TEntity)))
+                return _repositories[typeof(TEntity)] as IRepositoryAsync<TEntity>;
+
+            IRepositoryAsync<TEntity> repository = new EFRepository<TEntity>(_dataContext);
+            _repositories.Add(typeof(TEntity), repository);
+
+            return repository;
+        }
+
+        
         public void Commit()
         {
             _dataContext.SaveChanges();
         }
 
+
         protected  virtual void Dispose(bool disposing)
         {
-            if (!this._disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
                     _dataContext.Dispose();
                 }
             }
-            this._disposed = true;
+            _disposed = true;
         }
+
 
         public void Dispose()
         {

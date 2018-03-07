@@ -1,4 +1,4 @@
-﻿using ITechArt.Common;
+﻿using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Repositories;
 using Ninject.Modules;

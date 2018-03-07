@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using ITechArt.Common;
+using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
 
@@ -7,8 +7,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-
         private IUnitOfWork _unitOfWork;
         private ILogger _logger;
 
@@ -19,10 +17,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             _logger = logger;
         }
 
-        public ActionResult Index()
+
+        public ViewResult Index()
         {
             _logger.Debug("App runs!");
-            return View(_unitOfWork.Repository<User>().GetAll());
+            return View(_unitOfWork.GetRepository<User>().GetAll());
         }
     }
 }

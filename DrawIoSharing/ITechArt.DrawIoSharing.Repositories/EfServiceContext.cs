@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using ITechArt.DrawIoSharing.DomainModel;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
     public class EFServiceContext : DbContext
     {
-        public EFServiceContext() : base("DefaultConnection") { }
 
         public DbSet<User> Users { get; set; }
+
+
+        public EFServiceContext() 
+            : base("DefaultConnection") { }
     }
 }
