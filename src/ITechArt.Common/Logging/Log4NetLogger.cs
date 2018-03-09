@@ -1,12 +1,15 @@
-﻿namespace ITechArt.Common.Logging
+﻿using System;
+using log4net.Core;
+
+namespace ITechArt.Common.Logging
 {
     public class Log4NetLogger : ILogger
     {
         private readonly log4net.ILog _nativeLogger;
-
+        private readonly Type loggerType = typeof(Log4NetLogger);
         public Log4NetLogger()
         {
-            _nativeLogger = log4net.LogManager.GetLogger(typeof(Log4NetLogger));
+            _nativeLogger = log4net.LogManager.GetLogger(loggerType);
             log4net.Config.XmlConfigurator.Configure();
         }
 
@@ -17,48 +20,27 @@
             {
                 case LoggingEventType.Debug:
                     {
-                        if (entry.Exception != null)
-                            _nativeLogger.Debug(entry.Message, entry.Exception);
-                        else
-                            _nativeLogger.Debug(entry.Message);
-
+                        _nativeLogger.Logger.Log(loggerType, Level.Debug, entry.Message, entry.Exception);
                         break;
                     }
-
                 case LoggingEventType.Information:
                     {
-                        if (entry.Exception != null)
-                            _nativeLogger.Info(entry.Message, entry.Exception);
-                        else
-                            _nativeLogger.Info(entry.Message);
-
+                        _nativeLogger.Logger.Log(loggerType, Level.Info, entry.Message, entry.Exception);
                         break;
                     }
                 case LoggingEventType.Warning:
                     {
-                        if (entry.Exception != null)
-                            _nativeLogger.Warn(entry.Message, entry.Exception);
-                        else
-                            _nativeLogger.Warn(entry.Message);
-
+                        _nativeLogger.Logger.Log(loggerType, Level.Warn, entry.Message, entry.Exception);
                         break;
                     }
                 case LoggingEventType.Error:
                     {
-                        if (entry.Exception != null)
-                            _nativeLogger.Error(entry.Message, entry.Exception);
-                        else
-                            _nativeLogger.Error(entry.Message);
-
+                        _nativeLogger.Logger.Log(loggerType, Level.Error, entry.Message, entry.Exception);
                         break;
                     }
                 case LoggingEventType.Fatal:
                     {
-                        if (entry.Exception != null)
-                            _nativeLogger.Fatal(entry.Message, entry.Exception);
-                        else
-                            _nativeLogger.Fatal(entry.Message);
-
+                        _nativeLogger.Logger.Log(loggerType, Level.Fatal, entry.Message, entry.Exception);
                         break;
                     }
             }
