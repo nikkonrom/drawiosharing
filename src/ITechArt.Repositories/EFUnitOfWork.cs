@@ -19,7 +19,6 @@ namespace ITechArt.DrawIoSharing.Repositories
         public EFUnitOfWork(DbContext context)
         {
             _dbContext = context;
-
             _repositories = new Dictionary<Type, object>();
         }
 
@@ -37,12 +36,10 @@ namespace ITechArt.DrawIoSharing.Repositories
             return newRepository;
         }
 
-
         public void SaveChangesAsync()
         {
             _dbContext.SaveChangesAsync();
         }
-
 
         protected virtual void Dispose(bool disposing)
         {
@@ -55,7 +52,6 @@ namespace ITechArt.DrawIoSharing.Repositories
             }
             _disposed = true;
         }
-
         public void Dispose()
         {
             Dispose(true);

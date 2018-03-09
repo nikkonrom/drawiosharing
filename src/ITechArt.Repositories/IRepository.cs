@@ -7,15 +7,11 @@ namespace ITechArt.Repositories
     {
         Task<IReadOnlyCollection<TEntity>> GetAllAsync();
 
-
         Task<TEntity> GetByIdAsync(int entityId);
-
 
         void Create(TEntity entity);
 
-
         void Delete(TEntity entity);
-
 
         void Update(TEntity entity);
     }

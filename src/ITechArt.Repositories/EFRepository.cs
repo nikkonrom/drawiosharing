@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.Repositories;
 
@@ -8,7 +7,6 @@ namespace ITechArt.DrawIoSharing.Repositories
 {
     public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-
         private readonly DbContext _dataContext;
         private readonly DbSet<TEntity> _dbSet;
 
@@ -39,8 +37,7 @@ namespace ITechArt.DrawIoSharing.Repositories
         {
             return await _dbSet.ToListAsync();
         }
-
-
+        
         public async Task<TEntity> GetByIdAsync(int entityId)
         {
             return await _dbSet.FindAsync(entityId);

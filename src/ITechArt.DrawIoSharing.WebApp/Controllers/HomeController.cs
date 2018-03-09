@@ -11,10 +11,10 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         private ILogger _logger;
 
 
-        public HomeController(IUnitOfWork unitOfWork, ILogger logger)
+        public HomeController(IUnitOfWork unitOfWork, ILogger logger, IUnitOfWork unitOfWork2)
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;
+            _logger = logger;);
         }
 
 

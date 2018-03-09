@@ -7,9 +7,11 @@ namespace ITechArt.DrawIoSharing.Repositories
     {
         public DbSet<User> Users { get; set; }
 
+        private const string ConnectionName = "DefaultConnection";
+
 
         public DrawIoSharingDbContext()
-            : base("DefaultConnection")
+            : base(ConnectionName)
         {
 
         }
