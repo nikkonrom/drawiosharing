@@ -21,7 +21,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         public ViewResult Index()
         {
             _logger.Debug("App runs!");
-            return View(_unitOfWork.GetRepository<User>().GetAllAsync());
+            return View();
         }
     }
 }
