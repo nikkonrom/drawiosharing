@@ -10,7 +10,7 @@ namespace ITechArt.DrawIoSharing.WebApp
         public override void Load()
         {
             Bind<IUnitOfWork>().To<EFUnitOfWork>();
-            Bind<ILogger>().To<Log4NetAdapter>();
+            Bind<ILogger>().To<Log4NetLogger>();
         }
     }
 }

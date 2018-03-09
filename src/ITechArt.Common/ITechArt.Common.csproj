@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\Log4NetAdapter.cs" />
+    <Compile Include="Logging\Log4NetLogger.cs" />
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="Logging\LoggingEventType.cs" />

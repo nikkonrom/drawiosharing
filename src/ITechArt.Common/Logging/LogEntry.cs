@@ -6,12 +6,12 @@ namespace ITechArt.Common.Logging
     {
         private const string argumentNullExceptionMessage = "Log message is null or empty";
 
-        public LoggingEventType Severity { get; }
+        public LoggingEventType LoggingEventType { get; }
         public string Message { get; }
         public Exception Exception { get; }
         
 
-        public LogEntry(LoggingEventType severity, string message, Exception exception = null)
+        public LogEntry(LoggingEventType loggingEventType, string message, Exception exception = null)
         {
             if (String.IsNullOrEmpty(message))
             {
@@ -19,7 +19,7 @@ namespace ITechArt.Common.Logging
             }
 
 
-            Severity = severity;
+            LoggingEventType = loggingEventType;
             Message = message;
             Exception = exception;
         }
