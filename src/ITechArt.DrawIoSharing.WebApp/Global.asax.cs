@@ -13,9 +13,11 @@ namespace ITechArt.DrawIoSharing.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            NinjectModule registrations = new DrawIoSharingNinjectModule();
+            var registrations = new DrawIoSharingNinjectModule();
             var kernel = new StandardKernel(registrations);
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            var dependencyResolver = new NinjectDependencyResolver(kernel);
+
+            DependencyResolver.SetResolver(dependencyResolver);
         }
     }
 }

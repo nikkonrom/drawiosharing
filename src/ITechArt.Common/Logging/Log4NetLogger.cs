@@ -5,48 +5,54 @@ namespace ITechArt.Common.Logging
 {
     public class Log4NetLogger : ILogger
     {
+        private readonly log4net.ILog _nativeLogger;
+
         private readonly Type _loggerType = typeof(Log4NetLogger);
 
-        private readonly log4net.ILog _nativeLogger;
-        
 
+        static Log4NetLogger()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
 
         public Log4NetLogger()
         {
             _nativeLogger = log4net.LogManager.GetLogger(_loggerType);
-            log4net.Config.XmlConfigurator.Configure();
         }
 
 
         public void Log(LogEntry entry)
         {
-            switch (entry.LoggingEventType)
+            var logMessageLevel = ConvertLoggingEventTypeToLevel(entry.LoggingEventType);
+            _nativeLogger.Logger.Log(_loggerType, logMessageLevel, entry.Message, entry.Exception);
+        }
+
+        private Level ConvertLoggingEventTypeToLevel(LoggingEventType loggingEventType)
+        {
+            switch (loggingEventType)
             {
                 case LoggingEventType.Debug:
                     {
-                        _nativeLogger.Logger.Log(_loggerType, Level.Debug, entry.Message, entry.Exception);
-                        break;
+                        return Level.Debug;
                     }
                 case LoggingEventType.Information:
                     {
-                        _nativeLogger.Logger.Log(_loggerType, Level.Info, entry.Message, entry.Exception);
-                        break;
+                        return Level.Info;
                     }
                 case LoggingEventType.Warning:
                     {
-                        _nativeLogger.Logger.Log(_loggerType, Level.Warn, entry.Message, entry.Exception);
-                        break;
+                        return Level.Warn;
                     }
                 case LoggingEventType.Error:
                     {
-                        _nativeLogger.Logger.Log(_loggerType, Level.Error, entry.Message, entry.Exception);
-                        break;
+                        return Level.Error;
                     }
                 case LoggingEventType.Fatal:
                     {
-                        _nativeLogger.Logger.Log(_loggerType, Level.Fatal, entry.Message, entry.Exception);
-                        break;
+                        return Level.Fatal;
                     }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
