@@ -14,7 +14,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         public HomeController(IUnitOfWork unitOfWork, ILogger logger, IUnitOfWork unitOfWork2)
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;);
+            _logger = logger;
         }
 
 
