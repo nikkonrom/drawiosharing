@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
@@ -13,6 +14,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         public HomeController(IUnitOfWork unitOfWork, ILogger logger)
         {
+            
             _unitOfWork = unitOfWork;
             _logger = logger;
         }

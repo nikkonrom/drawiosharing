@@ -3,6 +3,7 @@ using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Repositories;
 using Ninject.Modules;
+using Ninject.Web.Common;
 
 namespace ITechArt.DrawIoSharing.WebApp
 {
@@ -10,9 +11,9 @@ namespace ITechArt.DrawIoSharing.WebApp
     {
         public override void Load()
         {
-            Bind<IUnitOfWork>().To<EFUnitOfWork>();
+            Bind<IUnitOfWork>().To<EFUnitOfWork>().InRequestScope();
             Bind<DbContext>().To<DrawIoSharingDbContext>();
-            Bind<ILogger>().To<Log4NetLogger>();
+            Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
         }
     }
 }
