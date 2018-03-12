@@ -10,14 +10,12 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Users",
-                    c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
+            CreateTable("dbo.Users", c => new
+            {
+                Id = c.Int(nullable: false, identity: true),
+                Username = c.String(),
+            }
+            ).PrimaryKey(t => t.Id);
 
         }
 
