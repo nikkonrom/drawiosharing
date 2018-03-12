@@ -48,6 +48,7 @@ namespace ITechArt.Repositories
                     _dbContext.Dispose();
                 }
             }
+
             _disposed = true;
         }
 

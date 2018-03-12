@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -18,6 +17,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
+
 
         public async Task<ViewResult> Index()
         {
