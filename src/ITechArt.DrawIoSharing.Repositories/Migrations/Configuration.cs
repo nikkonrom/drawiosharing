@@ -1,15 +1,12 @@
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 
 namespace ITechArt.DrawIoSharing.Repositories.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<ITechArt.DrawIoSharing.Repositories.DrawIoSharingDbContext>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
+    public sealed class Configuration :DbMigrationsConfiguration<DrawIoSharingDbContext>
 
-        protected override void Seed(ITechArt.DrawIoSharing.Repositories.DrawIoSharingDbContext context)
+    {
+        protected override void Seed(DrawIoSharingDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

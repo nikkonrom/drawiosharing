@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity;
+using System.Web.Mvc;
 using System.Web.Routing;
+using ITechArt.DrawIoSharing.Repositories;
+using ITechArt.DrawIoSharing.Repositories.Migrations;
 using Ninject;
-using Ninject.Modules;
 using Ninject.Web.Mvc;
 
 namespace ITechArt.DrawIoSharing.WebApp
@@ -13,6 +15,8 @@ namespace ITechArt.DrawIoSharing.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DrawIoSharingDbContext, Configuration>());
+            
             var registrations = new DrawIoSharingNinjectModule();
             var kernel = new StandardKernel(registrations);
             var dependencyResolver = new NinjectDependencyResolver(kernel);

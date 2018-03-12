@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -8,22 +9,23 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger _logger;
 
 
         public HomeController(IUnitOfWork unitOfWork, ILogger logger)
         {
-            
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
-
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
             _logger.Debug("App runs!");
-            return View();
+            
+            var result = await _unitOfWork.GetRepository<User>().GetAllAsync();
+
+            return View(result);
         }
     }
 }
