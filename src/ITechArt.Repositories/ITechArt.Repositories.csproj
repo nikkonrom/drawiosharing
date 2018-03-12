@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
+      <Project>{94a9afdf-ec33-420d-8b92-71dea763b294}</Project>
+      <Name>ITechArt.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

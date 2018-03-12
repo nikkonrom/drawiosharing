@@ -3,11 +3,12 @@ using log4net.Core;
 
 namespace ITechArt.Common.Logging
 {
+    [UsedImplicitly]
     public class Log4NetLogger : ILogger
     {
         private readonly log4net.ILog _nativeLogger;
 
-        private readonly Type _loggerType = typeof(Log4NetLogger);
+        private readonly Type _loggerType;
 
 
         static Log4NetLogger()
@@ -17,6 +18,7 @@ namespace ITechArt.Common.Logging
 
         public Log4NetLogger()
         {
+            _loggerType = typeof(Log4NetLogger);
             _nativeLogger = log4net.LogManager.GetLogger(_loggerType);
         }
 
@@ -27,7 +29,8 @@ namespace ITechArt.Common.Logging
             _nativeLogger.Logger.Log(_loggerType, logMessageLevel, entry.Message, entry.Exception);
         }
 
-        private Level ConvertLoggingEventTypeToLevel(LoggingEventType loggingEventType)
+
+        private static Level ConvertLoggingEventTypeToLevel(LoggingEventType loggingEventType)
         {
             switch (loggingEventType)
             {
@@ -52,7 +55,7 @@ namespace ITechArt.Common.Logging
                         return Level.Fatal;
                     }
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(loggingEventType), loggingEventType, "Enum value is out of range");
             }
         }
     }

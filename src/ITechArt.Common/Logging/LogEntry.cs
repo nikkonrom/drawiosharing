@@ -15,6 +15,7 @@ namespace ITechArt.Common.Logging
         {
             if (String.IsNullOrEmpty(message))
             {
+                // ReSharper disable once NotResolvedInText
                 throw new ArgumentNullException("Log message is null or empty");
             }
             

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-
+using ITechArt.Common;
 namespace ITechArt.Repositories
 {
+    [UsedImplicitly]
     public class EFUnitOfWork : IUnitOfWork
     {
+        [UsedImplicitly]
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
@@ -34,10 +36,17 @@ namespace ITechArt.Repositories
             return newRepository;
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            return await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();;
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
 
         protected virtual void Dispose(bool disposing)
         {
@@ -50,12 +59,6 @@ namespace ITechArt.Repositories
             }
 
             _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
