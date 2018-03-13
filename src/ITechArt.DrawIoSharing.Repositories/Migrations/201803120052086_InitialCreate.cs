@@ -1,6 +1,4 @@
 using System.Data.Entity.Migrations;
-using System.Data.Entity.Migrations.Builders;
-using System.Data.Entity.Migrations.Model;
 using ITechArt.Common;
 
 namespace ITechArt.DrawIoSharing.Repositories.Migrations
