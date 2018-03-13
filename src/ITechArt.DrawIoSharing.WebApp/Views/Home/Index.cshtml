@@ -1,0 +1,32 @@
+﻿@using ITechArt.DrawIoSharing.DomainModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <h3>Users</h3>
+    <table>
+        <tr>
+            <td><p>ID</p></td>
+            <td><p>Username</p></td><td></td>
+        </tr>
+        @foreach (User user in Model)
+        {
+            <tr>
+                <td><p>@user.Id</p></td>
+                <td><p>@user.Username</p></td>
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>
