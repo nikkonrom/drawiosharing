@@ -15,8 +15,6 @@ namespace ITechArt.DrawIoSharing.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DrawIoSharingDbContext, Configuration>());
-
             var registrations = new DrawIoSharingNinjectModule();
             var kernel = new StandardKernel(registrations);
             var dependencyResolver = new NinjectDependencyResolver(kernel);

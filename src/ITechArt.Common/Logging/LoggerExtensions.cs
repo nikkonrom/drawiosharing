@@ -13,15 +13,15 @@ namespace ITechArt.Common.Logging
         {
             logger.Log(new LogEntry(LoggingEventType.Information, message));
         }
-        
+
         public static void Warning(this ILogger logger, string message)
         {
             logger.Log(new LogEntry(LoggingEventType.Warning, message));
         }
 
-        public static void Warning(this ILogger logger, Exception exception, string customMessage)
+        public static void Warning(this ILogger logger, string message, Exception exception)
         {
-            logger.Log(new LogEntry(LoggingEventType.Warning, customMessage, exception));
+            logger.Log(new LogEntry(LoggingEventType.Warning, message, exception));
         }
 
         public static void Error(this ILogger logger, string message)
@@ -29,9 +29,9 @@ namespace ITechArt.Common.Logging
             logger.Log(new LogEntry(LoggingEventType.Error, message));
         }
 
-        public static void Error(this ILogger logger, Exception exception, string customMessage)
+        public static void Error(this ILogger logger, string message, Exception exception)
         {
-            logger.Log(new LogEntry(LoggingEventType.Error, customMessage, exception));
+            logger.Log(new LogEntry(LoggingEventType.Error, message, exception));
         }
 
         public static void Fatal(this ILogger logger, string message)
@@ -39,9 +39,9 @@ namespace ITechArt.Common.Logging
             logger.Log(new LogEntry(LoggingEventType.Fatal, message));
         }
 
-        public static void Fatal(this ILogger logger, Exception exception, string customMessage)
+        public static void Fatal(this ILogger logger, string message, Exception exception)
         {
-            logger.Log(new LogEntry(LoggingEventType.Fatal, customMessage, exception));
+            logger.Log(new LogEntry(LoggingEventType.Fatal, message, exception));
         }
     }
 }

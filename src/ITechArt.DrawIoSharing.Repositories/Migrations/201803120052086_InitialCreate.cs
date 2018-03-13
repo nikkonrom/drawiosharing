@@ -12,9 +12,7 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
             {
                 Id = c.Int(nullable: false, identity: true),
                 Username = c.String(),
-            }
-            ).PrimaryKey(t => t.Id);
-
+            }).PrimaryKey(t => t.Id);
         }
 
         public override void Down()

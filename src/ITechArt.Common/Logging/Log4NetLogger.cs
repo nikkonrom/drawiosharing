@@ -6,10 +6,9 @@ namespace ITechArt.Common.Logging
     [UsedImplicitly]
     public class Log4NetLogger : ILogger
     {
-        private readonly log4net.ILog _nativeLogger;
-
         private readonly Type _loggerType;
-
+        private readonly log4net.ILog _nativeLogger;
+        
 
         static Log4NetLogger()
         {

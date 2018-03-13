@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using ITechArt.Common;
+
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
     public sealed class EFUnitOfWork : IUnitOfWork
     {
-        [UsedImplicitly]
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
-        private bool _disposed;
+        private bool _isDisposed;
 
 
         public EFUnitOfWork(DbContext context)
@@ -50,7 +50,7 @@ namespace ITechArt.Repositories
 
         private void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (!_isDisposed)
             {
                 if (disposing)
                 {
@@ -58,7 +58,7 @@ namespace ITechArt.Repositories
                 }
             }
 
-            _disposed = true;
+            _isDisposed = true;
         }
     }
 }

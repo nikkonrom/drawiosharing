@@ -2,7 +2,6 @@
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
-    [UsedImplicitly]
     public class User
     {
         public int Id { get; set; }

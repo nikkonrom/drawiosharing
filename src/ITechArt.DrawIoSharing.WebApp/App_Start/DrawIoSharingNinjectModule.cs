@@ -12,7 +12,7 @@ namespace ITechArt.DrawIoSharing.WebApp
         public override void Load()
         {
             Bind<IUnitOfWork>().To<EFUnitOfWork>().InRequestScope();
-            Bind<DbContext>().To<DrawIoSharingDbContext>();
+            Bind<DbContext>().To<DrawIoSharingDbContext>().InRequestScope();
             Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
         }
     }
