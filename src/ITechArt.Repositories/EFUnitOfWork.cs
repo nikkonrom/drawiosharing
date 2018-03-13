@@ -6,7 +6,7 @@ using ITechArt.Common;
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
-    public class EFUnitOfWork : IUnitOfWork
+    public sealed class EFUnitOfWork : IUnitOfWork
     {
         [UsedImplicitly]
         private readonly DbContext _dbContext;
@@ -48,7 +48,7 @@ namespace ITechArt.Repositories
         }
 
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposed)
             {
