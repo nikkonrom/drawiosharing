@@ -17,13 +17,15 @@
     <table>
         <tr>
             <td><p>ID</p></td>
-            <td><p>Username</p></td><td></td>
+            <td><p>Username</p></td>
+            <td><p>Email</p></td>
         </tr>
         @foreach (User user in Model)
         {
             <tr>
                 <td><p>@user.Id</p></td>
-                <td><p>@user.Username</p></td>
+                <td><p>@user.UserName</p></td>
+                <td><p>@user.Email</p></td>
             </tr>
         }
     </table>

@@ -22,7 +22,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         public async Task<ViewResult> Index()
         {
             _logger.Debug("App runs!");
-            
+
             var result = await _unitOfWork.GetRepository<User>().GetAllAsync();
 
             return View(result);

@@ -11,7 +11,8 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
             CreateTable("dbo.Users", c => new
             {
                 Id = c.Int(nullable: false, identity: true),
-                Username = c.String(),
+                UserName = c.String(),
+                Email = c.String()
             }).PrimaryKey(t => t.Id);
         }
 
