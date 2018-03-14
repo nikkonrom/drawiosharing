@@ -19,6 +19,7 @@
             <td><p>ID</p></td>
             <td><p>Username</p></td>
             <td><p>Email</p></td>
+            <td><p>Approved by admin</p></td>
         </tr>
         @foreach (User user in Model)
         {
@@ -26,6 +27,7 @@
                 <td><p>@user.Id</p></td>
                 <td><p>@user.UserName</p></td>
                 <td><p>@user.Email</p></td>
+                <td><p>@user.UserApproved</p></td>
             </tr>
         }
     </table>

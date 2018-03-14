@@ -7,7 +7,7 @@ namespace ITechArt.Repositories
     {
         Task<IReadOnlyCollection<TEntity>> GetAllAsync();
 
-        Task<TEntity> GetByIdAsync(int entityId);
+        Task<TEntity> GetByIdAsync(string entityId);
 
         void Create(TEntity entity);
 

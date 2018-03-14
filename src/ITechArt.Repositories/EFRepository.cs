@@ -6,7 +6,7 @@ namespace ITechArt.Repositories
 {
     public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly DbContext _dbContext;
+        protected readonly DbContext _dbContext;
 
         private readonly DbSet<TEntity> _dbSet;
 
@@ -39,7 +39,7 @@ namespace ITechArt.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(int entityId)
+        public async Task<TEntity> GetByIdAsync(string entityId)
         {
             return await _dbSet.FindAsync(entityId);
         }
