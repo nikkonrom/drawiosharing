@@ -7,9 +7,10 @@ using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
-    class Role : IRole
+    public class Role : IRole
     {
-        public string Id { get; }
+        public string Id { get; set; }
+
         public string Name { get; set; }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
+using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
@@ -26,9 +29,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             _logger.Debug("App runs!");
 
-            var result = await _unitOfWork.GetRepository<User>().GetAllAsync();
-            
-            return View(result);
+            //var users = HttpContext.GetOwinContext().GetUserManager<UserManager>().Users;
+            return View();
         }
     }
 }

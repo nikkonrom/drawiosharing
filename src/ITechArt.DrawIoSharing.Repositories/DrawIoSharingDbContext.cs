@@ -12,17 +12,23 @@ namespace ITechArt.DrawIoSharing.Repositories
 
 
         public DbSet<User> Users { get; set; }
-        
+        public DbSet<Role> Roles { get; set; }
 
         static DrawIoSharingDbContext()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DrawIoSharingDbContext, Configuration>());
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public DrawIoSharingDbContext()
             : base(ConnectionName)
         {
 
+        }
+
+        public static DrawIoSharingDbContext Create()
+        {
+            return new DrawIoSharingDbContext();
         }
     }
 }

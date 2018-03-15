@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
@@ -10,7 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class UserStore : EFRepository<User>, IUserStore<User>
+     public class UserStore : EFRepository<User>, IQueryableUserStore<User>, IUserStore<User>
     {
         public UserStore(DbContext dbContext) : base(dbContext)
         {
@@ -50,5 +48,7 @@ namespace ITechArt.DrawIoSharing.Repositories
             // ReSharper disable once BuiltInTypeReferenceStyle
              return Task.FromResult(_dbSet.FirstOrDefault(user => String.Equals(user.UserName, userName, StringComparison.CurrentCultureIgnoreCase)));
         }
+
+        public  IQueryable<User> Users => GetAllAsync().Result.AsQueryable();
     }
 }

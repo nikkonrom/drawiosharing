@@ -1,9 +1,5 @@
 ﻿@using ITechArt.DrawIoSharing.DomainModel
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -13,24 +9,9 @@
 </head>
 <body>
 <div>
-    <h3>Users</h3>
-    <table>
-        <tr>
-            <td><p>ID</p></td>
-            <td><p>Username</p></td>
-            <td><p>Email</p></td>
-            <td><p>Approved by admin</p></td>
-        </tr>
-        @foreach (User user in Model)
-        {
-            <tr>
-                <td><p>@user.Id</p></td>
-                <td><p>@user.UserName</p></td>
-                @*<td><p>@user.Email</p></td>*@
-                <td><p>@user.UserApproved</p></td>
-            </tr>
-        }
-    </table>
+    @Html.ActionLink("Register", "Index", null, new { @class = "btn btn-default"})
+}
+    
 </div>
 </body>
 </html>
