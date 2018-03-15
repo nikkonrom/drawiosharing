@@ -7,13 +7,13 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangedUserIdTypeMigration : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedUserIdTypeMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803141539212_ChangedUserIdTypeMigration"; }
+            get { return "201803150732048_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

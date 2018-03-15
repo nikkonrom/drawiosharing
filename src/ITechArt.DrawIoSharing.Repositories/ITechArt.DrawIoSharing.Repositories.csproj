@@ -48,17 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201803120052086_InitialCreate.cs" />
-    <Compile Include="Migrations\201803120052086_InitialCreate.Designer.cs">
-      <DependentUpon>201803120052086_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201803150732048_InitialCreate.cs" />
+    <Compile Include="Migrations\201803150732048_InitialCreate.Designer.cs">
+      <DependentUpon>201803150732048_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803141324546_AddUserApproved.cs" />
-    <Compile Include="Migrations\201803141324546_AddUserApproved.Designer.cs">
-      <DependentUpon>201803141324546_AddUserApproved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803141539212_ChangedUserIdTypeMigration.cs" />
-    <Compile Include="Migrations\201803141539212_ChangedUserIdTypeMigration.Designer.cs">
-      <DependentUpon>201803141539212_ChangedUserIdTypeMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201803150738507_DisableKeys.cs" />
+    <Compile Include="Migrations\201803150738507_DisableKeys.Designer.cs">
+      <DependentUpon>201803150738507_DisableKeys.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,14 +80,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803120052086_InitialCreate.resx">
-      <DependentUpon>201803120052086_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803150732048_InitialCreate.resx">
+      <DependentUpon>201803150732048_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141324546_AddUserApproved.resx">
-      <DependentUpon>201803141324546_AddUserApproved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141539212_ChangedUserIdTypeMigration.resx">
-      <DependentUpon>201803141539212_ChangedUserIdTypeMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803150738507_DisableKeys.resx">
+      <DependentUpon>201803150738507_DisableKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,18 +7,18 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddUserApproved : IMigrationMetadata
+    public sealed partial class DisableKeys : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUserApproved));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DisableKeys));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803141324546_AddUserApproved"; }
+            get { return "201803150738507_DisableKeys"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

@@ -12,7 +12,7 @@ namespace ITechArt.DrawIoSharing.Repositories
 
 
         public DbSet<User> Users { get; set; }
-
+        
 
         static DrawIoSharingDbContext()
         {

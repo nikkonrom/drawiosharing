@@ -8,7 +8,7 @@ namespace ITechArt.Repositories
     {
         protected readonly DbContext _dbContext;
 
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> _dbSet;
 
 
         public EFRepository(DbContext dbContext)

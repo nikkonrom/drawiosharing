@@ -14,11 +14,12 @@ namespace ITechArt.DrawIoSharing.Repositories
     {
         public UserStore(DbContext dbContext) : base(dbContext)
         {
+
         }
 
         public void Dispose()
         {
-            
+            _dbContext.Dispose();
         }
 
         public async Task CreateAsync(User user)
@@ -41,16 +42,13 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public async Task<User> FindByIdAsync(string userId)
         {
-            var result = await GetByIdAsync(userId);
-            await _dbContext.SaveChangesAsync();
-
-            return result;
+            return await GetByIdAsync(userId);
         }
 
         public Task<User> FindByNameAsync(string userName)
         {
-            throw  new NotImplementedException();
-            //var result =
+            // ReSharper disable once BuiltInTypeReferenceStyle
+             return Task.FromResult(_dbSet.FirstOrDefault(user => String.Equals(user.UserName, userName, StringComparison.CurrentCultureIgnoreCase)));
         }
     }
 }
