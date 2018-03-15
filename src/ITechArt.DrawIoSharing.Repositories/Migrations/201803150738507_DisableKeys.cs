@@ -1,8 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace ITechArt.DrawIoSharing.Repositories.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class DisableKeys : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
             AlterColumn("dbo.Users", "UserName", c => c.String());
             AddPrimaryKey("dbo.Users", "Id");
         }
-        
+
         public override void Down()
         {
             DropPrimaryKey("dbo.Users");

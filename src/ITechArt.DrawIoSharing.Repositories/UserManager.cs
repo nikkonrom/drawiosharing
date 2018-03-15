@@ -30,7 +30,6 @@ namespace ITechArt.DrawIoSharing.Repositories
                 RequireNonLetterOrDigit = false
             };
 
-
             return manager;
         }
     }

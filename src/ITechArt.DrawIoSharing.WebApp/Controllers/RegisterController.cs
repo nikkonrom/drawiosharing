@@ -11,6 +11,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class RegisterController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Create()
         {
             return View();

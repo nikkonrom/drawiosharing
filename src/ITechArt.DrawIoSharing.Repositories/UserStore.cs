@@ -10,10 +10,14 @@ namespace ITechArt.DrawIoSharing.Repositories
 {
      public class UserStore : EFRepository<User>, IQueryableUserStore<User>, IUserStore<User>, IUserPasswordStore<User>
     {
+        public IQueryable<User> Users => GetAllAsync().Result.AsQueryable();
+
+
         public UserStore(DbContext dbContext) : base(dbContext)
         {
 
         }
+
 
         public void Dispose()
         {
@@ -49,7 +53,6 @@ namespace ITechArt.DrawIoSharing.Repositories
              return Task.FromResult(_dbSet.FirstOrDefault(user => String.Equals(user.UserName.ToUpper(), userName.ToUpper())));
         }
 
-        public  IQueryable<User> Users => GetAllAsync().Result.AsQueryable();
         public Task SetPasswordHashAsync(User user, string passwordHash)
         {
             user.Password = passwordHash;
