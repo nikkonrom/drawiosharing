@@ -10,13 +10,13 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
+        private UserManager UserManager => HttpContext.GetOwinContext().GetUserManager<UserManager>();
+
+
         public ActionResult Index()
         {
             var users = HttpContext.GetOwinContext().GetUserManager<UserManager>().Users;
             return View(users);
         }
-
-        private UserManager UserManager => HttpContext.GetOwinContext().GetUserManager<UserManager>();
     }
 }

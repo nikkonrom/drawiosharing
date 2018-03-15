@@ -25,11 +25,10 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
 
-        public async Task<ViewResult> Index()
+        public ViewResult Index()
         {
             _logger.Debug("App runs!");
 
-            //var users = HttpContext.GetOwinContext().GetUserManager<UserManager>().Users;
             return View();
         }
     }
