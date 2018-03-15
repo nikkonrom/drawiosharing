@@ -15,7 +15,6 @@ namespace ITechArt.DrawIoSharing.WebApp
         {
             Bind<IUnitOfWork>().To<EFUnitOfWork>().InRequestScope();
             Bind<DbContext>().To<DrawIoSharingDbContext>().InRequestScope();
-            Bind<IQueryableUserStore<User>>().To<UserStore>();
             Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
         }
     }

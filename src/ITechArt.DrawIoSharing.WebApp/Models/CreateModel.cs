@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using ITechArt.Common;
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {

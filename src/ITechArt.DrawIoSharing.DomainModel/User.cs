@@ -8,6 +8,7 @@ namespace ITechArt.DrawIoSharing.DomainModel
 {
     public class User : IUser
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
 
         public string UserName { get; set; }
