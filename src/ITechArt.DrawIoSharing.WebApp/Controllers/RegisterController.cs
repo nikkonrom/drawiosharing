@@ -11,11 +11,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class RegisterController : Controller
     {
-        public ActionResult Index()
-        {
-            return View(UserManager.Users);
-        }
-
         public ActionResult Create()
         {
             return View();
@@ -47,12 +42,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             }
         }
 
-        private UserManager UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager>();
-            }
-        }
+        private UserManager UserManager => HttpContext.GetOwinContext().GetUserManager<UserManager>();
     }
 }

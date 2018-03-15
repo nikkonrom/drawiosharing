@@ -22,6 +22,14 @@ namespace ITechArt.DrawIoSharing.Repositories
         {
             var dbContext = context.Get<DrawIoSharingDbContext>();
             var manager = new UserManager(new UserStore(dbContext));
+            manager.PasswordValidator = new PasswordValidator()
+            {
+                RequireDigit = true,
+                RequireUppercase = true,
+                RequiredLength = 6,
+                RequireNonLetterOrDigit = false
+            };
+
 
             return manager;
         }
