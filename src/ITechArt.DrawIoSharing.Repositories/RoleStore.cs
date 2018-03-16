@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -8,45 +7,55 @@ using ITechArt.Repositories;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class RoleStore : EFRepository<Role>, IRoleStore<Role>
+    class RoleStore : IQueryableRoleStore<Role>, IRoleStore<Role>
     {
-        public RoleStore(DbContext dbContext) : base(dbContext)
-        {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<Role> _repository;
 
+
+        public IQueryable<Role> Roles => _repository.GetAllAsync().Result.AsQueryable();
+
+
+        public RoleStore(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+            _repository = _unitOfWork.GetRepository<Role>();
         }
 
 
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
+        }
+
         public async Task CreateAsync(Role role)
         {
-            Create(role);
-            await _dbContext.SaveChangesAsync();
+            _repository.Create(role);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Role role)
         {
-            Update(role);
-            await _dbContext.SaveChangesAsync();
+            _repository.Update(role);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Role role)
         {
-            Delete(role);
-            await _dbContext.SaveChangesAsync();
+            _repository.Delete(role);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<Role> FindByIdAsync(string roleId)
         {
-            return await GetByIdAsync(roleId);
+            return await _repository.GetByIdAsync(roleId);
         }
 
-        public Task<Role> FindByNameAsync(string roleName)
+        public async Task<Role> FindByNameAsync(string roleName)
         {
-            return Task.FromResult(_dbSet.FirstOrDefault(role => String.Equals(role.Name, roleName, StringComparison.CurrentCultureIgnoreCase)));
-        }
+            var result = (await _repository.GetAllAsync()).FirstOrDefault(role => String.Equals(role.Name.ToUpper(), roleName.ToUpper()));
 
-        public void Dispose()
-        {
-
+            return await Task.FromResult(result);
         }
     }
 }

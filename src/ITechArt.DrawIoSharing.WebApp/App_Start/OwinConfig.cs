@@ -1,5 +1,6 @@
 ﻿using ITechArt.DrawIoSharing.Repositories;
-using ITechArt.Repositories;
+using ITechArt.DrawIoSharing.Foundation;
+using ITechArt.DrawIoSharing.Foundation.UserService;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -12,7 +13,7 @@ namespace ITechArt.DrawIoSharing.WebApp
         public void Configuration(IAppBuilder appBuilder)
         {
             appBuilder.CreatePerOwinContext(DrawIoSharingDbContext.Create);
-            appBuilder.CreatePerOwinContext<UserManager>(UserManager.Create);
+            appBuilder.CreatePerOwinContext<UserService>(UserService.Create);
 
             appBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
             {

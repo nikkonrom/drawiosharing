@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Threading.Tasks;
 using ITechArt.Common;
-using ITechArt.Common.Logging;
 
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
+    // ReSharper disable once InconsistentNaming
     public sealed class EFUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
         private bool _isDisposed;
-        private ILogger logger = new Log4NetLogger();
 
         public EFUnitOfWork(DbContext context)
         {
@@ -40,23 +38,7 @@ namespace ITechArt.Repositories
 
         public async Task SaveChangesAsync()
         {
-            try
-            {
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    logger.Error($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation errors:");
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        logger.Error($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
-                    }
-                }
-                throw;
-            }
-
+            await _dbContext.SaveChangesAsync();
         }
 
         public void Dispose()

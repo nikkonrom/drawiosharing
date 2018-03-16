@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 
 namespace ITechArt.Repositories
 {
+    // ReSharper disable once InconsistentNaming
     public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext _dbContext;
+        private readonly DbContext _dbContext;
 
-        protected readonly DbSet<TEntity> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
 
         public EFRepository(DbContext dbContext)

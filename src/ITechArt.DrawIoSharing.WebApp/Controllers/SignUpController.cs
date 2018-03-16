@@ -1,17 +1,18 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ITechArt.DrawIoSharing.DomainModel;
-using ITechArt.DrawIoSharing.Repositories;
+using ITechArt.DrawIoSharing.Foundation;
+using ITechArt.DrawIoSharing.Foundation.UserService;
 using ITechArt.DrawIoSharing.WebApp.Models;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
-    public class RegisterController : Controller
+    public class SignUpController : Controller
     {
-        private UserManager UserManager => HttpContext.GetOwinContext().GetUserManager<UserManager>();
+        private IUserService<User> UserService => HttpContext.GetOwinContext().GetUserManager<UserService>();
 
 
         public ActionResult Index()
@@ -29,10 +30,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Name, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var id = (new Random()).Next().GetHashCode().ToString();
+                var user = new User { Id = id,  UserName = model.Name, Email = model.Email };
+                var result = await UserService.CreateUserAsync(user, model.Password);
 
-                if (result.Succeeded)
+                if (result.Success)
                 {
                     return RedirectToAction("Index");
                 }
@@ -42,7 +44,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View(model);
         }
 
-        private void AddErrorsFromResult(IdentityResult result)
+        private void AddErrorsFromResult(OperationResult result)
         {
             foreach (string error in result.Errors)
             {

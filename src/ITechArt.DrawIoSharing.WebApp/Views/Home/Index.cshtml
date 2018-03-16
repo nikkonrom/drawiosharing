@@ -1,15 +1,35 @@
 ﻿@using ITechArt.DrawIoSharing.DomainModel
 
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    
+    <title>Home</title>
 </head>
 <body>
-<div>
-    @Html.ActionLink("Register", "Create", "Register", null, new { @class = "btn btn-default"})
-</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">draw.io Sharing</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                @Html.ActionLink("Sign Up", "Create", "SignUp", null, new {@class = "nav-link"})
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Sign In</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 </body>
 </html>
