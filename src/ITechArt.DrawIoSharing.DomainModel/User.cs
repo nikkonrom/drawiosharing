@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
-    public class User : IUser
+    public class User : IUser<int>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string UserName { get; set; }
 
@@ -12,6 +13,16 @@ namespace ITechArt.DrawIoSharing.DomainModel
 
         public string Password { get; set; }
 
-        public bool UserApproved { get; set; }
+
+        public User()
+        {
+            Id = Guid.NewGuid().GetHashCode();
+        }
+
+        public User(string userName, string email) : this()
+        {
+            UserName = userName;
+            Email = email;
+        }
     }
 }

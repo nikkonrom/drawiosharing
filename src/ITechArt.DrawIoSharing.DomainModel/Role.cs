@@ -2,9 +2,9 @@
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
-    public class Role : IRole
+    public class Role : IRole<int>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
     }

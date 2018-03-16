@@ -8,14 +8,14 @@ namespace ITechArt.Repositories
 {
     [UsedImplicitly]
     // ReSharper disable once InconsistentNaming
-    public sealed class EFUnitOfWork : IUnitOfWork
+    public sealed class EfUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
         private bool _isDisposed;
 
-        public EFUnitOfWork(DbContext context)
+        public EfUnitOfWork(DbContext context)
         {
             _dbContext = context;
 
@@ -30,7 +30,7 @@ namespace ITechArt.Repositories
                 return (IRepository<TEntity>)repository;
             }
 
-            var newRepository = new EFRepository<TEntity>(_dbContext);
+            var newRepository = new EfRepository<TEntity>(_dbContext);
             _repositories.Add(typeof(TEntity), newRepository);
 
             return newRepository;

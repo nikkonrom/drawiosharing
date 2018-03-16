@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ITechArt.DrawIoSharing.Foundation.UserService
+namespace ITechArt.DrawIoSharing.Foundation
 {
     public interface IUserService<in TUser> where TUser : class
     {

@@ -2,18 +2,29 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation;
-using ITechArt.DrawIoSharing.Foundation.UserService;
 using ITechArt.DrawIoSharing.WebApp.Models;
+using ITechArt.Repositories;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
     public class SignUpController : Controller
     {
+        private ILogger _logger;
+        private IUnitOfWork _unitOfWork;
+
         private IUserService<User> UserService => HttpContext.GetOwinContext().GetUserManager<UserService>();
 
+
+        public SignUpController(ILogger logger, IUnitOfWork unitOfWork)
+        {
+            _logger = logger;
+            _unitOfWork = unitOfWork;
+            _logger.Info($"{unitOfWork.GetHashCode()}");
+        }
 
         public ActionResult Index()
         {
@@ -30,11 +41,10 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var id = (new Random()).Next().GetHashCode().ToString();
-                var user = new User { Id = id,  UserName = model.Name, Email = model.Email };
+                var user = new User (model.Name, model.Email);
                 var result = await UserService.CreateUserAsync(user, model.Password);
 
-                if (result.Success)
+                if (result.IsSuccessful)
                 {
                     return RedirectToAction("Index");
                 }

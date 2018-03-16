@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ITechArt.Repositories
 {
-    // ReSharper disable once InconsistentNaming
-    public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly DbContext _dbContext;
 
         private readonly DbSet<TEntity> _dbSet;
 
 
-        public EFRepository(DbContext dbContext)
+        public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
 
@@ -20,6 +21,7 @@ namespace ITechArt.Repositories
         }
 
 
+        
         public void Create(TEntity entity)
         {
             _dbSet.Add(entity);
@@ -39,10 +41,14 @@ namespace ITechArt.Repositories
         {
             return await _dbSet.ToListAsync();
         }
-
-        public async Task<TEntity> GetByIdAsync(string entityId)
+        public async Task<TEntity> GetByIdAsync(object entityId)
         {
             return await _dbSet.FindAsync(entityId);
+        }
+
+        public async Task<TEntity> GetByExpression(Expression<Func<TEntity, bool>> expression)
+        {
+            return await _dbSet.SingleOrDefaultAsync(expression);
         }
     }
 }

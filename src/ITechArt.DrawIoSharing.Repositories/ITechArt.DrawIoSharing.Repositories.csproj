@@ -39,6 +39,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
@@ -73,6 +76,10 @@
     <Compile Include="Migrations\201803161109273_InitialCreate.Designer.cs">
       <DependentUpon>201803161109273_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803161404451_KeyTypeChanged.cs" />
+    <Compile Include="Migrations\201803161404451_KeyTypeChanged.Designer.cs">
+      <DependentUpon>201803161404451_KeyTypeChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DrawIoSharingDbContext.cs" />
@@ -100,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803161109273_InitialCreate.resx">
       <DependentUpon>201803161109273_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803161404451_KeyTypeChanged.resx">
+      <DependentUpon>201803161404451_KeyTypeChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

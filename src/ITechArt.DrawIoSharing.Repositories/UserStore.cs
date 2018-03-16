@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    public class UserStore : IQueryableUserStore<User>, IUserStore<User>, IUserPasswordStore<User>
+    public class UserStore : IUserStore<User, int>, IUserPasswordStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<User> _repository;
-
-
-        public IQueryable<User> Users => _repository.GetAllAsync().Result.AsQueryable();
 
 
         public UserStore(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.GetRepository<User>();
         }
 
 
@@ -31,32 +26,31 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public async Task CreateAsync(User user)
         {
-            _repository.Create(user);
+            _unitOfWork.GetRepository<User>().Create(user);
             await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(User user)
         {
-            _repository.Update(user);
+            _unitOfWork.GetRepository<User>().Update(user);
             await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(User user)
         {
-            _repository.Delete(user);
+            _unitOfWork.GetRepository<User>().Delete(user);
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<User> FindByIdAsync(string userId)
+        public async Task<User> FindByIdAsync(int userId)
         {
-            return await _repository.GetByIdAsync(userId);
+            return await _unitOfWork.GetRepository<User>().GetByIdAsync(userId);
         }
 
         public async Task<User> FindByNameAsync(string userName)
         {
-            var result = (await _repository.GetAllAsync()).FirstOrDefault(user => String.Equals(user.UserName.ToUpper(), userName.ToUpper()));
-
-            return await Task.FromResult(result);
+            // ReSharper disable once SpecifyStringComparison
+            return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName.ToUpper() == userName.ToUpper());
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash)

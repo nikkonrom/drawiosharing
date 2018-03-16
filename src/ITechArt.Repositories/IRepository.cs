@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ITechArt.Repositories
@@ -7,7 +9,9 @@ namespace ITechArt.Repositories
     {
         Task<IReadOnlyCollection<TEntity>> GetAllAsync();
 
-        Task<TEntity> GetByIdAsync(string entityId);
+        Task<TEntity> GetByIdAsync(object entityId);
+
+        Task<TEntity> GetByExpression(Expression<Func<TEntity, bool>> expression);
 
         void Create(TEntity entity);
 

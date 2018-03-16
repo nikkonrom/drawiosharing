@@ -7,13 +7,10 @@ using ITechArt.Repositories;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    class RoleStore : IQueryableRoleStore<Role>, IRoleStore<Role>
+    class RoleStore : IRoleStore<Role, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Role> _repository;
-
-
-        public IQueryable<Role> Roles => _repository.GetAllAsync().Result.AsQueryable();
 
 
         public RoleStore(IUnitOfWork unitOfWork)
@@ -46,7 +43,7 @@ namespace ITechArt.DrawIoSharing.Repositories
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<Role> FindByIdAsync(string roleId)
+        public async Task<Role> FindByIdAsync(int roleId)
         {
             return await _repository.GetByIdAsync(roleId);
         }
