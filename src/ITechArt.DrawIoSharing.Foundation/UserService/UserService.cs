@@ -38,9 +38,9 @@ namespace ITechArt.DrawIoSharing.Foundation.UserService
         public async Task<OperationResult> CreateUserAsync(User user, string password)
         {
             var identityResult = await CreateAsync(user, password);
-            var operationReslt = new OperationResult(identityResult.Errors.ToList().AsReadOnly(), identityResult.Succeeded);
+            var operationResult = new OperationResult(identityResult.Errors.ToList().AsReadOnly(), identityResult.Succeeded);
 
-            return await Task.FromResult(operationReslt);
+            return await Task.FromResult(operationResult);
         }
     }
 }
