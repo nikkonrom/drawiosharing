@@ -1,4 +1,5 @@
-﻿using ITechArt.DrawIoSharing.Repositories;
+﻿using ITechArt.Common;
+using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.DrawIoSharing.Foundation;
 using ITechArt.DrawIoSharing.Foundation.UserService;
 using Microsoft.AspNet.Identity;
@@ -8,6 +9,8 @@ using Owin;
 
 namespace ITechArt.DrawIoSharing.WebApp
 {
+    [UsedImplicitly]
+    // ReSharper disable once IdentifierTypo
     public class OwinConfig
     {
         public void Configuration(IAppBuilder appBuilder)
