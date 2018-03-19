@@ -55,7 +55,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         private void AddErrorsFromResult(SignUpOperationResult result)
         {
-            foreach (string error in result.Errors)
+            foreach (string error in result.StringErrors)
             {
                 ModelState.AddModelError("", error);
             }
