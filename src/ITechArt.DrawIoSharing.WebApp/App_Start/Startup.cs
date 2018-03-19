@@ -1,6 +1,4 @@
 ﻿using ITechArt.Common;
-using ITechArt.DrawIoSharing.DomainModel;
-using ITechArt.DrawIoSharing.Foundation;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -14,8 +12,6 @@ namespace ITechArt.DrawIoSharing.WebApp
         [UsedImplicitly]
         public void Configuration(IAppBuilder appBuilder)
         {
-            //appBuilder.CreatePerOwinContext(() => new );
-
             appBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

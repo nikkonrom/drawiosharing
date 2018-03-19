@@ -1,14 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
-using ITechArt.DrawIoSharing.Foundation;
 using ITechArt.DrawIoSharing.Foundation.Services;
 using ITechArt.DrawIoSharing.WebApp.Models;
-using ITechArt.Repositories;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {

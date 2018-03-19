@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
@@ -15,7 +14,7 @@ namespace ITechArt.DrawIoSharing.DomainModel
         public string Password { get; set; }
 
 
-        public User()
+        private User()
         {
             Id = Guid.NewGuid().GetHashCode();
         }

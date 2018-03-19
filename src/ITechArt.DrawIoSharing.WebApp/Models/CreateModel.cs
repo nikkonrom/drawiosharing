@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ITechArt.Common;
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {

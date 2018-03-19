@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.Services;
@@ -15,8 +14,6 @@ namespace ITechArt.DrawIoSharing.WebApp
     {
         public override void Load()
         {
-            ModelValidatorProviders.Providers.Clear();
-
             Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
             Bind<DbContext>().To<DrawIoSharingDbContext>().InRequestScope();
             Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();

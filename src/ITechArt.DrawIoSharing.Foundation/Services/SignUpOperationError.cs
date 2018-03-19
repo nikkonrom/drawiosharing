@@ -5,6 +5,5 @@
         ShortPassword,
         NoDigitsPassword,
         NoUppercasePassword,
-        NameAlreadyTaken
     }
 }

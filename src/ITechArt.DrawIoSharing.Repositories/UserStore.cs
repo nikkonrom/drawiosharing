@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ITechArt.DrawIoSharing.Repositories
 {
-    public class UserStore : IUserStore<User, int>, IUserPasswordStore<User, int>
+    [UsedImplicitly]
+    public class UserStore : IUserPasswordStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
 

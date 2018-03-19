@@ -16,12 +16,9 @@ namespace ITechArt.Repositories
         public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
-
-            _dbSet = dbContext.Set<TEntity>();
-        }
+            _dbSet = dbContext.Set<TEntity>();}
 
 
-        
         public void Create(TEntity entity)
         {
             _dbSet.Add(entity);
@@ -41,6 +38,7 @@ namespace ITechArt.Repositories
         {
             return await _dbSet.ToListAsync();
         }
+
         public async Task<TEntity> GetByIdAsync(object entityId)
         {
             return await _dbSet.FindAsync(entityId);

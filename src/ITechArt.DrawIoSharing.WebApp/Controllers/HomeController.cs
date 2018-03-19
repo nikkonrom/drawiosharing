@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using ITechArt.Common.Logging;
-using ITechArt.Repositories;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {

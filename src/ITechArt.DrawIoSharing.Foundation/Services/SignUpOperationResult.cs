@@ -22,11 +22,11 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
         private static IReadOnlyCollection<SignUpOperationError> ConvertStringErrorsToEnum(
             IReadOnlyCollection<string> errors)
         {
-            List<SignUpOperationError> signUpOperationErrors = new List<SignUpOperationError>();
+            var signUpOperationErrors = new List<SignUpOperationError>();
 
             foreach (var stringError in errors)
             {
-                string[] innerErrors = stringError.Split('.');
+                var innerErrors = stringError.Split('.');
 
                 foreach (var innerError in innerErrors)
                 {
@@ -41,6 +41,8 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
                         case "Passwords must have at least one uppercase (\'A\'-\'Z\')":
                             signUpOperationErrors.Add(SignUpOperationError.NoUppercasePassword);
                             break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(innerError), innerError, "Enum value is out of range");
                     }
                 }
             }

@@ -7,13 +7,13 @@ using ITechArt.Common;
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
-    // ReSharper disable once InconsistentNaming
     public sealed class EfUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
         private bool _isDisposed;
+
 
         public EfUnitOfWork(DbContext context)
         {
