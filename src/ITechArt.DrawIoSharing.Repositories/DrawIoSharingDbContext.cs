@@ -18,7 +18,7 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         static DrawIoSharingDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DrawIoSharingDbContext, Configuration>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<DrawIoSharingDbContext>());
         }
 
         public DrawIoSharingDbContext()

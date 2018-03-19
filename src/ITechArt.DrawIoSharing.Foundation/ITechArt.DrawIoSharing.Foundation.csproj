@@ -59,16 +59,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserService.cs" />
-    <Compile Include="OperationResult.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\SignUpOperationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
+      <Project>{94A9AFDF-EC33-420D-8B92-71DEA763B294}</Project>
+      <Name>ITechArt.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
       <Project>{E9EF15B5-4B1D-415D-8CCD-D4557B36A1F9}</Project>
       <Name>ITechArt.DrawIoSharing.DomainModel</Name>

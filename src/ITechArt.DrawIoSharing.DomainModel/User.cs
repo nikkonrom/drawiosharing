@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel

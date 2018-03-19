@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.DrawIoSharing.DomainModel;
 using Microsoft.AspNet.Identity;
 
-namespace ITechArt.DrawIoSharing.Foundation
+namespace ITechArt.DrawIoSharing.Foundation.Services
 {
-    public class UserService : IUserService<User>, IDisposable
+    public class UserService : IUserService<User>
     {
         private readonly UserManager<User, int> _userManager;
 
@@ -26,10 +25,10 @@ namespace ITechArt.DrawIoSharing.Foundation
         }
 
 
-        public async Task<OperationResult> CreateUserAsync(User user, string password)
+        public async Task<SignUpOperationResult> CreateUserAsync(User user, string password)
         {
             var identityResult = await _userManager.CreateAsync(user, password);
-            var operationResult = new OperationResult(identityResult.Errors.ToList(), identityResult.Succeeded);
+            var operationResult = new SignUpOperationResult(identityResult.Errors.ToList(), identityResult.Succeeded);
             
             return await Task.FromResult(operationResult);
         }

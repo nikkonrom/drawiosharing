@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace ITechArt.DrawIoSharing.Foundation
+namespace ITechArt.DrawIoSharing.Foundation.Services
 {
-    public class OperationResult
+    public class SignUpOperationResult
     {
         public IReadOnlyCollection<string> Errors { get; }
 
         public bool IsSuccessful { get; }
 
 
-        public OperationResult(IReadOnlyCollection<string> errors, bool isSuccessful)
+        public SignUpOperationResult(IReadOnlyCollection<string> errors, bool isSuccessful)
         {
             Errors = errors;
             IsSuccessful = isSuccessful;
