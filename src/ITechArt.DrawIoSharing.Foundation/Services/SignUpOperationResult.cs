@@ -26,7 +26,7 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
 
             foreach (var stringError in errors)
             {
-                var innerErrors = stringError.Split('.');
+                var innerErrors = stringError.Split(new string[] {". "}, StringSplitOptions.None);
 
                 foreach (var innerError in innerErrors)
                 {
@@ -38,7 +38,7 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
                         case "Passwords must have at least one digit (\'0\'-\'9\')":
                             signUpOperationErrors.Add(SignUpOperationError.NoDigitsPassword);
                             break;
-                        case "Passwords must have at least one uppercase (\'A\'-\'Z\')":
+                        case "Passwords must have at least one uppercase (\'A\'-\'Z\').":
                             signUpOperationErrors.Add(SignUpOperationError.NoUppercasePassword);
                             break;
                         default:

@@ -8,7 +8,7 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
     }
 }

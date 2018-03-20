@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 namespace ITechArt.DrawIoSharing.Repositories
 {
     [UsedImplicitly]
-    public class UserStore : IUserPasswordStore<User, int>
+    public class UserStore : IUserPasswordStore<User, int>, IUserEmailStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -68,6 +68,31 @@ namespace ITechArt.DrawIoSharing.Repositories
         public Task<bool> HasPasswordAsync(User user)
         {
             return Task.FromResult(user.Password != null);
+        }
+
+        public Task SetEmailAsync(User user, string email)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<string> GetEmailAsync(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task SetEmailConfirmedAsync(User user, bool confirmed)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<User> FindByEmailAsync(string email)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
