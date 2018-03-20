@@ -19,6 +19,7 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
             IsSuccessful = isSuccessful;
         }
 
+
         private static IReadOnlyCollection<SignUpOperationError> ConvertStringErrorsToEnum(
             IReadOnlyCollection<string> errors)
         {

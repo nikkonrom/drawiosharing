@@ -18,7 +18,6 @@ namespace ITechArt.Repositories
             _dbContext = dbContext;
 
             _dbSet = dbContext.Set<TEntity>();
-
         }
 
 

@@ -24,12 +24,6 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
                     RequireNonLetterOrDigit = false
                 }
             };
-
-            _userManager.UserValidator = new UserValidator<User, int>(_userManager)
-            {
-                AllowOnlyAlphanumericUserNames = true,
-                RequireUniqueEmail = true
-            };
         }
 
 

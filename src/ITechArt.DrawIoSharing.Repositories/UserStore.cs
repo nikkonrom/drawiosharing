@@ -48,7 +48,6 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public async Task<User> FindByNameAsync(string userName)
         {
-            // ReSharper disable once SpecifyStringComparison
             return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName == userName);
         }
 
@@ -56,7 +55,6 @@ namespace ITechArt.DrawIoSharing.Repositories
         {
             user.Password = passwordHash;
 
-            //Standard realization
             return Task.FromResult(0);
         }
 
