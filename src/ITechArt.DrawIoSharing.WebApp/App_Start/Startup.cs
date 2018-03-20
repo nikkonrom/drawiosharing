@@ -12,11 +12,7 @@ namespace ITechArt.DrawIoSharing.WebApp
         [UsedImplicitly]
         public void Configuration(IAppBuilder appBuilder)
         {
-            appBuilder.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login")
-            });
+
         }
     }
 }

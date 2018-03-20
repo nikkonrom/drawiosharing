@@ -48,6 +48,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View(model);
         }
 
+
         private void AddErrorsFromResult(SignUpOperationResult result)
         {
             foreach (string error in result.StringErrors)
