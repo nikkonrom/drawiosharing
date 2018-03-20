@@ -7,7 +7,7 @@ using ITechArt.Common;
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
-    public sealed class EfUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 

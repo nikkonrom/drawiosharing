@@ -12,10 +12,9 @@ namespace ITechArt.DrawIoSharing.WebApp
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            ModelValidatorProviders.Providers.Clear();
-
             var registrations = new DrawIoSharingNinjectModule();
             var kernel = new StandardKernel(registrations);
+            kernel.Unbind<ModelValidatorProvider>();
             var dependencyResolver = new NinjectDependencyResolver(kernel);
 
             DependencyResolver.SetResolver(dependencyResolver);
