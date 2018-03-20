@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
-using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
@@ -27,7 +26,6 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             {
                 return await Task.FromResult(SignUpResult.CreateSuccessful());
             }
-
             var errors = ConvertStringErrorsToEnum(identityResult.Errors.ToList());
 
             return await Task.FromResult(SignUpResult.CreateUnsuccessful(errors));

@@ -39,10 +39,5 @@ namespace ITechArt.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
-
-        public void Dispose()
-        {
-
-        }
     }
 }
