@@ -49,7 +49,7 @@ namespace ITechArt.DrawIoSharing.Repositories
         public async Task<User> FindByNameAsync(string userName)
         {
             // ReSharper disable once SpecifyStringComparison
-            return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName.ToUpper() == userName.ToUpper());
+            return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName == userName);
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash)
@@ -72,12 +72,14 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public Task SetEmailAsync(User user, string email)
         {
-            throw new System.NotImplementedException();
+            user.Email = email;
+
+            return Task.FromResult(0);
         }
 
         public Task<string> GetEmailAsync(User user)
         {
-            throw new System.NotImplementedException();
+            return Task.FromResult(user.Email);
         }
 
         public Task<bool> GetEmailConfirmedAsync(User user)
@@ -90,9 +92,9 @@ namespace ITechArt.DrawIoSharing.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<User> FindByEmailAsync(string email)
+        public async Task<User> FindByEmailAsync(string email)
         {
-            throw new System.NotImplementedException();
+            return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName == email);
         }
     }
 }

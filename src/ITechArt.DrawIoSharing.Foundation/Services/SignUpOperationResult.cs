@@ -26,23 +26,32 @@ namespace ITechArt.DrawIoSharing.Foundation.Services
 
             foreach (var stringError in errors)
             {
-                var innerErrors = stringError.Split(new string[] {". "}, StringSplitOptions.None);
+                var innerErrors = stringError.Split(new[] { ". " }, StringSplitOptions.None);
 
-                foreach (var innerError in innerErrors)
+                var errorType = innerErrors[0].Substring(0, innerErrors[0].IndexOf(" ", StringComparison.Ordinal));
+                if (errorType == "Name")
                 {
-                    switch (innerError)
+                    signUpOperationErrors.Add(SignUpOperationError.UserAlreadyExists);
+                }
+                else
+                {
+                    foreach (var innerError in innerErrors)
                     {
-                        case "Passwords must be at least 6 characters":
-                            signUpOperationErrors.Add(SignUpOperationError.ShortPassword);
-                            break;
-                        case "Passwords must have at least one digit (\'0\'-\'9\')":
-                            signUpOperationErrors.Add(SignUpOperationError.NoDigitsPassword);
-                            break;
-                        case "Passwords must have at least one uppercase (\'A\'-\'Z\').":
-                            signUpOperationErrors.Add(SignUpOperationError.NoUppercasePassword);
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(innerError), innerError, "Enum value is out of range");
+                        switch (innerError)
+                        {
+                            case "Passwords must be at least 6 characters":
+                                signUpOperationErrors.Add(SignUpOperationError.ShortPassword);
+                                break;
+                            case "Passwords must have at least one digit (\'0\'-\'9\')":
+                                signUpOperationErrors.Add(SignUpOperationError.NoDigitsPassword);
+                                break;
+                            case "Passwords must have at least one uppercase (\'A\'-\'Z\').":
+                                signUpOperationErrors.Add(SignUpOperationError.NoUppercasePassword);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException(nameof(innerError), innerError,
+                                    "Enum value is out of range");
+                        }
                     }
                 }
             }

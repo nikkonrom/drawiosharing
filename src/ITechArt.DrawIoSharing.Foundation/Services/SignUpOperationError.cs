@@ -5,5 +5,6 @@
         ShortPassword,
         NoDigitsPassword,
         NoUppercasePassword,
+        UserAlreadyExists
     }
 }

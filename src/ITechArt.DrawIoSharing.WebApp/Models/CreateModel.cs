@@ -8,6 +8,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
         public string Name { get; set; }
 
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]
