@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
@@ -12,17 +11,16 @@ namespace ITechArt.DrawIoSharing.DomainModel
         public string Email { get; set; }
 
         public string Password { get; set; }
-
-
-        private User()
-        {
-            Id = Guid.NewGuid().GetHashCode();
-        }
+        
 
         public User(string userName, string email) : this()
         {
             UserName = userName;
             Email = email;
+        }
+        public User()
+        {
+
         }
     }
 }

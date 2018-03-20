@@ -1,6 +1,6 @@
-﻿namespace ITechArt.DrawIoSharing.Foundation.Services
+﻿namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
-    public enum SignUpOperationError
+    public enum SignUpError
     {
         ShortPassword,
         NoDigitsPassword,

@@ -18,11 +18,6 @@ namespace ITechArt.DrawIoSharing.Repositories
         }
 
 
-        public void Dispose()
-        {
-            _unitOfWork.Dispose();
-        }
-
         public async Task CreateAsync(User user)
         {
             _unitOfWork.GetRepository<User>().Create(user);
@@ -48,7 +43,7 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public async Task<User> FindByNameAsync(string userName)
         {
-            return await _unitOfWork.GetRepository<User>().GetByExpression(user => user.UserName == userName);
+            return await _unitOfWork.GetRepository<User>().GetSingleOrDefaultAsync(user => user.UserName == userName);
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash)
@@ -68,16 +63,9 @@ namespace ITechArt.DrawIoSharing.Repositories
             return Task.FromResult(user.Password != null);
         }
 
-        public Task SetEmailAsync(User user, string email)
+        public void Dispose()
         {
-            user.Email = email;
 
-            return Task.FromResult(0);
-        }
-
-        public Task<string> GetEmailAsync(User user)
-        {
-            return Task.FromResult(user.Email);
         }
     }
 }

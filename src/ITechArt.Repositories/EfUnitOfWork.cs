@@ -12,7 +12,6 @@ namespace ITechArt.Repositories
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
-        private bool _isDisposed;
 
 
         public EfUnitOfWork(DbContext context)
@@ -43,22 +42,7 @@ namespace ITechArt.Repositories
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
 
-
-        private void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-
-            _isDisposed = true;
         }
     }
 }
