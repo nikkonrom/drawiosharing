@@ -46,9 +46,9 @@ namespace ITechArt.Repositories
             return await _dbSet.FindAsync(entityId);
         }
 
-        public async Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression)
+        public async Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await _dbSet.SingleOrDefaultAsync(expression);
+            return await _dbSet.SingleOrDefaultAsync(predicate);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
     public interface IUserService
     {
-        Task<SignUpResult> CreateUserAsync(User user, string password);
+        Task<SignUpResult> SignUpAsync(User user, string password);
     }
 }

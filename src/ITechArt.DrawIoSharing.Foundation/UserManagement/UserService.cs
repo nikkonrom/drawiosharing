@@ -19,21 +19,20 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         }
 
 
-        public async Task<SignUpResult> CreateUserAsync(User user, string password)
+        public async Task<SignUpResult> SignUpAsync(User user, string password)
         {
             var identityResult = await _userManager.CreateAsync(user, password);
             if (identityResult.Succeeded)
             {
-                return await Task.FromResult(SignUpResult.CreateSuccessful());
+                return SignUpResult.CreateSuccessful();
             }
             var errors = ConvertStringErrorsToEnum(identityResult.Errors.ToList());
 
-            return await Task.FromResult(SignUpResult.CreateUnsuccessful(errors));
+            return SignUpResult.CreateUnsuccessful(errors);
         }
 
 
-        private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(
-            IReadOnlyCollection<string> errors)
+        private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {
             var signUpOperationErrors = new List<SignUpError>();
 
@@ -42,7 +41,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
                 var innerErrors = stringError.Split(new[] { ". " }, StringSplitOptions.None);
 
                 var errorType = innerErrors[0].Substring(0, innerErrors[0].IndexOf(" ", StringComparison.Ordinal));
-                if (errorType == "Name")
+                if (errorType == @"Name")
                 {
                     signUpOperationErrors.Add(SignUpError.UserAlreadyExists);
                 }
@@ -52,18 +51,17 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
                     {
                         switch (innerError)
                         {
-                            case "Passwords must be at least 6 characters":
+                            case @"Passwords must be at least 6 characters":
                                 signUpOperationErrors.Add(SignUpError.ShortPassword);
                                 break;
-                            case "Passwords must have at least one digit (\'0\'-\'9\')":
+                            case @"Passwords must have at least one digit ('0'-'9')":
                                 signUpOperationErrors.Add(SignUpError.NoDigitsPassword);
                                 break;
-                            case "Passwords must have at least one uppercase (\'A\'-\'Z\').":
+                            case @"Passwords must have at least one uppercase ('A'-'Z').":
                                 signUpOperationErrors.Add(SignUpError.NoUppercasePassword);
                                 break;
                             default:
-                                throw new ArgumentOutOfRangeException(nameof(innerError), innerError,
-                                    "Enum value is out of range");
+                                throw new ArgumentOutOfRangeException(nameof(innerError), innerError, @"Enum value is out of range");
                         }
                     }
                 }

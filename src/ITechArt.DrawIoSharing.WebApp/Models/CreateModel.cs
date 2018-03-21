@@ -14,7 +14,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
         [Required]
         public string Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
+        [Compare(nameof(Password), ErrorMessage = "Confirm password doesn't match, Type again !")]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ITechArt.Common;
+using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
@@ -13,10 +14,12 @@ namespace ITechArt.DrawIoSharing.DomainModel
         public string Password { get; set; }
 
 
+        [UsedImplicitly]
         public User()
         {
 
         }
+
         public User(string userName, string email)
         {
             UserName = userName;

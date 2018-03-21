@@ -8,7 +8,7 @@ namespace ITechArt.Repositories
     {
         Task<TEntity> GetByIdAsync(object entityId);
 
-        Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
+        Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
 
         void Create(TEntity entity);
 
