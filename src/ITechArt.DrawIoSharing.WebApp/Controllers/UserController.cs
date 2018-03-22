@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.WebApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
@@ -15,10 +19,47 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         private readonly IUserService _userService;
 
 
+        private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;
+
         public UserController(ILogger logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;
+        }
+
+
+        public ActionResult SignIn(string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl;
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userService.FindAsync(model.UserName, model.Password);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("", @"Wrong username or password");
+                }
+                else
+                {
+                    ClaimsIdentity claimsIdentity = await _userService.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    AuthManager.SignOut();
+                    AuthManager.SignIn(new AuthenticationProperties()
+                    {
+                        IsPersistent = false
+                    }, claimsIdentity);
+
+                    return Redirect(returnUrl);
+                }
+            }
+
+            return View(model);
         }
 
         public ActionResult Index()
@@ -26,13 +67,13 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateModel model)
+        public async Task<ActionResult> SignUp(SignUpModel model)
         {
             if (ModelState.IsValid)
             {

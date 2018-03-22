@@ -2,13 +2,12 @@
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {
-    public class CreateModel
+    public class SignUpModel
     {
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Required, EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]

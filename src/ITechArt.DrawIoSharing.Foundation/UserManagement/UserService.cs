@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -30,7 +31,17 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 
             return SignUpResult.CreateUnsuccessful(errors);
         }
+        
+        public Task<User> FindAsync(string userName, string password)
+        {
+            return _userManager.FindAsync(userName, password);
+        }
 
+        public async Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationType)
+        {
+            return await _userManager.CreateIdentityAsync(user, authenticationType);
+        }
+        
 
         private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {
