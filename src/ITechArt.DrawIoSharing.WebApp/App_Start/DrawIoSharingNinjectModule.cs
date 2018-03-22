@@ -19,7 +19,7 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
             Bind<IUserService>().To<UserService>();
             Bind<IUserStore<User, int>>().To<UserStore>();
-            Bind<IUserManager>().To<RequisiteUserManager>();
+            Bind<IUserManager>().To<UserManager>();
         }
     }
 }

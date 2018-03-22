@@ -40,8 +40,10 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             {
                 var innerErrors = stringError.Split(new[] { ". " }, StringSplitOptions.None);
 
-                var errorType = innerErrors[0].Substring(0, innerErrors[0].IndexOf(" ", StringComparison.Ordinal));
-                if (errorType == @"Name")
+                string firstSentence = innerErrors[0];
+                string firstWord = firstSentence.Substring(0, firstSentence.IndexOf(" ", StringComparison.Ordinal));
+
+                if (firstWord == @"Name")
                 {
                     signUpOperationErrors.Add(SignUpError.UserAlreadyExists);
                 }

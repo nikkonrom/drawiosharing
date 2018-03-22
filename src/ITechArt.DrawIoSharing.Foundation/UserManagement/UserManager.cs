@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using ITechArt.Common;
+﻿using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
     [UsedImplicitly]
-    public class RequisiteUserManager : UserManager<User, int>, IUserManager
+    public class UserManager : UserManager<User, int>, IUserManager
     {
-        public RequisiteUserManager(IUserStore<User, int> store) : base(store)
+        public UserManager(IUserStore<User, int> store)
+            : base(store)
         {
             PasswordValidator = new PasswordValidator()
             {
