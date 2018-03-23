@@ -72,7 +72,13 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        public ActionResult SignOut()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignUp(SignUpModel model)
         {
             if (ModelState.IsValid)
@@ -94,7 +100,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         private void AddErrorsFromResult(SignUpResult result)
         {
-            foreach (string error in ConvertSignUpErrorsToString(result.Errors))
+            foreach (var error in ConvertSignUpErrorsToString(result.Errors))
             {
                 ModelState.AddModelError("", error);
             }

@@ -6,11 +6,12 @@ using Microsoft.AspNet.Identity;
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
     [UsedImplicitly]
-    public class RequisiteUserManager : UserManager<User, int>, IUserManager
+    public class UserManager : UserManager<User, int>, IUserManager
     {
-        public RequisiteUserManager(IUserStore<User, int> store) : base(store)
+        public UserManager(IUserStore<User, int> store)
+            : base(store)
         {
-            PasswordValidator = new PasswordValidator()
+            PasswordValidator = new PasswordValidator
             {
                 RequireDigit = true,
                 RequireUppercase = true,

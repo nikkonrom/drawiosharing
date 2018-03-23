@@ -38,7 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserManagement\RequisiteUserManager.cs" />
+    <Compile Include="UserManagement\UserManager.cs" />
     <Compile Include="UserManagement\IUserManager.cs" />
     <Compile Include="UserManagement\IUserService.cs" />
     <Compile Include="UserManagement\SignUpError.cs" />

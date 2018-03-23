@@ -50,7 +50,7 @@ namespace ITechArt.DrawIoSharing.Repositories
         {
             user.Password = passwordHash;
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         public Task<string> GetPasswordHashAsync(User user)
