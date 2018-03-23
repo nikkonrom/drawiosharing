@@ -31,7 +31,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateModel model)
         {
             if (ModelState.IsValid)
