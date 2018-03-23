@@ -21,18 +21,19 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             _userService = userService;
         }
 
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateModel model)
+        public async Task<ActionResult> SignUp(SignUpModel model)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         private void AddErrorsFromResult(SignUpResult result)
         {
-            foreach (string error in ConvertSignUpErrorsToString(result.Errors))
+            foreach (var error in ConvertSignUpErrorsToString(result.Errors))
             {
                 ModelState.AddModelError("", error);
             }

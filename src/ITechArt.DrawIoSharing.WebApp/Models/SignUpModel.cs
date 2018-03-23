@@ -2,7 +2,7 @@
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {
-    public class CreateModel
+    public class SignUpModel
     {
         [Required]
         public string Name { get; set; }

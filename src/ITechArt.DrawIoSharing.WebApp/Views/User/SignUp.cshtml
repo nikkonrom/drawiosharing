@@ -1,4 +1,4 @@
-﻿@model ITechArt.DrawIoSharing.WebApp.Models.CreateModel
+﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignUpModel
 
 @{
     ViewBag.Title = "Sign Up";
@@ -6,8 +6,10 @@
 }
 
 @Html.ValidationSummary(false)
+
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken();
     <div class="form-group">
         <label>Name</label>
         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })

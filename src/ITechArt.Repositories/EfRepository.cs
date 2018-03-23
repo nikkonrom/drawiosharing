@@ -36,11 +36,6 @@ namespace ITechArt.Repositories
             _dbSet.Remove(entity);
         }
 
-        public async Task<IReadOnlyCollection<TEntity>> GetAllAsync()
-        {
-            return await _dbSet.ToListAsync();
-        }
-
         public async Task<TEntity> GetByIdAsync(object entityId)
         {
             return await _dbSet.FindAsync(entityId);

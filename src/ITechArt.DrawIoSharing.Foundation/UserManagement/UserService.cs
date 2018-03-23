@@ -34,18 +34,18 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 
         private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {
-            var signUpOperationErrors = new List<SignUpError>();
+            var signUpErrors = new List<SignUpError>();
 
             foreach (var stringError in errors)
             {
                 var innerErrors = stringError.Split(new[] { ". " }, StringSplitOptions.None);
 
-                string firstSentence = innerErrors[0];
-                string firstWord = firstSentence.Substring(0, firstSentence.IndexOf(" ", StringComparison.Ordinal));
+                var firstSentence = innerErrors[0];
+                var firstWord = firstSentence.Substring(0, firstSentence.IndexOf(" ", StringComparison.Ordinal));
 
                 if (firstWord == @"Name")
                 {
-                    signUpOperationErrors.Add(SignUpError.UserAlreadyExists);
+                    signUpErrors.Add(SignUpError.UserAlreadyExists);
                 }
                 else
                 {
@@ -54,13 +54,13 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
                         switch (innerError)
                         {
                             case @"Passwords must be at least 6 characters":
-                                signUpOperationErrors.Add(SignUpError.ShortPassword);
+                                signUpErrors.Add(SignUpError.ShortPassword);
                                 break;
                             case @"Passwords must have at least one digit ('0'-'9')":
-                                signUpOperationErrors.Add(SignUpError.NoDigitsPassword);
+                                signUpErrors.Add(SignUpError.NoDigitsPassword);
                                 break;
                             case @"Passwords must have at least one uppercase ('A'-'Z').":
-                                signUpOperationErrors.Add(SignUpError.NoUppercasePassword);
+                                signUpErrors.Add(SignUpError.NoUppercasePassword);
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException(nameof(innerError), innerError, @"Enum value is out of range");
@@ -69,7 +69,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
                 }
             }
 
-            return signUpOperationErrors;
+            return signUpErrors;
         }
     }
 }

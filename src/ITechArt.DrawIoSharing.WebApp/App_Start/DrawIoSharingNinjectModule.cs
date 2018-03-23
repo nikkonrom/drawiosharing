@@ -17,9 +17,9 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
             Bind<DbContext>().To<DrawIoSharingDbContext>().InRequestScope();
             Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
-            Bind<IUserService>().To<UserService>();
-            Bind<IUserStore<User, int>>().To<UserStore>();
-            Bind<IUserManager>().To<UserManager>();
+            Bind<IUserService>().To<UserService>().InRequestScope();
+            Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
+            Bind<IUserManager>().To<UserManager>().InRequestScope();
         }
     }
 }

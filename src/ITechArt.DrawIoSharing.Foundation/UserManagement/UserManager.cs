@@ -10,7 +10,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         public UserManager(IUserStore<User, int> store)
             : base(store)
         {
-            PasswordValidator = new PasswordValidator()
+            PasswordValidator = new PasswordValidator
             {
                 RequireDigit = true,
                 RequireUppercase = true,
