@@ -13,7 +13,7 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803120052086_InitialCreate"; }
+            get { return "201803191048143_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

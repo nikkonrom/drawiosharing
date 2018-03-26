@@ -30,12 +30,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserManagement\UserManager.cs" />
+    <Compile Include="UserManagement\IUserManager.cs" />
+    <Compile Include="UserManagement\IUserService.cs" />
+    <Compile Include="UserManagement\SignUpError.cs" />
+    <Compile Include="UserManagement\SignUpResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManagement\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
+      <Project>{94A9AFDF-EC33-420D-8B92-71DEA763B294}</Project>
+      <Name>ITechArt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
+      <Project>{E9EF15B5-4B1D-415D-8CCD-D4557B36A1F9}</Project>
+      <Name>ITechArt.DrawIoSharing.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

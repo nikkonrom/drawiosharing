@@ -7,15 +7,14 @@ using ITechArt.Common;
 namespace ITechArt.Repositories
 {
     [UsedImplicitly]
-    public sealed class EFUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 
         private readonly IDictionary<Type, object> _repositories;
-        private bool _isDisposed;
 
 
-        public EFUnitOfWork(DbContext context)
+        public EfUnitOfWork(DbContext context)
         {
             _dbContext = context;
 
@@ -30,7 +29,7 @@ namespace ITechArt.Repositories
                 return (IRepository<TEntity>)repository;
             }
 
-            var newRepository = new EFRepository<TEntity>(_dbContext);
+            var newRepository = new EfRepository<TEntity>(_dbContext);
             _repositories.Add(typeof(TEntity), newRepository);
 
             return newRepository;
@@ -38,27 +37,7 @@ namespace ITechArt.Repositories
 
         public async Task SaveChangesAsync()
         {
-            await _dbContext.SaveChangesAsync();;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-
-        private void Dispose(bool disposing)
-        {
-            if (!_isDisposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-
-            _isDisposed = true;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

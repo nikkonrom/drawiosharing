@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,13 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201803120052086_InitialCreate.cs" />
-    <Compile Include="Migrations\201803120052086_InitialCreate.Designer.cs">
-      <DependentUpon>201803120052086_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201803191048143_InitialCreate.cs" />
+    <Compile Include="Migrations\201803191048143_InitialCreate.Designer.cs">
+      <DependentUpon>201803191048143_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DrawIoSharingDbContext.cs" />
+    <Compile Include="UserStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -65,10 +69,14 @@
       <Project>{e9ef15b5-4b1d-415d-8ccd-d4557b36a1f9}</Project>
       <Name>ITechArt.DrawIoSharing.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
+      <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>
+      <Name>ITechArt.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803120052086_InitialCreate.resx">
-      <DependentUpon>201803120052086_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803191048143_InitialCreate.resx">
+      <DependentUpon>201803191048143_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
