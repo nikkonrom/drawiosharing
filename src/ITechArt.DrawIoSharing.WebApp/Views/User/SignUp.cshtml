@@ -30,7 +30,8 @@
         <label>Confirm password</label>
         @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
     </div>
+
     <button type="submit" class="btn btn-primary">Sign up</button>
 
-    @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-default" })
+    <a href="@Url.Action("Index","Home")" class="btn">Cancel</a>
 }
