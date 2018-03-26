@@ -31,7 +31,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 
             return SignUpResult.CreateUnsuccessful(errors);
         }
-        
+
         public Task<User> FindAsync(string userName, string password)
         {
             return _userManager.FindAsync(userName, password);

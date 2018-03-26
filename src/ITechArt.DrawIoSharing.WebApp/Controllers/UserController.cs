@@ -50,7 +50,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                     ClaimsIdentity claimsIdentity = await _userService.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
                     AuthManager.SignOut();
-                    AuthManager.SignIn(new AuthenticationProperties()
+                    AuthManager.SignIn(new AuthenticationProperties
                     {
                         IsPersistent = false
                     }, claimsIdentity);
