@@ -22,7 +22,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
 
-        public ActionResult Index()
+        public ActionResult SignUpSuccess()
         {
             return View();
         }
@@ -43,7 +43,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User registered with UserName: {user.UserName}");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("SignUpSuccess");
                 }
                 AddErrorsFromResult(result);
             }

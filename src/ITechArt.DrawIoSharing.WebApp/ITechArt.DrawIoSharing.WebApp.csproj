@@ -200,7 +200,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
