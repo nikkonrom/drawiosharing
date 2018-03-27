@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
@@ -12,36 +14,59 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
     public class UserService : IUserService
     {
         private readonly IUserManager _userManager;
+        private readonly IAuthenticationManager _authManager;
 
 
         public UserService(IUserManager userManager)
         {
             _userManager = userManager;
+            _authManager = HttpContext.Current.GetOwinContext().Authentication;
         }
 
 
-        public async Task<SignUpResult> SignUpAsync(User user, string password)
+        public async Task<OperationResult<SignUpError>> SignUpAsync(User user, string password)
         {
             var identityResult = await _userManager.CreateAsync(user, password);
             if (identityResult.Succeeded)
             {
-                return SignUpResult.CreateSuccessful();
+                return OperationResult<SignUpError>.CreateSuccessful();
             }
             var errors = ConvertStringErrorsToEnum(identityResult.Errors.ToList());
 
-            return SignUpResult.CreateUnsuccessful(errors);
+            return OperationResult<SignUpError>.CreateUnsuccessful(errors);
         }
 
-        public Task<User> FindAsync(string userName, string password)
+        public async Task<OperationResult<SignInError>> SignInAsync(string userName, string password)
         {
-            return _userManager.FindAsync(userName, password);
+            var user = await _userManager.FindAsync(userName, password);
+
+            if (user != null)
+            {
+                var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                _authManager.SignOut();
+                _authManager.SignIn(new AuthenticationProperties
+                {
+                    IsPersistent = false
+                }, claimsIdentity);
+
+                return OperationResult<SignInError>.CreateSuccessful();
+            }
+
+            var errors = new List<SignInError>
+            {
+                SignInError.WrongUserNameOrPassword
+            };
+
+            return OperationResult<SignInError>.CreateUnsuccessful(errors);
         }
 
-        public async Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationType)
+        public async Task SignOutAsync()
         {
-            return await _userManager.CreateIdentityAsync(user, authenticationType);
+            _authManager.SignOut();
+
+            await Task.CompletedTask;
         }
-        
 
         private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {

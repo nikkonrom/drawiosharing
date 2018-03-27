@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.WebApp.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
@@ -18,8 +14,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         private readonly ILogger _logger;
         private readonly IUserService _userService;
 
-
-        private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;
 
         public UserController(ILogger logger, IUserService userService)
         {
@@ -34,34 +28,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                User user = await _userService.FindAsync(model.UserName, model.Password);
-
-                if (user == null)
-                {
-                    ModelState.AddModelError("", @"Wrong username or password");
-                }
-                else
-                {
-                    ClaimsIdentity claimsIdentity = await _userService.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                    AuthManager.SignOut();
-                    AuthManager.SignIn(new AuthenticationProperties
-                    {
-                        IsPersistent = false
-                    }, claimsIdentity);
-
-                    return Redirect(returnUrl);
-                }
-            }
-
-            return View(model);
-        }
-
         public ActionResult SignUpSuccess()
         {
             return View();
@@ -72,9 +38,9 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        public ActionResult SignOut()
+        public async Task<ActionResult> SignOut()
         {
-            AuthManager.SignOut();
+            await _userService.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
@@ -88,8 +54,32 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
                 if (result.IsSuccessful)
                 {
-                    _logger.Info($"User registered with UserName: {user.UserName}");
-                    return RedirectToAction("SignUpSuccess");
+                    _logger.Info($"User signed up with UserName: {user.UserName}");
+                    return RedirectToAction("SignUpSuccess", "User");
+                }
+                AddErrorsFromResult(result);
+            }
+
+            return View(model);
+        }
+        
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _userService.SignInAsync(model.UserName, model.Password);
+
+                if (result.IsSuccessful)
+                {
+                    _logger.Info($"User signed in with UserName: {model.UserName}");
+
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrorsFromResult(result);
             }
@@ -98,15 +88,23 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
 
-        private void AddErrorsFromResult(SignUpResult result)
+        private void AddErrorsFromResult(OperationResult<SignUpError> result)
         {
-            foreach (var error in ConvertSignUpErrorsToString(result.Errors))
+            foreach (var error in ConvertEnumErrorsToString(result.Errors))
             {
                 ModelState.AddModelError("", error);
             }
         }
 
-        private static IReadOnlyCollection<string> ConvertSignUpErrorsToString(IReadOnlyCollection<SignUpError> errors)
+        private void AddErrorsFromResult(OperationResult<SignInError> result)
+        {
+            foreach (var error in ConvertEnumErrorsToString(result.Errors))
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+        private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignUpError> errors)
         {
             var stringErrors = new List<string>();
 
@@ -128,6 +126,25 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(signUpError), signUpError, @"Enum value is out of range");
+                }
+            }
+
+            return stringErrors;
+        }
+
+        private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignInError> errors)
+        {
+            var stringErrors = new List<string>();
+
+            foreach (var signInError in errors)
+            {
+                switch (signInError)
+                {
+                    case SignInError.WrongUserNameOrPassword:
+                        stringErrors.Add(@"Wrong username or password");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(signInError), signInError, @"Enum value is out of range");
                 }
             }
 

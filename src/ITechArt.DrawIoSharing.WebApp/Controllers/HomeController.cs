@@ -17,7 +17,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         public ViewResult Index()
         {
-            _logger.Debug("App runs!");
+            _logger.Debug("App started");
 
             return View();
         }
