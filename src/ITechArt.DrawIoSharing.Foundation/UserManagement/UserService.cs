@@ -17,10 +17,10 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         private readonly IAuthenticationManager _authManager;
 
 
-        public UserService(IUserManager userManager)
+        public UserService(IUserManager userManager, IAuthenticationManager authManager)
         {
             _userManager = userManager;
-            _authManager = HttpContext.Current.GetOwinContext().Authentication;
+            _authManager = authManager;
         }
 
 
@@ -29,6 +29,14 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             var identityResult = await _userManager.CreateAsync(user, password);
             if (identityResult.Succeeded)
             {
+                var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                _authManager.SignOut();
+                _authManager.SignIn(new AuthenticationProperties
+                {
+                    IsPersistent = false
+                }, claimsIdentity);
+
                 return OperationResult<SignUpError>.CreateSuccessful();
             }
             var errors = ConvertStringErrorsToEnum(identityResult.Errors.ToList());
@@ -61,12 +69,13 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             return OperationResult<SignInError>.CreateUnsuccessful(errors);
         }
 
-        public async Task SignOutAsync()
+        public  Task SignOutAsync()
         {
             _authManager.SignOut();
 
-            await Task.CompletedTask;
+             return Task.CompletedTask;
         }
+
 
         private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {

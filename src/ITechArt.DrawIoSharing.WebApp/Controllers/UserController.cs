@@ -38,9 +38,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOut()
         {
             await _userService.SignOutAsync();
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -55,6 +57,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
+
                     return RedirectToAction("SignUpSuccess", "User");
                 }
                 AddErrorsFromResult(result);
