@@ -28,6 +28,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
+
         public ActionResult SignUpSuccess()
         {
             return View();
