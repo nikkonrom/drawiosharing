@@ -9,6 +9,5 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
 
         [Required]
         public string Password { get; set; }
-
     }
 }
