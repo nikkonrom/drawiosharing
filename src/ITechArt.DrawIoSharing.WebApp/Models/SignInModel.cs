@@ -4,6 +4,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
 {
     public class SignInModel
     {
+        public string ReturnUrl { get; set; }
+
         [Required]
         public string UserName { get; set; }
 

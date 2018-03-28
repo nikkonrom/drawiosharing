@@ -18,13 +18,13 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
-    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+    @Html.HiddenFor(x => x.ReturnUrl, new {value = ViewBag.returnUrl })
     <div class="form-group">
-        <label>UserName</label>
+        @Html.LabelFor(x => x.UserName)
         @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        <label>Password</label>
+        @Html.LabelFor(x => x.Password)
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
     <button class="btn btn-primary" type="submit">Sign in</button>

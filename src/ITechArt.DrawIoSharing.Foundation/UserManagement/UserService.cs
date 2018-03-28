@@ -28,13 +28,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             var identityResult = await _userManager.CreateAsync(user, password);
             if (identityResult.Succeeded)
             {
-                var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                _authManager.SignOut();
-                _authManager.SignIn(new AuthenticationProperties
-                {
-                    IsPersistent = false
-                }, claimsIdentity);
+                await AuthorizeUser(user);
 
                 return OperationResult<SignUpError>.CreateSuccessful();
             }
@@ -49,13 +43,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 
             if (user != null)
             {
-                var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                _authManager.SignOut();
-                _authManager.SignIn(new AuthenticationProperties
-                {
-                    IsPersistent = false
-                }, claimsIdentity);
+                await AuthorizeUser(user);
 
                 return OperationResult<SignInError>.CreateSuccessful();
             }
@@ -68,13 +56,24 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
             return OperationResult<SignInError>.CreateUnsuccessful(errors);
         }
 
-        public  Task SignOutAsync()
+        public Task SignOutAsync()
         {
             _authManager.SignOut();
 
-             return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
+
+        private async Task AuthorizeUser(User user)
+        {
+            var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+            _authManager.SignOut();
+            _authManager.SignIn(new AuthenticationProperties
+            {
+                IsPersistent = false
+            }, claimsIdentity);
+        }
 
         private static IReadOnlyCollection<SignUpError> ConvertStringErrorsToEnum(IReadOnlyCollection<string> errors)
         {
