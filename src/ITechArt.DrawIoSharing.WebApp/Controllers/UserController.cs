@@ -38,14 +38,26 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View();
         }
 
-        public ActionResult SignUpSuccess()
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(SignInModel model)
         {
-            if (Request.UrlReferrer?.LocalPath == Url.Action("SignUp", "User"))
+            if (ModelState.IsValid)
             {
-                return View();
+                var result = await _userService.SignInAsync(model.UserName, model.Password);
+                if (result.IsSuccessful)
+                {
+                    _logger.Info($"User signed in with UserName: {model.UserName}");
+                    if (Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrorsFromResult(result);
             }
 
-            return RedirectToAction("Index", "Home");
+            return View(model);
         }
 
         public ActionResult SignUp()
@@ -59,26 +71,17 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> SignOut()
-        {
-            await _userService.SignOutAsync();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignUp(SignUpModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = new User(model.Name, model.Email);
                 var result = await _userService.SignUpAsync(user, model.Password);
-
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
 
-                    return RedirectToAction("SignUpSuccess", "User");
+                    return View("SignUpSuccess");
                 }
                 AddErrorsFromResult(result);
             }
@@ -87,27 +90,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
+        public async Task<ActionResult> SignOut()
         {
-            if (ModelState.IsValid)
-            {
-                var result = await _userService.SignInAsync(model.UserName, model.Password);
+            await _userService.SignOutAsync();
 
-                if (result.IsSuccessful)
-                {
-                    _logger.Info($"User signed in with UserName: {model.UserName}");
-
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrorsFromResult(result);
-            }
-
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -130,7 +117,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignUpError> errors)
         {
             var stringErrors = new List<string>();
-
             foreach (var signUpError in errors)
             {
                 switch (signUpError)
@@ -158,7 +144,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignInError> errors)
         {
             var stringErrors = new List<string>();
-
             foreach (var signInError in errors)
             {
                 switch (signInError)
