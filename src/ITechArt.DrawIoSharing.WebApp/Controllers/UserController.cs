@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -21,6 +20,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             _logger = logger;
             _userService = userService;
         }
+
 
         public ActionResult SignIn(string returnUrl)
         {
@@ -85,7 +85,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
             return View(model);
         }
-        
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
         {
