@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -21,25 +22,43 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             _userService = userService;
         }
 
-
         public ActionResult SignIn(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.returnUrl = returnUrl;
+
             return View();
         }
 
-
         public ActionResult SignUpSuccess()
         {
-            return View();
+            if (Request.UrlReferrer?.LocalPath == Url.Action("SignUp", "User"))
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOut()
         {
             await _userService.SignOutAsync();

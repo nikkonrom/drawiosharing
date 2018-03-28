@@ -17,9 +17,11 @@
         <ul class="navbar-nav ml-auto">
             @if (User.Identity.IsAuthenticated)
             {
-                <li class="nav-item active">
-                    <a href="@Url.Action("SignOut", "User")" class="nav-link">Sign Out <span class="sr-only">(current)</span></a>
-                </li>
+                using (Html.BeginForm("SignOut", "User", FormMethod.Post, new { id = "signOutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <li class="nav-item active"><a href="javascript:document.getElementById('signOutForm').submit()" class="nav-link">Sign Out</a></li>
+                }
             }
             else
             {
