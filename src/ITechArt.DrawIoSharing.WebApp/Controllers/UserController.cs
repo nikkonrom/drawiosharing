@@ -24,21 +24,41 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         public ActionResult SignIn(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.returnUrl = returnUrl;
+
             return View();
         }
 
         public ActionResult SignUpSuccess()
         {
-            return View();
+            if (Request.UrlReferrer?.LocalPath == Url.Action("SignUp", "User"))
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOut()
         {
             await _userService.SignOutAsync();
@@ -65,7 +85,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
             return View(model);
         }
-        
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignIn(SignInModel model, string returnUrl)
         {
