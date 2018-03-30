@@ -15,7 +15,7 @@
 
     <div class="collapse navbar-collapse order-3" id="navbarToggler">
         <ul class="navbar-nav ml-auto">
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated || ViewBag.IsUserSignUp != null)
             {
                 using (Html.BeginForm("SignOut", "User"))
                 {

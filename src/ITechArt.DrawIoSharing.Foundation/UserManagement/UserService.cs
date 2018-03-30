@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Security;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 using Microsoft.AspNet.Identity;
-using Microsoft.Build.Tasks;
 using Microsoft.Owin.Security;
 
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement

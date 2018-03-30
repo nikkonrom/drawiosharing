@@ -80,6 +80,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
+                    ViewBag.IsUserSignUp = true;
 
                     return View("SignUpSuccess");
                 }
