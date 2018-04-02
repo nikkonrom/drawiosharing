@@ -14,7 +14,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Filters
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             var cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
-            var cultureName = cultureCookie?.Value;
+            var cultureName = cultureCookie != null ? cultureCookie.Value : "en";
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
         }
