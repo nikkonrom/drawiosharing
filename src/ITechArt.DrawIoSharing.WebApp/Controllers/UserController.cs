@@ -80,6 +80,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
+                    ViewBag.IsUserSignUp = true;
 
                     return View("SignUpSuccess");
                 }
@@ -100,7 +101,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         private void AddErrorsFromResult(OperationResult<SignUpError> result)
         {
-            foreach (var error in ConvertEnumErrorsToString(result.Errors))
+            var stringErrors = ConvertEnumErrorsToString(result.Errors);
+            foreach (var error in stringErrors)
             {
                 ModelState.AddModelError("", error);
             }
@@ -108,7 +110,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
 
         private void AddErrorsFromResult(OperationResult<SignInError> result)
         {
-            foreach (var error in ConvertEnumErrorsToString(result.Errors))
+            var stringErrors = ConvertEnumErrorsToString(result.Errors);
+            foreach (var error in stringErrors)
             {
                 ModelState.AddModelError("", error);
             }
