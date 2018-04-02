@@ -42,12 +42,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="UITitles\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ErrorMessages\ErrorMessages.en.resx" />
-    <EmbeddedResource Include="ErrorMessages\ErrorMessages.ru.resx" />
+    <EmbeddedResource Include="Resource.en.resx" />
+    <EmbeddedResource Include="Resource.ru.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
