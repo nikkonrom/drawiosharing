@@ -5,6 +5,10 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
     public interface IUserService
     {
-        Task<SignUpResult> SignUpAsync(User user, string password);
+        Task<OperationResult<SignUpError>> SignUpAsync(User user, string password);
+
+        Task<OperationResult<SignInError>> SignInAsync(string userName, string password);
+
+        Task SignOutAsync();
     }
 }

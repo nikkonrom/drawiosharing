@@ -1,0 +1,30 @@
+﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignInModel
+
+@{
+    ViewBag.Title = "Sign In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="left">Sign In</h3>
+
+<div class="alert alert-secondary" role="alert">
+    Don't have an account?
+    <a href="@Url.Action("SignUp", "User")" class="alert-link">Sign up</a>
+    now!
+</div>
+
+@Html.ValidationSummary(false)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ReturnUrl, new { value = ViewBag.returnUrl })
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+}

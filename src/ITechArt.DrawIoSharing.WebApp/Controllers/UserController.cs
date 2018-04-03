@@ -22,13 +22,51 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         }
 
 
-        public ActionResult SignUpSuccess()
+        public ActionResult SignIn(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
+                return RedirectToHome();
+            }
+            ViewBag.returnUrl = returnUrl;
+
             return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(SignInModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _userService.SignInAsync(model.UserName, model.Password);
+                if (result.IsSuccessful)
+                {
+                    _logger.Info($"User signed in with UserName: {model.UserName}");
+                    if (Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+
+                    return RedirectToHome();
+                }
+                AddErrorsFromResult(result);
+            }
+
+            return View(model);
         }
 
         public ActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToHome();
+            }
+
             return View();
         }
 
@@ -39,11 +77,11 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             {
                 var user = new User(model.Name, model.Email);
                 var result = await _userService.SignUpAsync(user, model.Password);
-
                 if (result.IsSuccessful)
                 {
-                    _logger.Info($"User registered with UserName: {user.UserName}");
-                    return RedirectToAction("SignUpSuccess");
+                    _logger.Info($"User signed up with UserName: {user.UserName}");
+
+                    return View("SignUpSuccess");
                 }
                 AddErrorsFromResult(result);
             }
@@ -51,19 +89,41 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             return View(model);
         }
 
-
-        private void AddErrorsFromResult(SignUpResult result)
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignOut()
         {
-            foreach (var error in ConvertSignUpErrorsToString(result.Errors))
+            await _userService.SignOutAsync();
+
+            return RedirectToHome();
+        }
+
+
+        private ActionResult RedirectToHome()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        private void AddErrorsFromResult(OperationResult<SignUpError> result)
+        {
+            var stringErrors = ConvertEnumErrorsToString(result.Errors);
+            foreach (var error in stringErrors)
             {
                 ModelState.AddModelError("", error);
             }
         }
 
-        private static IReadOnlyCollection<string> ConvertSignUpErrorsToString(IReadOnlyCollection<SignUpError> errors)
+        private void AddErrorsFromResult(OperationResult<SignInError> result)
+        {
+            var stringErrors = ConvertEnumErrorsToString(result.Errors);
+            foreach (var error in stringErrors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+        private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignUpError> errors)
         {
             var stringErrors = new List<string>();
-
             foreach (var signUpError in errors)
             {
                 switch (signUpError)
@@ -82,6 +142,24 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(signUpError), signUpError, @"Enum value is out of range");
+                }
+            }
+
+            return stringErrors;
+        }
+
+        private static IReadOnlyCollection<string> ConvertEnumErrorsToString(IReadOnlyCollection<SignInError> errors)
+        {
+            var stringErrors = new List<string>();
+            foreach (var signInError in errors)
+            {
+                switch (signInError)
+                {
+                    case SignInError.WrongUserNameOrPassword:
+                        stringErrors.Add(@"Wrong username or password");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(signInError), signInError, @"Enum value is out of range");
                 }
             }
 
