@@ -3,7 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src='~/Scripts/bootstrap.min.js'></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
@@ -34,19 +35,9 @@
                         <a href="@Url.Action("SignIn", "User")" class="nav-link">Sign In</a>
                     </li>
                 }
-                @using (Html.BeginForm("ChangeCulture", "Home"))
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            LNG
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">RUS</a>
-                            <a class="dropdown-item" href="#">ENG</a>
-                        </div>
-                    </li>
-                }
+                <li>
 
+                </li>
             </ul>
         </div>
     </nav>
