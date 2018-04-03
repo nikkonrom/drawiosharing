@@ -31,7 +31,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                     return Redirect(returnUrl);
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToHome();
             }
             ViewBag.returnUrl = returnUrl;
 
@@ -52,7 +52,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                         return Redirect(model.ReturnUrl);
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToHome();
                 }
                 AddErrorsFromResult(result);
             }
@@ -64,7 +64,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToHome();
             }
 
             return View();
@@ -80,7 +80,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
-                    ViewBag.IsUserSignUp = true;
 
                     return View("SignUpSuccess");
                 }
@@ -95,9 +94,14 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             await _userService.SignOutAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToHome();
         }
 
+
+        private ActionResult RedirectToHome()
+        {
+            return RedirectToAction("Index", "Home");
+        }
 
         private void AddErrorsFromResult(OperationResult<SignUpError> result)
         {
