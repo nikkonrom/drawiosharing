@@ -3,11 +3,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <script src="~/Scripts/bootstrap-select.min.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src='~/Scripts/bootstrap.min.js'></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-select.js"></script>
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,13 +39,14 @@
                 <li>
                     <script>
                         $(function () {
-                            $('#lang').on('change', () => {
+                            $('#lang').on('change',
+                                () => {
 
-                                alert($('#lang').val());
-                            });
-                        })
+                                    alert($('#lang').val());
+                                });
+                        });
                     </script>
-                    <select id="lang">
+                    <select class="selectpicker" id="lang">
                         <option value="en">ENG</option>
                         <option value="ru">RUS</option>
                     </select>
