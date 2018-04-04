@@ -36,7 +36,18 @@
                     </li>
                 }
                 <li>
+                    <script>
+                        $(function () {
+                            $('#lang').on('change', () => {
 
+                                alert($('#lang').val());
+                            });
+                        })
+                    </script>
+                    <select id="lang">
+                        <option value="en">ENG</option>
+                        <option value="ru">RUS</option>
+                    </select>
                 </li>
             </ul>
         </div>

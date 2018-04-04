@@ -8,16 +8,16 @@ namespace ITechArt.DrawIoSharing.WebApp.Filters
     {
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
-        }
-
-        public void OnActionExecuted(ActionExecutedContext filterContext)
-        {
             var cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
             var cultureName = cultureCookie != null ? cultureCookie.Value : "en";
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureName);
+        }
+
+        public void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+
         }
     }
 }
