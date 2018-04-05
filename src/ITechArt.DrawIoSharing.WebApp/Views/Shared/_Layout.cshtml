@@ -5,10 +5,9 @@
     <title>@ViewBag.Title</title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap-select.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    @using ITechArt.DrawIoSharing.Resources;
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,33 +23,37 @@
                     using (Html.BeginForm("SignOut", "User"))
                     {
                         @Html.AntiForgeryToken()
-                        <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">Sign Out</button></li>
+                        <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">@Resource.SignOut</button></li>
                     }
                 }
                 else
                 {
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignUp", "User")" class="nav-link">Sign Up <span class="sr-only">(current)</span></a>
+                        <a href="@Url.Action("SignUp", "User")" class="nav-link">@Resource.SignUp<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignIn", "User")" class="nav-link">Sign In</a>
+                        <a href="@Url.Action("SignIn", "User")" class="nav-link">@Resource.SignIn</a>
                     </li>
                 }
                 <li class="dropdown">
                     <script>
                         $(function () {
-
-                            $('#dropdownMenuButton').on('click', () => {
-                                $('#dropdownMenuButton').html('lng');
-                            });
-
+                            $('#en').on('click',
+                                () => {
+                                    document.cookie = "lang=en;";
+                                });
+                        });
+                        $(function () {
+                            $('#ru').on('click',
+                                () => {
+                                    document.cookie = "lang=ru;";
+                                });
                         });
                     </script>
-                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@ITechArt.DrawIoSharing.Resources.Resource.Language</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" id="en" href="javascript:window.location.reload();">English</a>
+                        <a class="dropdown-item" id="ru" href="javascript:window.location.reload();">Русский(Russian)</a>
                     </div>
                 </li>
             </ul>

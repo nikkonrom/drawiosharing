@@ -117,19 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NoDigitsPassword" xml:space="preserve">
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ErrorEmailRequired" xml:space="preserve">
+    <value>Email required</value>
+  </data>
+  <data name="ErrorInvalidEmailAddress" xml:space="preserve">
+    <value>Invalid email address</value>
+  </data>
+  <data name="ErrorNoDigitsPassword" xml:space="preserve">
     <value>Passwords must have at least one digit ('0'-'9')</value>
   </data>
-  <data name="NoUppercasePassword" xml:space="preserve">
+  <data name="ErrorNoUppercasePassword" xml:space="preserve">
     <value>Passwords must have at least one uppercase ('A'-'Z')</value>
   </data>
-  <data name="ShortPassword" xml:space="preserve">
+  <data name="ErrorPasswordNotConfirmed" xml:space="preserve">
+    <value>Passwords doesn't match</value>
+  </data>
+  <data name="ErrorPasswordRequired" xml:space="preserve">
+    <value>Password required</value>
+  </data>
+  <data name="ErrorShortPassword" xml:space="preserve">
     <value>Passwords must be at least 6 characters</value>
   </data>
-  <data name="UserAlreadyExists" xml:space="preserve">
+  <data name="ErrorUserAlreadyExists" xml:space="preserve">
     <value>User already signed up</value>
   </data>
-  <data name="WrongUserNameOrPassword" xml:space="preserve">
+  <data name="ErrorUserNameRequired" xml:space="preserve">
+    <value>Username required</value>
+  </data>
+  <data name="ErrorWrongUserNameOrPassword" xml:space="preserve">
     <value>Wrong username or password</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>now!</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordConfirmation" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="RegistrationSucceded" xml:space="preserve">
+    <value>Registration succeded</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="SignUpWhenNoAccount" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

@@ -1,13 +1,13 @@
-﻿
+﻿@using ITechArt.DrawIoSharing.Resources;
 @{
     Layout = "../Shared/_Layout.cshtml";
-    ViewBag.Title = "Registration succeeded";
+    ViewBag.Title = Resource.RegistrationSucceded;
     ViewBag.IsUserSignUp = true;
 }
 
 <div>
-    <p><h2 class="text-xl-center">Registration succeded!</h2></p>
+    <p><h2 class="text-xl-center">@Resource.RegistrationSucceded!</h2></p>
     <p class="text-xl-center">
-        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back</a>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">@Resource.Back</a>
     </p>
 </div>

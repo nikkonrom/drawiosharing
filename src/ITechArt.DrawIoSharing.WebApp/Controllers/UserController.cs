@@ -5,10 +5,12 @@ using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
+using ITechArt.DrawIoSharing.WebApp.Filters;
 using ITechArt.DrawIoSharing.WebApp.Models;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
+    [Culture]
     public class UserController : Controller
     {
         private readonly ILogger _logger;

@@ -1,17 +1,17 @@
 ﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignInModel
-
+@using ITechArt.DrawIoSharing.Resources;
 @{
-    ViewBag.Title = "Sign In";
+    ViewBag.Title = Resource.SignIn; 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="col-4 container">
-    <h3 align="left">Sign In</h3>
+    <h3 align="left">@Resource.SignIn</h3>
 
     <div class="alert alert-secondary" role="alert">
-        Don't have an account?
-        <a href="@Url.Action("SignUp", "User")" class="alert-link">Sign up</a>
-        now!
+        @Resource.NoAccount
+        <a href="@Url.Action("SignUp", "User")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
+        @Resource.Now
     </div>
 
     @Html.ValidationSummary(false)
@@ -28,7 +28,7 @@
             @Html.LabelFor(x => x.Password)
             @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
         </div>
-        <button class="btn btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-primary" type="submit">@Resource.SignIn</button>
 
     }
 </div>

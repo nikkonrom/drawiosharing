@@ -117,19 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NoDigitsPassword" xml:space="preserve">
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ErrorEmailRequired" xml:space="preserve">
+    <value>Email не может быть пустым</value>
+  </data>
+  <data name="ErrorInvalidEmailAddress" xml:space="preserve">
+    <value>Некорректный email</value>
+  </data>
+  <data name="ErrorNoDigitsPassword" xml:space="preserve">
     <value>Пароль должен содержать хотя бы одну цифру ('0'-'9')</value>
   </data>
-  <data name="NoUppercasePassword" xml:space="preserve">
+  <data name="ErrorNoUppercasePassword" xml:space="preserve">
     <value>Пароль должен содержать хотя бы одну букву верхнего регистра ('A'-'Z')</value>
   </data>
-  <data name="ShortPassword" xml:space="preserve">
+  <data name="ErrorPasswordNotConfirmed" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="ErrorPasswordRequired" xml:space="preserve">
+    <value>Пароль не может быть пустым</value>
+  </data>
+  <data name="ErrorShortPassword" xml:space="preserve">
     <value>Пароль должен содержать минимум 6 символов</value>
   </data>
-  <data name="UserAlreadyExists" xml:space="preserve">
+  <data name="ErrorUserAlreadyExists" xml:space="preserve">
     <value>Пользователь с таким именем уже зарегистрирован</value>
   </data>
-  <data name="WrongUserNameOrPassword" xml:space="preserve">
+  <data name="ErrorUserNameRequired" xml:space="preserve">
+    <value>Имя пользователя не может быть пустым</value>
+  </data>
+  <data name="ErrorWrongUserNameOrPassword" xml:space="preserve">
     <value>Неккоректные данные для входа</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Домашняя страница</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Русский (Russian)</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>До сих пор нет аккаунта?</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>сейчас!</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordConfirmation" xml:space="preserve">
+    <value>Подтверждение пароля</value>
+  </data>
+  <data name="RegistrationSucceded" xml:space="preserve">
+    <value>Регистрация прошла успешно</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="SignUpWhenNoAccount" xml:space="preserve">
+    <value>Зарегистрируйтесь</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
   </data>
 </root>

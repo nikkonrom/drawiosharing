@@ -22,26 +22,5 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             return View();
         }
-
-        public ActionResult ChangeCulture(string lang)
-        {
-            var returnUrl = Request.UrlReferrer.AbsolutePath;
-            var cookie = Request.Cookies["lang"];
-            if (cookie != null)
-                cookie.Value = lang;
-            else
-            {
-
-                cookie = new HttpCookie("lang")
-                {
-                    HttpOnly = false,
-                    Value = lang,
-                    Expires = DateTime.Now.AddYears(1)
-                };
-            }
-            Response.Cookies.Add(cookie);
-
-            return Redirect(returnUrl);
-        }
     }
 }

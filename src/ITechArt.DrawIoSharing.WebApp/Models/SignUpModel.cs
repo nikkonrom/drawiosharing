@@ -1,19 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using ITechArt.DrawIoSharing.Resources;
+using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {
     public class SignUpModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorUserNameRequired), ErrorMessage = null)]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.UserName))]
         public string Name { get; set; }
 
-        [Required, EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorEmailRequired), ErrorMessage = null)]
+        [EmailAddress(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorInvalidEmailAddress), ErrorMessage = null)]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.Email))]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorPasswordRequired), ErrorMessage = null)]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.Password))]
+
         public string Password { get; set; }
 
-        [Compare(nameof(Password), ErrorMessage = "Confirm password doesn't match, Type again !"), Display(Name = "Confirm password")]
-        public string ConfirmPassword { get; set; }
+        [Compare(nameof(Password), ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorPasswordNotConfirmed), ErrorMessage = null)]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.PasswordConfirmation))]
+        public string PasswordConfirmation { get; set; }
     }
 }

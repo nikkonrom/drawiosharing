@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using ITechArt.DrawIoSharing.Resources;
 
 namespace ITechArt.DrawIoSharing.WebApp.Models
 {
@@ -8,10 +9,10 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
         [HiddenInput]
         public string ReturnUrl { get; set; }
 
-        [Required]
+        [Required, Display(Name = nameof(Resource.UserName))]
         public string UserName { get; set; }
 
-        [Required]
+        [Required, Display(Name = nameof(Resource.Password))]
         public string Password { get; set; }
     }
 }
