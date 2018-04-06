@@ -9,10 +9,12 @@ namespace ITechArt.DrawIoSharing.WebApp.Models
         [HiddenInput]
         public string ReturnUrl { get; set; }
 
-        [Required, Display(Name = nameof(Resource.UserName))]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorUserNameRequired))]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.UserName))]
         public string UserName { get; set; }
 
-        [Required, Display(Name = nameof(Resource.Password))]
+        [Required(ErrorMessageResourceType = typeof(Resource), ErrorMessageResourceName = nameof(Resource.ErrorPasswordRequired))]
+        [Display(ResourceType = typeof(Resource), Name = nameof(Resource.Password))]
         public string Password { get; set; }
     }
 }

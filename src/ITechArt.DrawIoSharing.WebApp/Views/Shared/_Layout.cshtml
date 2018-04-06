@@ -37,23 +37,40 @@
                 }
                 <li class="dropdown">
                     <script>
+                        var updateQueryStringParam = function (key, value) {
+                            var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
+                                urlQueryString = document.location.search,
+                                newParam = key + '=' + value,
+                                params = '?' + newParam;
+
+                            if (urlQueryString) {
+                                keyRegex = new RegExp('([\?&])' + key + '[^&]*');
+
+                                if (urlQueryString.match(keyRegex) !== null) {
+                                    params = urlQueryString.replace(keyRegex, "$1" + newParam);
+                                } else {
+                                    params = urlQueryString + '&' + newParam;
+                                }
+                            }
+                            window.history.replaceState({}, "", baseUrl + params);
+                        };
                         $(function () {
                             $('#en').on('click',
                                 () => {
-                                    document.cookie = "lang=en;";
+                                    updateQueryStringParam('lang', 'en');
                                 });
                         });
                         $(function () {
                             $('#ru').on('click',
                                 () => {
-                                    document.cookie = "lang=ru;";
+                                    updateQueryStringParam('lang', 'ru');
                                 });
                         });
                     </script>
                     <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@ITechArt.DrawIoSharing.Resources.Resource.Language</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id="en" href="javascript:window.location.reload();">English</a>
-                        <a class="dropdown-item" id="ru" href="javascript:window.location.reload();">Русский(Russian)</a>
+                        <a class="dropdown-item" id="en" href="">English</a>
+                        <a class="dropdown-item" id="ru" href="">Русский(Russian)</a>
                     </div>
                 </li>
             </ul>
