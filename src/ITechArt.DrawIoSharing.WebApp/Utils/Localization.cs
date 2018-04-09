@@ -30,7 +30,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
             return NativeLanguageNames[_actualCultureName];
         }
 
-        public static void Localize()
+        public static void Localize(object sender, EventArgs args)
         {
             var langParameter = HttpContext.Current.Request.QueryString.GetValues("lang");
             var cultureCookie = HttpContext.Current.Request.Cookies["lang"] ?? new HttpCookie("lang")

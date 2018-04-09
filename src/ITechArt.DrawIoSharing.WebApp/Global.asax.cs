@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using ITechArt.DrawIoSharing.WebApp.Utils;
 using Ninject;
 using Ninject.Web.Mvc;
 
@@ -19,11 +18,6 @@ namespace ITechArt.DrawIoSharing.WebApp
             var dependencyResolver = new NinjectDependencyResolver(kernel);
 
             DependencyResolver.SetResolver(dependencyResolver);
-        }
-
-        protected void Application_BeginRequest()
-        {
-            Localization.Localize();
         }
     }
 }

@@ -68,17 +68,6 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         }
 
 
-        private async Task AuthorizeUser(User user)
-        {
-            var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-            _authManager.SignOut();
-            _authManager.SignIn(new AuthenticationProperties
-            {
-                IsPersistent = false
-            }, claimsIdentity);
-        }
-
         private async Task SignInUserAsync(User user)
         {
             var claimsIdentity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
