@@ -21,7 +21,7 @@
             <ul class="navbar-nav ml-auto">
                 @if (User.Identity.IsAuthenticated || ViewBag.IsUserSignUp != null && ViewBag.IsUserSignUp == true)
                 {
-                    using (Html.BeginForm("SignOut", "User"))
+                    using (Html.BeginForm("SignOut", "Authorization"))
                     {
                         @Html.AntiForgeryToken()
                         <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">@Resource.SignOut</button></li>
@@ -30,10 +30,10 @@
                 else
                 {
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignUp", "User")" class="nav-link">@Resource.SignUp<span class="sr-only">(current)</span></a>
+                        <a href="@Url.Action("SignUp", "Authorization")" class="nav-link">@Resource.SignUp<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignIn", "User")" class="nav-link">@Resource.SignIn</a>
+                        <a href="@Url.Action("SignIn", "Authorization")" class="nav-link">@Resource.SignIn</a>
                     </li>
                 }
                 <li class="dropdown">

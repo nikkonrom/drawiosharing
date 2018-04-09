@@ -1,4 +1,5 @@
-﻿using ITechArt.Common;
+﻿using System.Collections.Generic;
+using ITechArt.Common;
 using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.DomainModel
@@ -12,6 +13,8 @@ namespace ITechArt.DrawIoSharing.DomainModel
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public ICollection<Role> Roles { get; set; }
 
 
         [UsedImplicitly]
