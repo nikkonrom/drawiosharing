@@ -1,34 +1,33 @@
 ﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignInModel
 @using ITechArt.DrawIoSharing.Resources;
 @{
-    ViewBag.Title = Resource.SignIn; 
+    ViewBag.Title = Resource.SignIn;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-4 container">
-    <h3 align="left">@Resource.SignIn</h3>
 
-    <div class="alert alert-secondary" role="alert">
-        @Resource.NoAccount
-        <a href="@Url.Action("SignUp", "User")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
-        @Resource.Now
-    </div>
+<h3 align="left">@Resource.SignIn</h3>
 
-    @Html.ValidationSummary(false)
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(x => x.ReturnUrl, new { value = ViewBag.returnUrl })
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.UserName)
-            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.Password)
-            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-        </div>
-        <button class="btn btn-primary" type="submit">@Resource.SignIn</button>
-
-    }
+<div class="alert alert-secondary" role="alert">
+    @Resource.NoAccount
+    <a href="@Url.Action("SignUp", "User")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
+    @Resource.Now
 </div>
+
+@Html.ValidationSummary(false)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ReturnUrl, new { value = ViewBag.returnUrl })
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-primary" type="submit">@Resource.SignIn</button>
+
+}

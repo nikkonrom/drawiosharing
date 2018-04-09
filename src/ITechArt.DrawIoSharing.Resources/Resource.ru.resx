@@ -159,9 +159,6 @@
   <data name="HomePage" xml:space="preserve">
     <value>Домашняя страница</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Русский (Russian)</value>
-  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>До сих пор нет аккаунта?</value>
   </data>

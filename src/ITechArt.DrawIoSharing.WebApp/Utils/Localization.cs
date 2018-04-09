@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Web;
@@ -7,30 +8,43 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
 {
     public static class Localization
     {
-        public static void ChangeCulture()
+        private static readonly Dictionary<string, string> NativeLanguageNames;
+        private static readonly string DefaultCultureName;
+
+        private static string _actualCultureName;
+
+
+        static Localization()
         {
-
-            var langParameter = HttpContext.Current.Request.QueryString.GetValues("lang");
-            if (langParameter != null)
+            _actualCultureName = DefaultCultureName = "en";
+            NativeLanguageNames = new Dictionary<string, string>
             {
-                var cookie = HttpContext.Current.Request.Cookies["lang"];
-                if (cookie != null)
-                    cookie.Value = langParameter[0];
-                else
-                {
-                    cookie = new HttpCookie("lang")
-                    {
-                        HttpOnly = true,
-                        Value = langParameter[0],
-                        Expires = DateTime.Now.AddYears(1)
-                    };
-                }
-                HttpContext.Current.Response.Cookies.Add(cookie);
-            }
-            var cultureCookie = HttpContext.Current.Request.Cookies["lang"];
-            var cultureName = cultureCookie != null ? cultureCookie.Value : "en";
-            var culture = CultureInfo.CreateSpecificCulture(cultureName);
+                {"en", "English" },
+                {"ru", "Русский (Russian)" }
+            };
+        }
 
+
+        public static string GetLocalizedNameOfActualLanguage()
+        {
+            return NativeLanguageNames[_actualCultureName];
+        }
+
+        public static void Localize()
+        {
+            var langParameter = HttpContext.Current.Request.QueryString.GetValues("lang");
+            var cultureCookie = HttpContext.Current.Request.Cookies["lang"] ?? new HttpCookie("lang")
+            {
+                HttpOnly = true,
+                Value = DefaultCultureName,
+                Expires = DateTime.Now.AddYears(1)
+            };
+            if (langParameter != null && NativeLanguageNames.ContainsKey(langParameter[0]))
+            {
+                _actualCultureName = cultureCookie.Value = langParameter[0];
+            }
+            HttpContext.Current.Response.Cookies.Set(cultureCookie);
+            var culture = CultureInfo.CreateSpecificCulture(cultureCookie.Value);
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;

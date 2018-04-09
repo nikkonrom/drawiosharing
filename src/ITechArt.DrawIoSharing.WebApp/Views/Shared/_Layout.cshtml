@@ -5,9 +5,11 @@
     <title>@ViewBag.Title</title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/node_modules/query-string/index.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
     @using ITechArt.DrawIoSharing.Resources;
+@using ITechArt.DrawIoSharing.WebApp.Utils
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,8 +69,8 @@
                                 });
                         });
                     </script>
-                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Resource.Language</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Localization.GetLocalizedNameOfActualLanguage()</button>
+                    <div id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" id="en" href="">English</a>
                         <a class="dropdown-item" id="ru" href="">Русский(Russian)</a>
                     </div>

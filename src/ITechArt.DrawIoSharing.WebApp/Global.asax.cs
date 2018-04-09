@@ -23,7 +23,7 @@ namespace ITechArt.DrawIoSharing.WebApp
 
         protected void Application_BeginRequest()
         {
-            Localization.ChangeCulture();
+            Localization.Localize();
         }
     }
 }
