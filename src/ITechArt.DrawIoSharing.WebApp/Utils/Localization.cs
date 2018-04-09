@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Threading;
 using System.Web;
-using System.Web.Mvc;
 
-namespace ITechArt.DrawIoSharing.WebApp.Filters
+namespace ITechArt.DrawIoSharing.WebApp.Utils
 {
-    public class CultureAttribute : FilterAttribute, IActionFilter
+    public static class Localization
     {
-        public void OnActionExecuting(ActionExecutingContext filterContext)
+        public static void ChangeCulture()
         {
+
             var langParameter = HttpContext.Current.Request.QueryString.GetValues("lang");
             if (langParameter != null)
             {
@@ -27,7 +27,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Filters
                 }
                 HttpContext.Current.Response.Cookies.Add(cookie);
             }
-            var cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
+            var cultureCookie = HttpContext.Current.Request.Cookies["lang"];
             var cultureName = cultureCookie != null ? cultureCookie.Value : "en";
             var culture = CultureInfo.CreateSpecificCulture(cultureName);
 
@@ -35,11 +35,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Filters
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
-        }
-
-        public void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-
         }
     }
 }

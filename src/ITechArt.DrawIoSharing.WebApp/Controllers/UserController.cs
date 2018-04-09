@@ -5,12 +5,11 @@ using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
-using ITechArt.DrawIoSharing.WebApp.Filters;
+using ITechArt.DrawIoSharing.Resources;
 using ITechArt.DrawIoSharing.WebApp.Models;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
-    [Culture]
     public class UserController : Controller
     {
         private readonly ILogger _logger;
@@ -131,16 +130,16 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 switch (signUpError)
                 {
                     case SignUpError.ShortPassword:
-                        stringErrors.Add(@"Passwords must be at least 6 characters");
+                        stringErrors.Add(Resource.ErrorShortPassword);
                         break;
                     case SignUpError.NoDigitsPassword:
-                        stringErrors.Add(@"Passwords must have at least one digit ('0'-'9')");
+                        stringErrors.Add(Resource.ErrorNoDigitsPassword);
                         break;
                     case SignUpError.NoUppercasePassword:
-                        stringErrors.Add(@"Passwords must have at least one uppercase ('A'-'Z').");
+                        stringErrors.Add(Resource.ErrorNoUppercasePassword);
                         break;
                     case SignUpError.UserAlreadyExists:
-                        stringErrors.Add(@"User already signed up");
+                        stringErrors.Add(Resource.ErrorUserAlreadyExists);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(signUpError), signUpError, @"Enum value is out of range");
@@ -158,7 +157,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
                 switch (signInError)
                 {
                     case SignInError.WrongUserNameOrPassword:
-                        stringErrors.Add(@"Wrong username or password");
+                        stringErrors.Add(Resource.ErrorWrongUserNameOrPassword);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(signInError), signInError, @"Enum value is out of range");

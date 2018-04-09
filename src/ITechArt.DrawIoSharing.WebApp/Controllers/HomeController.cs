@@ -1,12 +1,9 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ITechArt.Common.Logging;
-using ITechArt.DrawIoSharing.WebApp.Filters;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
-    [Authorize, Culture]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger _logger;
