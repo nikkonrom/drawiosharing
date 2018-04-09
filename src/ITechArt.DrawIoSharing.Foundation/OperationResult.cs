@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ITechArt.DrawIoSharing.Foundation.UserManagement
+namespace ITechArt.DrawIoSharing.Foundation
 {
     public class OperationResult<TErrors> where TErrors : struct, IConvertible 
     {

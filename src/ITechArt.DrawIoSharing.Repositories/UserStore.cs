@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.Repositories;
@@ -7,7 +8,7 @@ using Microsoft.AspNet.Identity;
 namespace ITechArt.DrawIoSharing.Repositories
 {
     [UsedImplicitly]
-    public class UserStore : IUserPasswordStore<User, int>
+    public class UserStore : IUserPasswordStore<User, int>, IUserRoleStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -63,6 +64,25 @@ namespace ITechArt.DrawIoSharing.Repositories
             return Task.FromResult(user.Password != null);
         }
 
+        public Task AddToRoleAsync(User user, string roleName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task RemoveFromRoleAsync(User user, string roleName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<string>> GetRolesAsync(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<bool> IsInRoleAsync(User user, string roleName)
+        {
+            throw new System.NotImplementedException();
+        }
         public void Dispose()
         {
 
