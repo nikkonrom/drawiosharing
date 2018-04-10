@@ -154,7 +154,7 @@
     <value>Имя пользователя не может быть пустым</value>
   </data>
   <data name="ErrorWrongUserNameOrPassword" xml:space="preserve">
-    <value>Неккоректные данные для входа</value>
+    <value>Некорректные данные для входа</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>Домашняя страница</value>
