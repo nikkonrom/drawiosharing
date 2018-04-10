@@ -8,15 +8,18 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
 {
     public static class Localization
     {
-        private static readonly Dictionary<string, string> NativeLanguageNames;
-        private static readonly string DefaultCultureName;
+        private const string DefaultCultureName = "en";
+        public const string QueryStringLanguageParameter = "lang";
+        public const string CookieLanguageParameter = "lang";
+
+        public static readonly Dictionary<string, string> NativeLanguageNames;
 
         private static string _actualCultureName;
 
 
         static Localization()
         {
-            _actualCultureName = DefaultCultureName = "en";
+            _actualCultureName = DefaultCultureName;
             NativeLanguageNames = new Dictionary<string, string>
             {
                 {"en", "English" },
@@ -32,8 +35,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
 
         public static void Localize(object sender, EventArgs args)
         {
-            var langParameter = HttpContext.Current.Request.QueryString.GetValues("lang");
-            var cultureCookie = HttpContext.Current.Request.Cookies["lang"] ?? new HttpCookie("lang")
+            var langParameter = HttpContext.Current.Request.QueryString.GetValues(QueryStringLanguageParameter);
+            var cultureCookie = HttpContext.Current.Request.Cookies[CookieLanguageParameter] ?? new HttpCookie(CookieLanguageParameter)
             {
                 HttpOnly = true,
                 Value = DefaultCultureName,
@@ -45,8 +48,6 @@ namespace ITechArt.DrawIoSharing.WebApp.Utils
             }
             HttpContext.Current.Response.Cookies.Set(cultureCookie);
             var culture = CultureInfo.CreateSpecificCulture(cultureCookie.Value);
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
         }

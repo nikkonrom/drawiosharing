@@ -56,25 +56,21 @@
                             window.history.replaceState({}, "", baseUrl + params);
                         };
                         $(function () {
-                            $('#en').on('click',
-                                () => {
-                                    updateQueryStringParam('lang', 'en');
-                                });
-                        });
-                        $(function () {
-                            $('#ru').on('click',
-                                () => {
-                                    updateQueryStringParam('lang', 'ru');
+                            $("#langSelect li").click(
+                                function () {
+                                    updateQueryStringParam(@Localization.QueryStringLanguageParameter, this.id);
                                 });
                         });
                     </script>
                     <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @Localization.GetLocalizedNameOfActualLanguage()
                     </button>
-                    <div id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id="en" href="">English</a>
-                        <a class="dropdown-item" id="ru" href="">Русский(Russian)</a>
-                    </div>
+                    <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var language in Localization.NativeLanguageNames)
+                        {
+                            <li id="@language.Key"><a class="dropdown-item" href="">@language.Value</a></li>
+                        }
+                    </ul>
                 </li>
             </ul>
         </div>
