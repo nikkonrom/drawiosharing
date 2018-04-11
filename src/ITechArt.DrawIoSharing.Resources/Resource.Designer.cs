@@ -187,20 +187,11 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t have an account?.
+        ///   Looks up a localized string similar to Don&apos;t have an account? %SIGNUP% now!.
         /// </summary>
-        public static string NoAccount {
+        public static string NoAccountNotification {
             get {
-                return ResourceManager.GetString("NoAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to now!.
-        /// </summary>
-        public static string Now {
-            get {
-                return ResourceManager.GetString("Now", resourceCulture);
+                return ResourceManager.GetString("NoAccountNotification", resourceCulture);
             }
         }
         
@@ -223,11 +214,11 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration succeded.
+        ///   Looks up a localized string similar to Registration succeeded.
         /// </summary>
-        public static string RegistrationSucceded {
+        public static string RegistrationSucceeded {
             get {
-                return ResourceManager.GetString("RegistrationSucceded", resourceCulture);
+                return ResourceManager.GetString("RegistrationSucceeded", resourceCulture);
             }
         }
         

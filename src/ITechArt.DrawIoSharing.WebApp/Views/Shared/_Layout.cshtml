@@ -8,7 +8,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
     @using ITechArt.DrawIoSharing.Resources;
-    @using ITechArt.DrawIoSharing.WebApp.Utils
+    @using ITechArt.DrawIoSharing.WebApp.Localization
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,15 +58,15 @@
                         $(function () {
                             $("#langSelect li").click(
                                 function () {
-                                    updateQueryStringParam(@Localization.QueryStringLanguageParameter, this.id);
+                                    updateQueryStringParam('@CultureOptions.QueryStringLanguageParameter', this.id);
                                 });
                         });
                     </script>
                     <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @Localization.GetLocalizedNameOfActualLanguage()
+                        @HttpContext.Current.Items["ActualLanguageName"]
                     </button>
                     <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach (var language in Localization.NativeLanguageNames)
+                        @foreach (var language in CultureOptions.NativeLanguageNames)
                         {
                             <li id="@language.Key"><a class="dropdown-item" href="">@language.Value</a></li>
                         }
