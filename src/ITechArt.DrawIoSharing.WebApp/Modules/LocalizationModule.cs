@@ -1,6 +1,5 @@
 ﻿using System.Web;
 using ITechArt.DrawIoSharing.WebApp.Localization;
-using Ninject;
 
 namespace ITechArt.DrawIoSharing.WebApp.Modules
 {
@@ -10,10 +9,10 @@ namespace ITechArt.DrawIoSharing.WebApp.Modules
         {
             context.BeginRequest += (sender, args) =>
             {
-                IKernel kernel = new StandardKernel(new DrawIoSharingNinjectModule());
-                var cultureOptions = kernel.Get<CultureOptions>();
-                cultureOptions.SetUpCulture();
-                HttpContext.Current.Items.Add("ActualLanguageName", cultureOptions.GetLocalizedNameOfActualLanguage());
+                var currentHttpContext = context.Context;
+                var cultureManagement = new CultureManagement();
+                var languageName = cultureManagement.SetUpCulture(currentHttpContext);
+                currentHttpContext.Items.Add(CultureManagement.KeyForLanguageNameAccess, languageName);
             };
         }
 

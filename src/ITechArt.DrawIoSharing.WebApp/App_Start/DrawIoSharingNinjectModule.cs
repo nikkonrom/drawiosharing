@@ -23,7 +23,6 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUserService>().To<UserService>().InRequestScope();
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
-            Bind<CultureOptions>().ToSelf().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
         }
     }
