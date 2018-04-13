@@ -7,7 +7,7 @@ using ITechArt.Common;
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     [UsedImplicitly]
-    public class CultureManagement
+    public class CultureManagement : ICultureManagement
     {
         public const string QueryStringLanguageParameter = "lang";
         public const string KeyForLanguageNameAccess = "ActualLanguageName";

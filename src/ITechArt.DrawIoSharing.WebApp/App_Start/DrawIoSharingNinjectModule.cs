@@ -5,6 +5,7 @@ using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.DrawIoSharing.WebApp.Localization;
+using ITechArt.DrawIoSharing.WebApp.Modules;
 using ITechArt.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -24,6 +25,8 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
+            Bind<ICultureManagement>().To<CultureManagement>();
+            Bind<IHttpModule>().To<LocalizationModule>();
         }
     }
 }
