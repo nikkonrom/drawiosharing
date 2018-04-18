@@ -7,21 +7,13 @@ using ITechArt.Common;
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     [UsedImplicitly]
-    public class CultureManagement : ICultureManagement
+    public class CultureSetup : ICultureSetup
     {
         public const string QueryStringLanguageParameter = "lang";
         public const string KeyForLanguageNameAccess = "ActualLanguageName";
 
         private const string DefaultCultureName = "en";
         private const string CookieLanguageParameter = "lang";
-
-        private string _actualCultureName;
-
-
-        public CultureManagement()
-        {
-            _actualCultureName = DefaultCultureName;
-        }
 
 
         public string SetUpCulture(HttpContext context)
@@ -35,14 +27,14 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
             };
             if (langParameter != null && LanguageRegistrations.SupportedLanguages.ContainsKey(langParameter))
             {
-                _actualCultureName = cultureCookie.Value = langParameter;
+                cultureCookie.Value = langParameter;
                 context.Response.Cookies.Set(cultureCookie);
             }
             var culture = CultureInfo.CreateSpecificCulture(cultureCookie.Value);
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
 
-            return LanguageRegistrations.SupportedLanguages[_actualCultureName];
+            return LanguageRegistrations.SupportedLanguages[cultureCookie.Value];
         }
     }
 }

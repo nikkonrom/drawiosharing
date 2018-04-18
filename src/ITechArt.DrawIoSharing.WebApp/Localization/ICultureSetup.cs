@@ -2,7 +2,7 @@
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
-    public interface ICultureManagement
+    public interface ICultureSetup
     {
         string SetUpCulture(HttpContext context);
     }

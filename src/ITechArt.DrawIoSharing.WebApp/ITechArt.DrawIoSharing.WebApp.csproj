@@ -162,6 +162,16 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -187,23 +197,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\ICultureManagement.cs" />
+    <Compile Include="Localization\ICultureSetup.cs" />
     <Compile Include="Localization\LanguageRegistrations.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Modules\LocalizationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\DrawIoSharingNinjectModule.cs" />
-    <Compile Include="Localization\CultureManagement.cs" />
+    <Compile Include="Localization\CultureSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -212,10 +216,6 @@
     <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />

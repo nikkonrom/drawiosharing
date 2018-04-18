@@ -58,12 +58,12 @@
                         $(function () {
                             $("#langSelect li").click(
                                 function () {
-                                    updateQueryStringParam('@CultureManagement.QueryStringLanguageParameter', this.id);
+                                    updateQueryStringParam('@CultureSetup.QueryStringLanguageParameter', this.id);
                                 });
                         });
                     </script>
                     <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @HttpContext.Current.Items[CultureManagement.KeyForLanguageNameAccess]
+                        @HttpContext.Current.Items[CultureSetup.KeyForLanguageNameAccess]
                     </button>
                     <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @foreach (var language in LanguageRegistrations.SupportedLanguages)

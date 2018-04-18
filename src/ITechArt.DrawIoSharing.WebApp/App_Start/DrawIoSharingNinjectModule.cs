@@ -25,8 +25,8 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
-            Bind<ICultureManagement>().To<CultureManagement>();
-            Bind<IHttpModule>().To<LocalizationModule>();
+            Bind<ICultureSetup>().To<CultureSetup>();
+            Bind<IHttpModule>().To<LocalizationModule>().InRequestScope();
         }
     }
 }
