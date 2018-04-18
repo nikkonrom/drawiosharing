@@ -159,11 +159,8 @@
   <data name="HomePage" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="NoAccount" xml:space="preserve">
-    <value>Don't have an account?</value>
-  </data>
-  <data name="Now" xml:space="preserve">
-    <value>now!</value>
+  <data name="NoAccountNotification" xml:space="preserve">
+    <value>Don't have an account? %SIGNUP% now!</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -171,8 +168,8 @@
   <data name="PasswordConfirmation" xml:space="preserve">
     <value>Confirm password</value>
   </data>
-  <data name="RegistrationSucceded" xml:space="preserve">
-    <value>Registration succeded</value>
+  <data name="RegistrationSucceeded" xml:space="preserve">
+    <value>Registration succeeded</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>

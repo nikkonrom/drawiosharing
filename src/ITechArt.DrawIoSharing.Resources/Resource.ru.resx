@@ -154,16 +154,13 @@
     <value>Имя пользователя не может быть пустым</value>
   </data>
   <data name="ErrorWrongUserNameOrPassword" xml:space="preserve">
-    <value>Неккоректные данные для входа</value>
+    <value>Некорректные данные для входа</value>
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>Домашняя страница</value>
   </data>
-  <data name="NoAccount" xml:space="preserve">
-    <value>До сих пор нет аккаунта?</value>
-  </data>
-  <data name="Now" xml:space="preserve">
-    <value>сейчас!</value>
+  <data name="NoAccountNotification" xml:space="preserve">
+    <value>До сих пор нет аккаунта? %SIGNUP% сейчас!</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
@@ -171,7 +168,7 @@
   <data name="PasswordConfirmation" xml:space="preserve">
     <value>Подтверждение пароля</value>
   </data>
-  <data name="RegistrationSucceded" xml:space="preserve">
+  <data name="RegistrationSuccedeed" xml:space="preserve">
     <value>Регистрация прошла успешно</value>
   </data>
   <data name="SignIn" xml:space="preserve">
