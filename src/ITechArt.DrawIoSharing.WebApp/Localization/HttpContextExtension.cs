@@ -1,17 +1,18 @@
 ﻿using System.Web;
+using ITechArt.Localization;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     public static class HttpContextExtension
     {
-        public static void AddCurrentLanguage(this HttpContext context, DrawIoSharingSupportedLanguage languageName)
+        public static void AddCurrentLanguage(this HttpContext context, Language languageName)
         {
             context.Items.Add(HttpRequestLocalizationManager.KeyForLanguageNameAccess, languageName);
         }
 
-        public static DrawIoSharingSupportedLanguage GetCurrentLanguage(this HttpContext context)
+        public static Language GetCurrentLanguage(this HttpContext context)
         {
-            return (DrawIoSharingSupportedLanguage)context.Items[HttpRequestLocalizationManager.KeyForLanguageNameAccess];
+            return (Language)context.Items[HttpRequestLocalizationManager.KeyForLanguageNameAccess];
         }
     }
 }

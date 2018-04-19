@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using ITechArt.Common;
+using ITechArt.Localization;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
@@ -16,7 +17,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
         private const string CookieLanguageParameter = "lang";
 
 
-        public DrawIoSharingSupportedLanguage SetUpRequestCulture(HttpContext context)
+        public Language SetUpRequestCulture(HttpContext context)
         {
             var cultureName = SelectRequestCulture(context);
             ApplyRequestCulture(cultureName);

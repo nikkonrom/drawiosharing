@@ -1,13 +1,13 @@
-﻿namespace ITechArt.DrawIoSharing.WebApp.Localization
+﻿namespace ITechArt.Localization
 {
-    public class DrawIoSharingSupportedLanguage
+    public class Language
     {
         public string CultureName { get; }
 
         public string NativeName { get; }
 
 
-        public DrawIoSharingSupportedLanguage(string cultureName, string nativeName)
+        public Language(string cultureName, string nativeName)
         {
             CultureName = cultureName;
             NativeName = nativeName;

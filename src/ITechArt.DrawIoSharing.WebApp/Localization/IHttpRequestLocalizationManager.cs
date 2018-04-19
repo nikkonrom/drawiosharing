@@ -1,9 +1,10 @@
 ﻿using System.Web;
+using ITechArt.Localization;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     public interface IHttpRequestLocalizationManager
     {
-        DrawIoSharingSupportedLanguage SetUpRequestCulture(HttpContext context);
+        Language SetUpRequestCulture(HttpContext context);
     }
 }

@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ITechArt.Localization;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     public static class LanguageRegistrationManager
     {
-        public static readonly IReadOnlyCollection<DrawIoSharingSupportedLanguage> SupportedLanguages;
+        public static readonly IReadOnlyCollection<Language> SupportedLanguages;
 
 
         static LanguageRegistrationManager()
         {
-            SupportedLanguages = new List<DrawIoSharingSupportedLanguage>
+            SupportedLanguages = new List<Language>
             {
-                new DrawIoSharingSupportedLanguage("en", "English"),
-                new DrawIoSharingSupportedLanguage("ru", "Русский (Russian)")
+                new Language("en", "English"),
+                new Language("ru", "Русский (Russian)")
             };
         }
 
@@ -23,7 +24,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
             return SupportedLanguages.SingleOrDefault(language => language.CultureName == cultureName) != null;
         }
 
-        public static DrawIoSharingSupportedLanguage GetLanguage(string cultureName)
+        public static Language GetLanguage(string cultureName)
         {
             return SupportedLanguages.Single(language => language.CultureName == cultureName);
         }

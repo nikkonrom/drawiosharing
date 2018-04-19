@@ -197,7 +197,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\DrawIoSharingSupportedLanguage.cs" />
     <Compile Include="Localization\HttpContextExtension.cs" />
     <Compile Include="Localization\IHttpRequestLocalizationManager.cs" />
     <Compile Include="Localization\LanguageRegistrationManager.cs" />
@@ -259,6 +258,10 @@
     <ProjectReference Include="..\ITechArt.DrawIoSharing.Resources\ITechArt.DrawIoSharing.Resources.csproj">
       <Project>{8fc7926e-8960-43c7-86c5-3de7e07f46d6}</Project>
       <Name>ITechArt.DrawIoSharing.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.Localization\ITechArt.Localization.csproj">
+      <Project>{B6E999AC-2BD4-4734-9561-0744CFF8FFBA}</Project>
+      <Name>ITechArt.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
       <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>
