@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
@@ -11,11 +12,12 @@ namespace ITechArt.DrawIoSharing.Repositories
     public class UserStore : IUserPasswordStore<User, int>, IUserRoleStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-
-
-        public UserStore(IUnitOfWork unitOfWork)
+        private readonly RoleStore _roleStore;
+        
+        public UserStore(IUnitOfWork unitOfWork, RoleStore roleStore)
         {
             _unitOfWork = unitOfWork;
+            _roleStore = roleStore;
         }
 
 
@@ -64,24 +66,26 @@ namespace ITechArt.DrawIoSharing.Repositories
             return Task.FromResult(user.Password != null);
         }
 
-        public Task AddToRoleAsync(User user, string roleName)
+        public async Task AddToRoleAsync(User user, string roleName)
         {
-            throw new System.NotImplementedException();
+            var userRole = await _roleStore.FindByNameAsync(roleName);
+            user.Roles.Add(userRole);
         }
 
-        public Task RemoveFromRoleAsync(User user, string roleName)
+        public async Task RemoveFromRoleAsync(User user, string roleName)
         {
-            throw new System.NotImplementedException();
+            var userRole = await _roleStore.FindByNameAsync(roleName);
+            user.Roles.Remove(userRole);
         }
 
         public Task<IList<string>> GetRolesAsync(User user)
         {
-            throw new System.NotImplementedException();
+            return Task.FromResult((IList<string>)user.Roles.ConvertAll(role => role.Name));
         }
 
         public Task<bool> IsInRoleAsync(User user, string roleName)
         {
-            throw new System.NotImplementedException();
+            Microsoft.AspNet.Identity.UserManager<>
         }
         public void Dispose()
         {

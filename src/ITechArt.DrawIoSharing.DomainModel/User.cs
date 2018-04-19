@@ -14,7 +14,7 @@ namespace ITechArt.DrawIoSharing.DomainModel
 
         public string Password { get; set; }
 
-        public ICollection<Role> Roles { get; set; }
+        public List<Role> Roles { get; set; }
 
 
         [UsedImplicitly]

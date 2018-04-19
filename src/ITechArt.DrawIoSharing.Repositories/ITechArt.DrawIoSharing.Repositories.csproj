@@ -39,6 +39,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\ITechArt.DrawIoSharing.WebApp\Bin\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -69,6 +72,10 @@
     <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
       <Project>{e9ef15b5-4b1d-415d-8ccd-d4557b36a1f9}</Project>
       <Name>ITechArt.DrawIoSharing.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
+      <Project>{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}</Project>
+      <Name>ITechArt.DrawIoSharing.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
       <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>

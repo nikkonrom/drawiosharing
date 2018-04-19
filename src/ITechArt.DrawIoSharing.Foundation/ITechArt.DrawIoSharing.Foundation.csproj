@@ -45,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RoleManagement\IRoleManager.cs" />
+    <Compile Include="RoleManagement\IRoleService.cs" />
     <Compile Include="RoleManagement\RoleManager.cs" />
+    <Compile Include="RoleManagement\RoleService.cs" />
+    <Compile Include="RoleManagement\SupportedRoles.cs" />
     <Compile Include="UserManagement\SignInError.cs" />
     <Compile Include="UserManagement\UserManager.cs" />
     <Compile Include="UserManagement\IUserManager.cs" />

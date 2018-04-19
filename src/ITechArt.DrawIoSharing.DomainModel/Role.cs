@@ -10,8 +10,6 @@ namespace ITechArt.DrawIoSharing.DomainModel
 
         public string Name { get; set; }
 
-        public ICollection<UserRole> Users { get; set; }
-
         [UsedImplicitly]
         public Role()
         {
