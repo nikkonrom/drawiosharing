@@ -197,14 +197,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\ICultureSetup.cs" />
-    <Compile Include="Localization\LanguageRegistrations.cs" />
+    <Compile Include="Localization\DrawIoSharingSupportedLanguage.cs" />
+    <Compile Include="Localization\HttpContextExtension.cs" />
+    <Compile Include="Localization\IHttpRequestLocalizationManager.cs" />
+    <Compile Include="Localization\LanguageRegistrationManager.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Modules\LocalizationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\DrawIoSharingNinjectModule.cs" />
-    <Compile Include="Localization\CultureSetup.cs" />
+    <Compile Include="Localization\HttpRequestLocalizationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -7,7 +7,7 @@ using ITechArt.Common;
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
     [UsedImplicitly]
-    public class CultureSetup : ICultureSetup
+    public class HttpRequestLocalizationManager : IHttpRequestLocalizationManager
     {
         public const string QueryStringLanguageParameter = "lang";
         public const string KeyForLanguageNameAccess = "ActualLanguageName";
@@ -16,7 +16,16 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
         private const string CookieLanguageParameter = "lang";
 
 
-        public string SetUpCulture(HttpContext context)
+        public DrawIoSharingSupportedLanguage SetUpRequestCulture(HttpContext context)
+        {
+            var cultureName = SelectRequestCulture(context);
+            ApplyRequestCulture(cultureName);
+
+            return LanguageRegistrationManager.GetLanguage(cultureName);
+        }
+
+
+        private static string SelectRequestCulture(HttpContext context)
         {
             var langParameter = context.Request.QueryString.GetValues(QueryStringLanguageParameter)?[0];
             var cultureCookie = context.Request.Cookies[CookieLanguageParameter] ?? new HttpCookie(CookieLanguageParameter)
@@ -25,16 +34,20 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
                 Value = DefaultCultureName,
                 Expires = DateTime.MaxValue
             };
-            if (langParameter != null && LanguageRegistrations.SupportedLanguages.ContainsKey(langParameter))
+            if (langParameter != null && LanguageRegistrationManager.SupportsLanguage(langParameter))
             {
                 cultureCookie.Value = langParameter;
                 context.Response.Cookies.Set(cultureCookie);
             }
-            var culture = CultureInfo.CreateSpecificCulture(cultureCookie.Value);
+
+            return cultureCookie.Value;
+        }
+
+        private static void ApplyRequestCulture(string cultureName)
+        {
+            var culture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
-
-            return LanguageRegistrations.SupportedLanguages[cultureCookie.Value];
         }
     }
 }

@@ -7,12 +7,12 @@ namespace ITechArt.DrawIoSharing.WebApp.Modules
     [UsedImplicitly]
     public class LocalizationModule : IHttpModule
     {
-        private readonly ICultureSetup _cultureSetup;
+        private readonly IHttpRequestLocalizationManager _httpRequestLocalizationManager;
 
 
-        public LocalizationModule(ICultureSetup cultureSetup)
+        public LocalizationModule(IHttpRequestLocalizationManager httpRequestLocalizationManager)
         {
-            _cultureSetup = cultureSetup;
+            _httpRequestLocalizationManager = httpRequestLocalizationManager;
         }
 
 
@@ -21,8 +21,8 @@ namespace ITechArt.DrawIoSharing.WebApp.Modules
             context.BeginRequest += (sender, args) =>
             {
                 var currentHttpContext = context.Context;
-                var languageName = _cultureSetup.SetUpCulture(currentHttpContext);
-                currentHttpContext.Items.Add(CultureSetup.KeyForLanguageNameAccess, languageName);
+                var currentLanguage = _httpRequestLocalizationManager.SetUpRequestCulture(currentHttpContext);
+                currentHttpContext.AddCurrentLanguage(currentLanguage);
             };
         }
 
