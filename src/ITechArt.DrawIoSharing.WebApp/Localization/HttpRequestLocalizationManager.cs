@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Web;
 using ITechArt.Common;
 using ITechArt.Localization;
+using ITechArt.Localization.Http;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
@@ -12,9 +14,18 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
     {
         public const string QueryStringLanguageParameter = "lang";
         public const string KeyForLanguageNameAccess = "ActualLanguageName";
+        public const string KeyForSupportedLanguagesAccess = "SupportedLanguages";
 
         private const string DefaultCultureName = "en";
         private const string CookieLanguageParameter = "lang";
+
+        private readonly ILanguageProvider _languageProvider;
+
+
+        public HttpRequestLocalizationManager(ILanguageProvider languageProvider)
+        {
+            _languageProvider = languageProvider;
+        }
 
 
         public Language SetUpRequestCulture(HttpContext context)
@@ -22,11 +33,16 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
             var cultureName = SelectRequestCulture(context);
             ApplyRequestCulture(cultureName);
 
-            return LanguageRegistrationManager.GetLanguage(cultureName);
+            return _languageProvider.GetLanguage(cultureName);
+        }
+
+        public IReadOnlyCollection<Language> GetSupportedLanguages()
+        {
+            return _languageProvider.GetLanguages();
         }
 
 
-        private static string SelectRequestCulture(HttpContext context)
+        private string SelectRequestCulture(HttpContext context)
         {
             var langParameter = context.Request.QueryString.GetValues(QueryStringLanguageParameter)?[0];
             var cultureCookie = context.Request.Cookies[CookieLanguageParameter] ?? new HttpCookie(CookieLanguageParameter)
@@ -35,7 +51,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
                 Value = DefaultCultureName,
                 Expires = DateTime.MaxValue
             };
-            if (langParameter != null && LanguageRegistrationManager.SupportsLanguage(langParameter))
+            if (langParameter != null && _languageProvider.CheckIfLanguageSupported(langParameter))
             {
                 cultureCookie.Value = langParameter;
                 context.Response.Cookies.Set(cultureCookie);
@@ -44,7 +60,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Localization
             return cultureCookie.Value;
         }
 
-        private static void ApplyRequestCulture(string cultureName)
+        private void ApplyRequestCulture(string cultureName)
         {
             var culture = CultureInfo.CreateSpecificCulture(cultureName);
             Thread.CurrentThread.CurrentUICulture = culture;

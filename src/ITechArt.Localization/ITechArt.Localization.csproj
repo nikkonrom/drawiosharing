@@ -32,13 +32,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILanguageConverter.cs" />
-    <Compile Include="ILanguageProvider.cs" />
-    <Compile Include="Language.cs" />
-    <Compile Include="Languages.cs" />
+    <Compile Include="Http\IHttpRequestLocalizationManager.cs" />
+    <Compile Include="Languages\ILanguageConverter.cs" />
+    <Compile Include="Languages\ILanguageProvider.cs" />
+    <Compile Include="Languages\Language.cs" />
+    <Compile Include="Languages\LanguageAlias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
