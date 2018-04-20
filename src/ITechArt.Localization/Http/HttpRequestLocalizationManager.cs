@@ -4,10 +4,9 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using ITechArt.Common;
-using ITechArt.Localization;
-using ITechArt.Localization.Http;
+using ITechArt.Localization.Languages;
 
-namespace ITechArt.DrawIoSharing.WebApp.Localization
+namespace ITechArt.Localization.Http
 {
     [UsedImplicitly]
     public class HttpRequestLocalizationManager : IHttpRequestLocalizationManager

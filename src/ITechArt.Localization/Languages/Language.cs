@@ -1,4 +1,4 @@
-﻿namespace ITechArt.Localization
+﻿namespace ITechArt.Localization.Languages
 {
     public class Language
     {

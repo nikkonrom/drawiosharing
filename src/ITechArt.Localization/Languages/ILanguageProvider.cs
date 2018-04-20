@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ITechArt.Localization
+namespace ITechArt.Localization.Languages
 {
     public interface ILanguageProvider
     {

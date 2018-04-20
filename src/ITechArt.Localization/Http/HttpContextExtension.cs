@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web;
-using ITechArt.Localization;
+using ITechArt.Localization.Languages;
 
-namespace ITechArt.DrawIoSharing.WebApp.Localization
+namespace ITechArt.Localization.Http
 {
     public static class HttpContextExtension
     {

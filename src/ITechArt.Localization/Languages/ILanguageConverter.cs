@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using ITechArt.Localization.Languages;
 
-namespace ITechArt.Localization
+namespace ITechArt.Localization.Languages
 {
     public interface ILanguageConverter
     {
