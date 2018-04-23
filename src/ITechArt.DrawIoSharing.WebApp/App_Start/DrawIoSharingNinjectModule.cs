@@ -27,9 +27,9 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
-            Bind<ILanguageConverter>().To<DefaultLanguageConverter>().InRequestScope();
-            Bind<ILanguageProvider>().To<DrawIoSharingLanguageProvider>().InRequestScope();
-            Bind<ILanguageManager>().To<LanguageManager>().InRequestScope();
+            Bind<ILanguageConverter>().To<DefaultLanguageConverter>().InSingletonScope();
+            Bind<ILanguageProvider>().To<DrawIoSharingLanguageProvider>().InSingletonScope();
+            Bind<ILanguageManager>().To<LanguageManager>().InSingletonScope();
             Bind<IHttpRequestLocalizationManager>().To<HttpRequestLocalizationManager>().InRequestScope();
             Bind<IPerRequestHttpLocalizationManager>().To<PerRequestHttpLocalizationManager>().InSingletonScope();
             Bind<IHttpModule>().To<LocalizationModule>().InSingletonScope();
