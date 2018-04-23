@@ -1,16 +1,8 @@
 ﻿namespace ITechArt.Localization.Languages
 {
-    public class Language
+    public enum Language
     {
-        public string CultureName { get; }
-
-        public string NativeName { get; }
-
-
-        public Language(string cultureName, string nativeName)
-        {
-            CultureName = cultureName;
-            NativeName = nativeName;
-        }
+        English,
+        Russian
     }
 }

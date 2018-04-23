@@ -197,8 +197,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\DrawIoSharingLanguageConverter.cs" />
-    <Compile Include="Localization\DrawIoSharinglanguageProvider.cs" />
+    <Compile Include="Localization\DrawIoSharingLanguageProvider.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

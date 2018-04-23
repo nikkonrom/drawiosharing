@@ -1,41 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ITechArt.Common;
-using ITechArt.Localization;
+﻿using System;
+using System.Collections.Generic;
 using ITechArt.Localization.Languages;
 
 namespace ITechArt.DrawIoSharing.WebApp.Localization
 {
-    [UsedImplicitly]
     public class DrawIoSharingLanguageProvider : ILanguageProvider
     {
-        private readonly IReadOnlyCollection<Language> _supportedLanguages;
+        private const string KeyForWebConfigSupportedLanguagesAccess = "SupportedLanguages";
 
-
-        public DrawIoSharingLanguageProvider(ILanguageConverter languageConverter)
-        {
-            var languageAliases = new List<LanguageAlias>
-            {
-                LanguageAlias.English,
-                LanguageAlias.Russian
-            };
-            _supportedLanguages = languageConverter.ConvertAliasesToLanguages(languageAliases);
-        }
-
-
-        public bool CheckIfLanguageSupported(string cultureName)
-        {
-            return _supportedLanguages.Any(language => language.CultureName == cultureName);
-        }
 
         public IReadOnlyCollection<Language> GetLanguages()
         {
-            return _supportedLanguages;
-        }
+            var languages = new List<Language>();
+            var webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            var supportedLanguagesConfigurationElement = webConfig.AppSettings.Settings[KeyForWebConfigSupportedLanguagesAccess];
+            if (supportedLanguagesConfigurationElement != null )
+            {
+                var supportedLanguages = supportedLanguagesConfigurationElement.Value.Split(',');
+                foreach (var supportedLanguage in supportedLanguages)
+                {
+                    Enum.TryParse(supportedLanguage, out Language language);
+                    languages.Add(language);
+                }
+            }
 
-        public Language GetLanguage(string languageName)
-        {
-            return _supportedLanguages.Single(language => language.CultureName == languageName);
+            return languages;
         }
     }
 }

@@ -6,8 +6,8 @@ namespace ITechArt.Localization.Http
 {
     public interface IHttpRequestLocalizationManager
     {
-        Language SetUpRequestCulture(HttpContext context);
+        LanguageInfo SetUpRequestCulture(HttpContext context);
 
-        IReadOnlyCollection<Language> GetSupportedLanguages();
+        IReadOnlyCollection<LanguageInfo> GetSupportedLanguages();
     }
 }

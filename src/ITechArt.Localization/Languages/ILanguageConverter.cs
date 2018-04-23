@@ -4,7 +4,6 @@ namespace ITechArt.Localization.Languages
 {
     public interface ILanguageConverter
     {
-        Language ConvertAliasToLanguage(LanguageAlias language);
-        IReadOnlyCollection<Language> ConvertAliasesToLanguages(IReadOnlyCollection<LanguageAlias> languages);
+        IReadOnlyCollection<LanguageInfo> ConvertLanguagesToLanguagesInfo(IReadOnlyCollection<Language> languages);
     }
 }

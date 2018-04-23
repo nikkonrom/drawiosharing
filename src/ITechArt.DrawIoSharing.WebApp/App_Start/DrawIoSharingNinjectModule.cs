@@ -5,9 +5,9 @@ using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.DrawIoSharing.WebApp.Localization;
-using ITechArt.Localization;
 using ITechArt.Localization.Http;
 using ITechArt.Localization.Languages;
+using ITechArt.Localization.Modules;
 using ITechArt.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -27,9 +27,11 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
-            Bind<IHttpRequestLocalizationManager>().To<HttpRequestLocalizationManager>().InRequestScope();
-            Bind<ILanguageConverter>().To<DrawIoSharingLanguageConverter>().InRequestScope();
+            Bind<ILanguageConverter>().To<DefaultLanguageConverter>().InRequestScope();
             Bind<ILanguageProvider>().To<DrawIoSharingLanguageProvider>().InRequestScope();
+            Bind<ILanguageManager>().To<LanguageManager>().InRequestScope();
+            Bind<IHttpRequestLocalizationManager>().To<HttpRequestLocalizationManager>().InRequestScope();
+            Bind<IPerRequestHttpLocalizationManager>().To<NinjectPerRequestHttpLocalizationManager>().InSingletonScope();
             Bind<IHttpModule>().To<LocalizationModule>().InSingletonScope();
         }
     }

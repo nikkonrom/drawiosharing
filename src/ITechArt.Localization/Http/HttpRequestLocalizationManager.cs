@@ -18,26 +18,26 @@ namespace ITechArt.Localization.Http
         private const string DefaultCultureName = "en";
         private const string CookieLanguageParameter = "lang";
 
-        private readonly ILanguageProvider _languageProvider;
+        private readonly ILanguageManager _languageManager;
 
 
-        public HttpRequestLocalizationManager(ILanguageProvider languageProvider)
+        public HttpRequestLocalizationManager(ILanguageManager languageManager)
         {
-            _languageProvider = languageProvider;
+            _languageManager = languageManager;
         }
 
 
-        public Language SetUpRequestCulture(HttpContext context)
+        public LanguageInfo SetUpRequestCulture(HttpContext context)
         {
             var cultureName = SelectRequestCulture(context);
             ApplyRequestCulture(cultureName);
 
-            return _languageProvider.GetLanguage(cultureName);
+            return _languageManager.GetLanguage(cultureName);
         }
 
-        public IReadOnlyCollection<Language> GetSupportedLanguages()
+        public IReadOnlyCollection<LanguageInfo> GetSupportedLanguages()
         {
-            return _languageProvider.GetLanguages();
+            return _languageManager.GetLanguages();
         }
 
 
@@ -50,7 +50,7 @@ namespace ITechArt.Localization.Http
                 Value = DefaultCultureName,
                 Expires = DateTime.MaxValue
             };
-            if (langParameter != null && _languageProvider.CheckIfLanguageSupported(langParameter))
+            if (langParameter != null && _languageManager.CheckIfLanguageSupported(langParameter))
             {
                 cultureCookie.Value = langParameter;
                 context.Response.Cookies.Set(cultureCookie);
