@@ -60,7 +60,7 @@
     <Compile Include="Http\HttpRequestLocalizationManager.cs" />
     <Compile Include="Http\IHttpRequestLocalizationManager.cs" />
     <Compile Include="Http\IPerRequestHttpLocalizationManager.cs" />
-    <Compile Include="Http\NinjectPerRequestHttpLocalizationManager.cs" />
+    <Compile Include="Http\PerRequestHttpLocalizationManager.cs" />
     <Compile Include="Languages\DefaultLanguageConverter.cs" />
     <Compile Include="Languages\ILanguageConverter.cs" />
     <Compile Include="Languages\ILanguageManager.cs" />

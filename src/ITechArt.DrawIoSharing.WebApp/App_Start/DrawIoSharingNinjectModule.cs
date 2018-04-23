@@ -31,7 +31,7 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<ILanguageProvider>().To<DrawIoSharingLanguageProvider>().InRequestScope();
             Bind<ILanguageManager>().To<LanguageManager>().InRequestScope();
             Bind<IHttpRequestLocalizationManager>().To<HttpRequestLocalizationManager>().InRequestScope();
-            Bind<IPerRequestHttpLocalizationManager>().To<NinjectPerRequestHttpLocalizationManager>().InSingletonScope();
+            Bind<IPerRequestHttpLocalizationManager>().To<PerRequestHttpLocalizationManager>().InSingletonScope();
             Bind<IHttpModule>().To<LocalizationModule>().InSingletonScope();
         }
     }

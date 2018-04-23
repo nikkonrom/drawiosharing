@@ -4,7 +4,7 @@ using ITechArt.Common;
 namespace ITechArt.Localization.Http
 {
     [UsedImplicitly]
-    public class NinjectPerRequestHttpLocalizationManager : IPerRequestHttpLocalizationManager
+    public class PerRequestHttpLocalizationManager : IPerRequestHttpLocalizationManager
     {
         public IHttpRequestLocalizationManager GetPerRequestHttpLocalizationManager()
         {
