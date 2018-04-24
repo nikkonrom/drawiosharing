@@ -4,6 +4,8 @@ namespace ITechArt.Localization.Languages
 {
     public interface ILanguageProvider
     {
-        IReadOnlyCollection<Language> GetLanguages();
+        IReadOnlyCollection<Language> SupportedLanguages { get; }
+
+        Language DefaultLanguage { get; }
     }
 }

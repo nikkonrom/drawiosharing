@@ -7,12 +7,12 @@ namespace ITechArt.Localization.Modules
     [UsedImplicitly]
     public class LocalizationModule : IHttpModule
     {
-        private readonly IPerRequestHttpLocalizationManager _perRequestHttpLocalizationManager;
+        private readonly IHttpRequestLocalizationManagerFactory _httpRequestLocalizationManagerFactory;
 
 
-        public LocalizationModule(IPerRequestHttpLocalizationManager perRequestHttpLocalizationManager)
+        public LocalizationModule(IHttpRequestLocalizationManagerFactory itHttpLocalizationManagerFactory)
         {
-            _perRequestHttpLocalizationManager = perRequestHttpLocalizationManager;
+            _httpRequestLocalizationManagerFactory = itHttpLocalizationManagerFactory;
         }
 
 
@@ -21,10 +21,8 @@ namespace ITechArt.Localization.Modules
             context.BeginRequest += (sender, args) =>
             {
                 var currentHttpContext = context.Context;
-                var httpRequestLocalizationManager = _perRequestHttpLocalizationManager.GetPerRequestHttpLocalizationManager();
-                var currentLanguage = httpRequestLocalizationManager.SetUpRequestCulture(currentHttpContext);
-                currentHttpContext.AddCurrentLanguage(currentLanguage);
-                currentHttpContext.AddSupportedLanguages(httpRequestLocalizationManager.GetSupportedLanguages());
+                var httpRequestLocalizationManager = _httpRequestLocalizationManagerFactory.GetHttpRequestLocalizationManager();
+                httpRequestLocalizationManager.SetUpRequestCulture(currentHttpContext);
             };
         }
 

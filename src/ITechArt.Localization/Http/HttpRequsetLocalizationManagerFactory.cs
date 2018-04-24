@@ -4,9 +4,9 @@ using ITechArt.Common;
 namespace ITechArt.Localization.Http
 {
     [UsedImplicitly]
-    public class PerRequestHttpLocalizationManager : IPerRequestHttpLocalizationManager
+    public class HttpRequestLocalizationManagerFactory : IHttpRequestLocalizationManagerFactory
     {
-        public IHttpRequestLocalizationManager GetPerRequestHttpLocalizationManager()
+        public IHttpRequestLocalizationManager GetHttpRequestLocalizationManager()
         {
             return DependencyResolver.Current.GetService<IHttpRequestLocalizationManager>();
         }

@@ -4,9 +4,11 @@ namespace ITechArt.Localization.Languages
 {
     public interface ILanguageManager
     {
-        IReadOnlyCollection<LanguageInfo> GetLanguages();
+        IReadOnlyCollection<LanguageInfo> SupportedLanguages { get; }
 
-        LanguageInfo GetLanguage(string cultureName);
+        LanguageInfo DefaultLanguage { get; }
+
+        LanguageInfo GetLanguageByCultureName(string cultureName);
 
         bool CheckIfLanguageSupported(string cultureName);
     }

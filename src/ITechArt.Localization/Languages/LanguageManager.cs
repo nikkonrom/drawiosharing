@@ -7,29 +7,27 @@ namespace ITechArt.Localization.Languages
     [UsedImplicitly]
     public class LanguageManager : ILanguageManager
     {
-        private readonly IReadOnlyCollection<LanguageInfo> _supportedLanguages;
+        public IReadOnlyCollection<LanguageInfo> SupportedLanguages { get; }
+
+        public LanguageInfo DefaultLanguage { get; }
 
 
         public LanguageManager(ILanguageProvider languageProvider, ILanguageConverter languageConverter)
         {
-            var languages = languageProvider.GetLanguages();
-            _supportedLanguages = languageConverter.ConvertLanguagesToLanguagesInfo(languages);
+            var languages = languageProvider.SupportedLanguages;
+            SupportedLanguages = languages.Select(languageConverter.ConvertLanguageToLanguageInfo).ToList();
+            DefaultLanguage = languageConverter.ConvertLanguageToLanguageInfo(languageProvider.DefaultLanguage);
         }
 
 
         public bool CheckIfLanguageSupported(string cultureName)
         {
-            return _supportedLanguages.Any(language => language.CultureName == cultureName);
+            return SupportedLanguages.Any(language => language.CultureName == cultureName);
         }
-
-        public IReadOnlyCollection<LanguageInfo> GetLanguages()
+        
+        public LanguageInfo GetLanguageByCultureName(string languageName)
         {
-            return _supportedLanguages;
-        }
-
-        public LanguageInfo GetLanguage(string languageName)
-        {
-            return _supportedLanguages.Single(language => language.CultureName == languageName);
+            return SupportedLanguages.Single(language => language.CultureName == languageName);
         }
     }
 }

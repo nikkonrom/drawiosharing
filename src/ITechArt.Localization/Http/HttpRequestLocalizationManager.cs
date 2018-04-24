@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Web;
@@ -15,7 +14,6 @@ namespace ITechArt.Localization.Http
         public const string KeyForLanguageNameAccess = "ActualLanguageName";
         public const string KeyForSupportedLanguagesAccess = "SupportedLanguages";
 
-        private const string DefaultCultureName = "en";
         private const string CookieLanguageParameter = "lang";
 
         private readonly ILanguageManager _languageManager;
@@ -27,29 +25,28 @@ namespace ITechArt.Localization.Http
         }
 
 
-        public LanguageInfo SetUpRequestCulture(HttpContext context)
+        public void SetUpRequestCulture(HttpContext context)
         {
             var cultureName = SelectRequestCulture(context);
             ApplyRequestCulture(cultureName);
-
-            return _languageManager.GetLanguage(cultureName);
-        }
-
-        public IReadOnlyCollection<LanguageInfo> GetSupportedLanguages()
-        {
-            return _languageManager.GetLanguages();
+            context.AddCurrentLanguage(_languageManager.GetLanguageByCultureName(cultureName));
+            context.AddSupportedLanguages(_languageManager.SupportedLanguages);
         }
 
 
         private string SelectRequestCulture(HttpContext context)
         {
             var langParameter = context.Request.QueryString.GetValues(QueryStringLanguageParameter)?[0];
-            var cultureCookie = context.Request.Cookies[CookieLanguageParameter] ?? new HttpCookie(CookieLanguageParameter)
+            var cultureCookie = context.Request.Cookies[CookieLanguageParameter];
+            if (cultureCookie == null || !_languageManager.CheckIfLanguageSupported(cultureCookie.Value))
             {
-                HttpOnly = true,
-                Value = DefaultCultureName,
-                Expires = DateTime.MaxValue
-            };
+                cultureCookie = new HttpCookie(CookieLanguageParameter)
+                {
+                    HttpOnly = true,
+                    Value = _languageManager.DefaultLanguage.CultureName,
+                    Expires = DateTime.MaxValue
+                };
+            }
             if (langParameter != null && _languageManager.CheckIfLanguageSupported(langParameter))
             {
                 cultureCookie.Value = langParameter;

@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using ITechArt.Localization.Languages;
+﻿using System.Web;
 
 namespace ITechArt.Localization.Http
 {
     public interface IHttpRequestLocalizationManager
     {
-        LanguageInfo SetUpRequestCulture(HttpContext context);
-
-        IReadOnlyCollection<LanguageInfo> GetSupportedLanguages();
+        void SetUpRequestCulture(HttpContext context);
     }
 }
