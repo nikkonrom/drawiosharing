@@ -109,6 +109,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -197,14 +198,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\ICultureSetup.cs" />
-    <Compile Include="Localization\LanguageRegistrations.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
-    <Compile Include="Modules\LocalizationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\DrawIoSharingNinjectModule.cs" />
-    <Compile Include="Localization\CultureSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -236,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Localization\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
@@ -257,6 +255,10 @@
     <ProjectReference Include="..\ITechArt.DrawIoSharing.Resources\ITechArt.DrawIoSharing.Resources.csproj">
       <Project>{8fc7926e-8960-43c7-86c5-3de7e07f46d6}</Project>
       <Name>ITechArt.DrawIoSharing.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.Localization\ITechArt.Localization.csproj">
+      <Project>{B6E999AC-2BD4-4734-9561-0744CFF8FFBA}</Project>
+      <Name>ITechArt.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
       <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>
