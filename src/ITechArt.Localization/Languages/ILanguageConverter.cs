@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ITechArt.Localization.Languages
+﻿namespace ITechArt.Localization.Languages
 {
     public interface ILanguageConverter
     {
