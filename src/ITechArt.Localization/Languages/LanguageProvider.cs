@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ITechArt.Common;
 
 namespace ITechArt.Localization.Languages
@@ -13,9 +12,15 @@ namespace ITechArt.Localization.Languages
 
         public LanguageProvider()
         {
-            Enum.TryParse(Settings.Default.DefaultLanguage, out Language language);
-            DefaultLanguage = language;
-            SupportedLanguages = Settings.Default.SupportedLanguages.Cast<Language>().ToList();
+            Enum.TryParse(Settings.Default.DefaultLanguage, out Language defaultLanguage);
+            DefaultLanguage = defaultLanguage;
+            var supportedLanguages = new List<Language>();
+            foreach (var supportedLanguageString in Settings.Default.SupportedLanguages)
+            {
+                if (Enum.TryParse(supportedLanguageString, out Language supportedLanguage))
+                     supportedLanguages.Add(supportedLanguage);
+            }
+            SupportedLanguages = supportedLanguages;
         }
     }
 }
