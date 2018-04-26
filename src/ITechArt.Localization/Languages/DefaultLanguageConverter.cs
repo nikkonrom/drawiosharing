@@ -6,12 +6,12 @@ namespace ITechArt.Localization.Languages
     [UsedImplicitly]
     public class DefaultLanguageConverter : ILanguageConverter
     {
-        private readonly IReadOnlyDictionary<Language, LanguageInfo> _languageMatches;
+        private static readonly IReadOnlyDictionary<Language, LanguageInfo> LanguageInfos;
 
 
-        public DefaultLanguageConverter()
+        static DefaultLanguageConverter()
         {
-            _languageMatches = new Dictionary<Language, LanguageInfo>
+            LanguageInfos = new Dictionary<Language, LanguageInfo>
                 {
                     { Language.English, new LanguageInfo("en", "English") },
                     { Language.Russian, new LanguageInfo("ru", "Русский (Russian)") }
@@ -21,7 +21,7 @@ namespace ITechArt.Localization.Languages
 
         public LanguageInfo ConvertLanguageToLanguageInfo(Language language)
         {
-            return _languageMatches[language];
+            return LanguageInfos[language];
         }
     }
 }

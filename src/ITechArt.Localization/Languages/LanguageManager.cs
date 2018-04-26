@@ -18,16 +18,5 @@ namespace ITechArt.Localization.Languages
             SupportedLanguages = languages.Select(languageConverter.ConvertLanguageToLanguageInfo).ToList();
             DefaultLanguage = languageConverter.ConvertLanguageToLanguageInfo(languageProvider.DefaultLanguage);
         }
-
-
-        public bool CheckIfLanguageSupported(string cultureName)
-        {
-            return SupportedLanguages.Any(language => language.CultureName == cultureName);
-        }
-        
-        public LanguageInfo GetLanguageByCultureName(string languageName)
-        {
-            return SupportedLanguages.Single(language => language.CultureName == languageName);
-        }
     }
 }

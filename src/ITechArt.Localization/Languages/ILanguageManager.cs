@@ -7,9 +7,5 @@ namespace ITechArt.Localization.Languages
         IReadOnlyCollection<LanguageInfo> SupportedLanguages { get; }
 
         LanguageInfo DefaultLanguage { get; }
-
-        LanguageInfo GetLanguageByCultureName(string cultureName);
-
-        bool CheckIfLanguageSupported(string cultureName);
     }
 }

@@ -10,9 +10,9 @@ namespace ITechArt.Localization.Modules
         private readonly IHttpRequestLocalizationManagerFactory _httpRequestLocalizationManagerFactory;
 
 
-        public LocalizationModule(IHttpRequestLocalizationManagerFactory itHttpLocalizationManagerFactory)
+        public LocalizationModule(IHttpRequestLocalizationManagerFactory httpLocalizationManagerFactory)
         {
-            _httpRequestLocalizationManagerFactory = itHttpLocalizationManagerFactory;
+            _httpRequestLocalizationManagerFactory = httpLocalizationManagerFactory;
         }
 
 

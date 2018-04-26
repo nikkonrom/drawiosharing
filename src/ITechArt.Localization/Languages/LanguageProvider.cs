@@ -8,17 +8,17 @@ namespace ITechArt.Localization.Languages
     public class LanguageProvider : ILanguageProvider
     {
         public IReadOnlyCollection<Language> SupportedLanguages { get; }
+
         public Language DefaultLanguage { get; }
+
 
         public LanguageProvider()
         {
-            Enum.TryParse(Settings.Default.DefaultLanguage, out Language defaultLanguage);
-            DefaultLanguage = defaultLanguage;
+            DefaultLanguage = (Language) Enum.Parse(typeof(Language), Settings.Default.DefaultLanguage); ;
             var supportedLanguages = new List<Language>();
-            foreach (var supportedLanguageString in Settings.Default.SupportedLanguages)
+            foreach (var supportedLanguageString in Settings.Default.SupportedLanguages.Split(','))
             {
-                if (Enum.TryParse(supportedLanguageString, out Language supportedLanguage))
-                     supportedLanguages.Add(supportedLanguage);
+                supportedLanguages.Add((Language) Enum.Parse(typeof(Language), supportedLanguageString));
             }
             SupportedLanguages = supportedLanguages;
         }

@@ -69,6 +69,7 @@
     <Compile Include="Languages\LanguageInfo.cs" />
     <Compile Include="Languages\Language.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
+    <Compile Include="Languages\LanguageManagerExtensions.cs" />
     <Compile Include="Languages\LanguageProvider.cs" />
     <Compile Include="Modules\LocalizationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,7 +86,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
