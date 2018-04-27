@@ -12,10 +12,10 @@ namespace ITechArt.Localization.Languages
         static DefaultLanguageConverter()
         {
             LanguageInfos = new Dictionary<Language, LanguageInfo>
-                {
-                    { Language.English, new LanguageInfo("en", "English") },
-                    { Language.Russian, new LanguageInfo("ru", "Русский (Russian)") }
-                };
+            {
+                { Language.English, new LanguageInfo("en", "English") },
+                { Language.Russian, new LanguageInfo("ru", "Русский (Russian)") }
+            };
         }
 
 

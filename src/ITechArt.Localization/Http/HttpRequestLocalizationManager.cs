@@ -12,7 +12,7 @@ namespace ITechArt.Localization.Http
     {
         public const string QueryStringLanguageParameter = "lang";
 
-        private const string CookieLanguageParameter = "lang";
+        private const string LanguageCookieName = "lang";
 
         private readonly ILanguageManager _languageManager;
 
@@ -35,10 +35,10 @@ namespace ITechArt.Localization.Http
         private LanguageInfo SelectRequestCulture(HttpContext context)
         {
             var langParameter = context.Request.QueryString.GetValues(QueryStringLanguageParameter)?[0];
-            var cultureCookie = context.Request.Cookies[CookieLanguageParameter];
+            var cultureCookie = context.Request.Cookies[LanguageCookieName];
             if (cultureCookie == null || !_languageManager.CheckIfLanguageSupported(cultureCookie.Value))
             {
-                cultureCookie = new HttpCookie(CookieLanguageParameter)
+                cultureCookie = new HttpCookie(LanguageCookieName)
                 {
                     HttpOnly = true,
                     Value = _languageManager.DefaultLanguage.CultureName,
