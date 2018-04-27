@@ -78,14 +78,15 @@ namespace ITechArt.DrawIoSharing.Repositories
             user.Roles.Remove(userRole);
         }
 
-        public Task<IList<string>> GetRolesAsync(User user)
+        public async Task<IList<string>> GetRolesAsync(User user)
         {
-            return Task.FromResult((IList<string>)user.Roles.ConvertAll(role => role.Name));
+            return await Task.FromResult((IList<string>)user.Roles.ConvertAll(role => role.Name));
         }
 
-        public Task<bool> IsInRoleAsync(User user, string roleName)
+        public async Task<bool> IsInRoleAsync(User user, string roleName)
         {
-            Microsoft.AspNet.Identity.UserManager<>
+            var userRole = await _roleStore.FindByNameAsync(roleName);
+            return await Task.FromResult(user.Roles.Any(role => role == userRole));
         }
         public void Dispose()
         {

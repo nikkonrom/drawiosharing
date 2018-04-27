@@ -11,13 +11,13 @@ using ITechArt.DrawIoSharing.WebApp.Models;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
-    public class AuthorizationController : Controller
+    public class UserController : Controller
     {
         private readonly ILogger _logger;
         private readonly IUserService _userService;
 
 
-        public AuthorizationController(ILogger logger, IUserService userService)
+        public UserController(ILogger logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;

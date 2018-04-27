@@ -194,7 +194,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,8 +209,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Authorization\SignUp.cshtml" />
-    <Content Include="Views\Authorization\SignUpSuccess.cshtml" />
+    <Content Include="Views\User\SignUp.cshtml" />
+    <Content Include="Views\User\SignUpSuccess.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

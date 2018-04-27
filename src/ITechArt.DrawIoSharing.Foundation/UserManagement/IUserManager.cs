@@ -12,7 +12,5 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         Task<User> FindAsync(string userName, string password);
 
         Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationType);
-
-
     }
 }
