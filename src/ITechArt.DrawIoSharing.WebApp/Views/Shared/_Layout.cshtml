@@ -39,26 +39,26 @@
                 <li class="dropdown">
                     <script>
                         var updateQueryStringParam = function (key, value) {
-                            var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
-                                urlQueryString = document.location.search,
-                                newParam = key + '=' + value,
-                                params = '?' + newParam;
+                            const baseUrl = [location.protocol, "//", location.host, location.pathname].join("");
+                            const urlQueryString = document.location.search;
+                            const newParam = key + "=" + value;
+                            var params = "?" + newParam;
 
                             if (urlQueryString) {
-                                const keyRegex = new RegExp('([\?&])' + key + '[^&]*');
+                                const keyRegex = new RegExp("([\?&])" + key + "[^&]*");
 
                                 if (urlQueryString.match(keyRegex) !== null) {
                                     params = urlQueryString.replace(keyRegex, "$1" + newParam);
                                 } else {
-                                    params = urlQueryString + '&' + newParam;
+                                    params = urlQueryString + "&" + newParam;
                                 }
                             }
-                            window.history.replaceState({}, "", baseUrl + params);
+                            window.location.href = baseUrl + params;
                         };
                         $(function () {
                             $("#langSelect li").click(
                                 function () {
-                                    updateQueryStringParam('@HttpRequestLocalizationManager.QueryStringLanguageParameter', this.id);
+                                    updateQueryStringParam("@HttpRequestLocalizationManager.QueryStringLanguageParameter", this.id);
                                 });
                         });
                     </script>
@@ -68,7 +68,7 @@
                     <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @foreach (var language in HttpContext.Current.GetSupportedLanguages())
                         {
-                            <li id="@language.CultureName"><a class="dropdown-item" href="">@language.NativeName</a></li>
+                            <li id="@language.CultureName"><a class="dropdown-item" href="#">@language.NativeName</a></li>
                         }
                     </ul>
                 </li>

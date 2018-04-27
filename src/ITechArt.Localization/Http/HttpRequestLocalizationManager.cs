@@ -11,10 +11,8 @@ namespace ITechArt.Localization.Http
     public class HttpRequestLocalizationManager : IHttpRequestLocalizationManager
     {
         public const string QueryStringLanguageParameter = "lang";
-        public const string KeyForLanguageNameAccess = "ActualLanguageName";
-        public const string KeyForSupportedLanguagesAccess = "SupportedLanguages";
 
-        private const string CookieLanguageParameter = "lang";
+        private const string LanguageCookieName = "lang";
 
         private readonly ILanguageManager _languageManager;
 
@@ -27,20 +25,20 @@ namespace ITechArt.Localization.Http
 
         public void SetUpRequestCulture(HttpContext context)
         {
-            var cultureName = SelectRequestCulture(context);
-            ApplyRequestCulture(cultureName);
-            context.AddCurrentLanguage(_languageManager.GetLanguageByCultureName(cultureName));
+            var languageInfo = SelectRequestCulture(context);
+            ApplyRequestCulture(languageInfo);
+            context.AddCurrentLanguage(languageInfo);
             context.AddSupportedLanguages(_languageManager.SupportedLanguages);
         }
 
 
-        private string SelectRequestCulture(HttpContext context)
+        private LanguageInfo SelectRequestCulture(HttpContext context)
         {
             var langParameter = context.Request.QueryString.GetValues(QueryStringLanguageParameter)?[0];
-            var cultureCookie = context.Request.Cookies[CookieLanguageParameter];
+            var cultureCookie = context.Request.Cookies[LanguageCookieName];
             if (cultureCookie == null || !_languageManager.CheckIfLanguageSupported(cultureCookie.Value))
             {
-                cultureCookie = new HttpCookie(CookieLanguageParameter)
+                cultureCookie = new HttpCookie(LanguageCookieName)
                 {
                     HttpOnly = true,
                     Value = _languageManager.DefaultLanguage.CultureName,
@@ -53,12 +51,12 @@ namespace ITechArt.Localization.Http
                 context.Response.Cookies.Set(cultureCookie);
             }
 
-            return cultureCookie.Value;
+            return _languageManager.GetLanguageByCultureName(cultureCookie.Value);
         }
 
-        private void ApplyRequestCulture(string cultureName)
+        private static void ApplyRequestCulture(LanguageInfo languageInfo)
         {
-            var culture = CultureInfo.CreateSpecificCulture(cultureName);
+            var culture = CultureInfo.CreateSpecificCulture(languageInfo.CultureName);
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
         }
