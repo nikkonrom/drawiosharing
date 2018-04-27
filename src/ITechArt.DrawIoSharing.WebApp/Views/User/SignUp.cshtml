@@ -1,37 +1,32 @@
 ﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignUpModel
-
+@using ITechArt.DrawIoSharing.Resources;
 @{
-    ViewBag.Title = "Sign Up";
+    ViewBag.Title = Resource.SignUp;
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<h3 align="left">Sign Up</h3>
+<h3 align="left">@Resource.SignUp</h3>
 
 @Html.ValidationSummary(false)
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
     <div class="form-group">
         @Html.LabelFor(x => x.Name)
-        @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(x => x.Email)
         @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
     </div>
-
     <div class="form-group">
         @Html.LabelFor(x => x.Password)
         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
     </div>
-
     <div class="form-group">
-        @Html.LabelFor(x => x.ConfirmPassword)
-        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+        @Html.LabelFor(x => x.PasswordConfirmation)
+        @Html.PasswordFor(x => x.PasswordConfirmation, new { @class = "form-control" })
     </div>
-
-    <button type="submit" class="btn btn-primary">Sign up</button>
-
-    <a href="@Url.Action("Index","Home")" class="btn">Cancel</a>
+    <button type="submit" class="btn btn-primary">@Resource.SignUp</button>
+    <a href="@Url.Action("Index","Home")" class="btn">@Resource.Cancel</a>
 }

@@ -3,8 +3,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
+    @using ITechArt.DrawIoSharing.Resources;
+    @using ITechArt.Localization.Http
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,23 +24,57 @@
                     using (Html.BeginForm("SignOut", "User"))
                     {
                         @Html.AntiForgeryToken()
-                        <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">Sign Out</button></li>
+                        <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">@Resource.SignOut</button></li>
                     }
                 }
                 else
                 {
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignUp", "User")" class="nav-link">Sign Up <span class="sr-only">(current)</span></a>
+                        <a href="@Url.Action("SignUp", "User")" class="nav-link">@Resource.SignUp<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a href="@Url.Action("SignIn", "User")" class="nav-link">Sign In</a>
+                        <a href="@Url.Action("SignIn", "User")" class="nav-link">@Resource.SignIn</a>
                     </li>
                 }
+                <li class="dropdown">
+                    <script>
+                        var updateQueryStringParam = function (key, value) {
+                            const baseUrl = [location.protocol, "//", location.host, location.pathname].join("");
+                            const urlQueryString = document.location.search;
+                            const newParam = key + "=" + value;
+                            var params = "?" + newParam;
 
+                            if (urlQueryString) {
+                                const keyRegex = new RegExp("([\?&])" + key + "[^&]*");
+
+                                if (urlQueryString.match(keyRegex) !== null) {
+                                    params = urlQueryString.replace(keyRegex, "$1" + newParam);
+                                } else {
+                                    params = urlQueryString + "&" + newParam;
+                                }
+                            }
+                            window.location.href = baseUrl + params;
+                        };
+                        $(function () {
+                            $("#langSelect li").click(
+                                function () {
+                                    updateQueryStringParam("@HttpRequestLocalizationManager.QueryStringLanguageParameter", this.id);
+                                });
+                        });
+                    </script>
+                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @HttpContext.Current.GetCurrentLanguage().NativeName
+                    </button>
+                    <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var language in HttpContext.Current.GetSupportedLanguages())
+                        {
+                            <li id="@language.CultureName"><a class="dropdown-item" href="#">@language.NativeName</a></li>
+                        }
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
-
     <div class="container">
         @RenderBody()
     </div>

@@ -1,11 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
 using Ninject.Web.Mvc;
 
 namespace ITechArt.DrawIoSharing.WebApp
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
