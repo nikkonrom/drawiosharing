@@ -9,11 +9,15 @@ using Microsoft.AspNet.Identity;
 namespace ITechArt.DrawIoSharing.Repositories
 {
     [UsedImplicitly]
-    public class UserStore : IUserPasswordStore<User, int>, IUserRoleStore<User, int>
+    public class UserStore : IUserPasswordStore<User, int>, IUserRoleStore<User, int>, IQueryableUserStore<User, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly RoleStore _roleStore;
-        
+
+
+        public IQueryable<User> Users => _unitOfWork.GetRepository<User>().GetAllAsync().Result;
+
+
         public UserStore(IUnitOfWork unitOfWork, RoleStore roleStore)
         {
             _unitOfWork = unitOfWork;
@@ -68,26 +72,39 @@ namespace ITechArt.DrawIoSharing.Repositories
 
         public async Task AddToRoleAsync(User user, string roleName)
         {
-            var userRole = await _roleStore.FindByNameAsync(roleName);
-            user.Roles.Add(userRole);
+            var role = await _roleStore.FindByNameAsync(roleName);
+            var userRole = new UserRole
+            {
+                RoleId = role.Id,
+                UserId = user.Id
+            };
+            _unitOfWork.GetRepository<UserRole>().Create(userRole);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task RemoveFromRoleAsync(User user, string roleName)
         {
-            var userRole = await _roleStore.FindByNameAsync(roleName);
-            user.Roles.Remove(userRole);
+            var role = await _roleStore.FindByNameAsync(roleName);
+            var userRole = await _unitOfWork.GetRepository<UserRole>()
+                .GetSingleOrDefaultAsync(userRoleParam => userRoleParam.RoleId == role.Id && userRoleParam.UserId == user.Id);
+            _unitOfWork.GetRepository<UserRole>().Delete(userRole);
+            await _unitOfWork.SaveChangesAsync();
+
         }
 
         public async Task<IList<string>> GetRolesAsync(User user)
         {
-            return await Task.FromResult((IList<string>)user.Roles.ConvertAll(role => role.Name));
+            var userRolesQuery = await _unitOfWork.GetRepository<UserRole>().Where(userRole => userRole.UserId == user.Id);
+            var roles = userRolesQuery.Join(await _unitOfWork.GetRepository<Role>().GetAllAsync(), userRole => userRole.RoleId, role => role.Id, (userRole, role) => role.Name);
+            return roles.ToList();
         }
 
         public async Task<bool> IsInRoleAsync(User user, string roleName)
         {
-            var userRole = await _roleStore.FindByNameAsync(roleName);
-            return await Task.FromResult(user.Roles.Any(role => role == userRole));
+            var role = await _roleStore.FindByNameAsync(roleName);
+            return (await _unitOfWork.GetRepository<UserRole>().GetAllAsync()).Any(userRole => userRole.RoleId == role.Id && userRole.UserId == user.Id);
         }
+
         public void Dispose()
         {
 

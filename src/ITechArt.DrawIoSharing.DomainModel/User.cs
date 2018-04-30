@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ITechArt.Common;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {
@@ -14,7 +15,7 @@ namespace ITechArt.DrawIoSharing.DomainModel
 
         public string Password { get; set; }
 
-        public List<Role> Roles { get; set; }
+        public ICollection<UserRole> Roles { get; set; }
 
 
         [UsedImplicitly]

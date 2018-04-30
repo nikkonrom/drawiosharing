@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -9,6 +11,10 @@ namespace ITechArt.Repositories
         Task<TEntity> GetByIdAsync(object entityId);
 
         Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<IQueryable<TEntity>> Where(Expression<Func<TEntity, bool>> predicate);
+
+        Task<IQueryable<TEntity>> GetAllAsync();
 
         void Create(TEntity entity);
 

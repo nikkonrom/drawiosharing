@@ -5,22 +5,23 @@ using System.Web.Mvc;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation;
+using ITechArt.DrawIoSharing.Foundation.Authentication;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.Resources;
 using ITechArt.DrawIoSharing.WebApp.Models;
 
 namespace ITechArt.DrawIoSharing.WebApp.Controllers
 {
-    public class UserController : Controller
+    public class AuthenticationController : Controller
     {
         private readonly ILogger _logger;
-        private readonly IUserService _userService;
+        private readonly IAuthenticationService _authenticationService;
 
 
-        public UserController(ILogger logger, IUserService userService)
+        public AuthenticationController(ILogger logger, IAuthenticationService authenticationService)
         {
             _logger = logger;
-            _userService = userService;
+            _authenticationService = authenticationService;
         }
 
 
@@ -45,7 +46,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _userService.SignInAsync(model.UserName, model.Password);
+                var result = await _authenticationService.SignInAsync(model.UserName, model.Password);
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed in with UserName: {model.UserName}");
@@ -78,7 +79,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User(model.Name, model.Email);
-                var result = await _userService.SignUpAsync(user, model.Password);
+                var result = await _authenticationService.SignUpAsync(user, model.Password);
                 if (result.IsSuccessful)
                 {
                     _logger.Info($"User signed up with UserName: {user.UserName}");
@@ -94,7 +95,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOut()
         {
-            await _userService.SignOutAsync();
+            await _authenticationService.SignOutAsync();
 
             return RedirectToHome();
         }
