@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
+using ITechArt.DrawIoSharing.Foundation.Authorization;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -15,12 +16,13 @@ namespace ITechArt.DrawIoSharing.Foundation.Authentication
     {
         private readonly IUserManager _userManager;
         private readonly IAuthenticationManager _authManager;
+        private readonly IAuthorizationService _authorizationService;
 
-
-        public AuthenticationService(IUserManager userManager, IAuthenticationManager authManager)
+        public AuthenticationService(IUserManager userManager, IAuthenticationManager authManager, IAuthorizationService authorizationService)
         {
             _userManager = userManager;
             _authManager = authManager;
+            _authorizationService = authorizationService;
         }
 
 
@@ -30,6 +32,7 @@ namespace ITechArt.DrawIoSharing.Foundation.Authentication
             if (identityResult.Succeeded)
             {
                 await SignInUserAsync(user);
+                await _authorizationService.SetInitialRoleAsync(user);
 
                 return OperationResult<SignUpError>.CreateSuccessful();
             }

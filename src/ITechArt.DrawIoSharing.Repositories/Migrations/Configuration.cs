@@ -16,9 +16,11 @@ namespace ITechArt.DrawIoSharing.Repositories.Migrations
         protected override void Seed(DrawIoSharingDbContext context)
         {
             base.Seed(context);
-            context.Roles.AddOrUpdate(role => role.Id,
-                new Role(SupportedRoles.ApprovedUser.ToString()),
-                new Role(SupportedRoles.Admin.ToString()));
+            context.Roles.AddOrUpdate(role => role.Name,
+                new Role(DefaultRole.DefaultUser.ToString()),
+                new Role(DefaultRole.ApprovedUser.ToString()),
+                new Role(DefaultRole.Admin.ToString()),
+                new Role(DefaultRole.BannedUser.ToString()));
         }
     }
 }

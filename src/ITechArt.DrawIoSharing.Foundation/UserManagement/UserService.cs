@@ -16,9 +16,14 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         }
 
 
-        public async Task<IList<User>> GetAllUsersAsync()
+        public async Task<IList<User>> GetAllAsync()
         {
             return await Task.FromResult(_userManager.Users.ToList());
+        }
+
+        public async Task<User> GetByIdAsync(int userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
         }
     }
 }

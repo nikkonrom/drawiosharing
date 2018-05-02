@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using ITechArt.Common;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ITechArt.DrawIoSharing.DomainModel
 {

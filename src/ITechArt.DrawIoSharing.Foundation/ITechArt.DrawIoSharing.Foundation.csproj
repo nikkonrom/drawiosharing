@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\IAuthorizationService.cs" />
-    <Compile Include="RoleManagement\SupportedRoles.cs" />
+    <Compile Include="RoleManagement\DefaultRole.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="Authorization\AuthorizationService.cs" />
     <Compile Include="UserManagement\IUserService.cs" />

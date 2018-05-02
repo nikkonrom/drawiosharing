@@ -1,4 +1,5 @@
-﻿@using ITechArt.DrawIoSharing.Resources;
+﻿@using ITechArt.DrawIoSharing.Foundation.RoleManagement
+@using ITechArt.DrawIoSharing.Resources;
 @{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,44 +8,10 @@
 
 <h2>Admin board</h2>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-        </div>
+<div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
+    <div id="modalContent" class="modal-dialog" role="document">
     </div>
 </div>
-
-<script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var row = $(event.relatedTarget)[0];
-        var elements = row.children;
-        var userName = elements[1].innerText;
-        var modal = $(this);
-        modal.find('.modal-title').text('User ' + userName);
-    })
-</script>
 
 <table class="table table-hover">
     <thead>
@@ -56,14 +23,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in ViewBag.Users)
+        @foreach (var userWithRoles in ViewBag.UsersWithRoles)
         {
-            <tr data-toggle="modal" data-target="#exampleModal">
-                <th scope="row">@user.Id</th>
-                <td>@user.UserName</td>
-                <td>@user.Email</td>
-                <td></td>
+            <tr data-href="@Url.Action("UserSettings", "Authorization", new {userId = userWithRoles.Key.Id}, null)">
+                <th scope="row">@userWithRoles.Key.Id</th>
+                <td>@userWithRoles.Key.UserName</td>
+                <td>@userWithRoles.Key.Email</td>
+                <td>
+                    @{foreach (var role in userWithRoles.Value)
+                        {<img alt="@role.ToString()" src=@Url.Content($"~/Resources/Icons/{role.ToString()}.svg") />}}
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $("tr").click(function (e) {
+            e.preventDefault();
+            $.get($(this).data('href'), function (data) {
+                $('#modalContent').html(data);
+                $('#userSettingsModal').modal('show');
+            });
+        });
+    })
+</script>

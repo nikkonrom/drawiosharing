@@ -1,8 +1,10 @@
 ﻿namespace ITechArt.DrawIoSharing.Foundation.RoleManagement
 {
-    public enum SupportedRoles
+    public enum DefaultRole
     {
+        DefaultUser,
         ApprovedUser,
-        Admin
+        Admin,
+        BannedUser
     }
 }

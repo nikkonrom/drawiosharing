@@ -6,6 +6,8 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
     public interface IUserService
     {
-        Task<IList<User>> GetAllUsersAsync();
+        Task<IList<User>> GetAllAsync();
+
+        Task<User> GetByIdAsync(int userId);
     }
 }

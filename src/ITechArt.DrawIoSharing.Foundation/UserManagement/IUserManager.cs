@@ -16,5 +16,11 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationType);
 
         IQueryable<User> Users { get; }
+
+        Task<User> FindByIdAsync(int userId);
+
+        Task<IList<string>> GetRolesAsync(int userId);
+
+        Task<IdentityResult> AddToRoleAsync(int userId, string roleName);
     }
 }

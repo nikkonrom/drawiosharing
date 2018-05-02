@@ -16,6 +16,7 @@ namespace ITechArt.DrawIoSharing.WebApp.Controllers
     {
         private readonly ILogger _logger;
         private readonly IAuthenticationService _authenticationService;
+        
 
 
         public AuthenticationController(ILogger logger, IAuthenticationService authenticationService)
