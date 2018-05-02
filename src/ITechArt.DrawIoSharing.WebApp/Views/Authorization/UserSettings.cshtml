@@ -1,28 +1,95 @@
-﻿@model KeyValuePair<ITechArt.DrawIoSharing.DomainModel.User, IList<ITechArt.DrawIoSharing.Foundation.RoleManagement.DefaultRole>>
-
+﻿@using System.Diagnostics
+@using ITechArt.DrawIoSharing.Foundation.RoleManagement
+@using ITechArt.DrawIoSharing.Resources
+@model ITechArt.DrawIoSharing.WebApp.Models.UserSettingsModel
+@{
+    Layout = null;
+}
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">@Html.DisplayFor(user => user.Key.UserName) user settings</h5>
+        <h5 class="modal-title" id="exampleModalLabel">User settings</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        @Html.LabelFor(user => user.Key.UserName)
-        @Html.DisplayFor(user => user.Key.UserName)
-        <form>
-            <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input id="PostModel_UserId" name="PostModel.UserId" type="hidden" value="@Model.GetModel.Key.Id">
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        @Html.LabelFor(model => model.GetModel.Key.UserName)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayFor(model => model.GetModel.Key.UserName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        @Html.LabelFor(model => model.GetModel.Key.Email)
+                    </div>
+                    <div class="col-sm">
+                        @Html.DisplayFor(model => model.GetModel.Key.Email)
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
+            <hr />
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        @Html.Label(Resource.UserApproved)
+                    </div>
+                    <div class="col-2">
+                        @(Model.GetModel.Value.Contains(DefaultRole.ApprovedUser) ? Resource.Yes : Resource.No)
+                    </div>
+                    <div class="col-sm">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-success btn-sm">
+                                @Html.CheckBoxFor(model => model.PostModel.IsApprovedStatusChanged, new { @autocomplete = "off" })
+                                @(Model.GetModel.Value.Contains(DefaultRole.ApprovedUser) ? Resource.DisapproveUser : Resource.ApproveUser)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        @Html.Label(Resource.UserRoots)
+                    </div>
+                    <div class="col-2">
+                        @(Model.GetModel.Value.Contains(DefaultRole.Admin) ? Resource.AdminRoots : Resource.DefaultRoots)
+                    </div>
+                    <div class="col-sm">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-warning btn-sm">
+                                @Html.CheckBoxFor(model => model.PostModel.IsRightsStatusChanged, new { @autocomplete = "off" })
+                                @(Model.GetModel.Value.Contains(DefaultRole.Admin) ? Resource.RemoveAdmin : Resource.MakeAdmin)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        @Html.Label(Resource.UserBanned)
+                    </div>
+                    <div class="col-2">
+                        @(Model.GetModel.Value.Contains(DefaultRole.BannedUser) ? Resource.Yes : Resource.No)
+                    </div>
+                    <div class="col-sm">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-danger btn-sm">
+                                @Html.CheckBoxFor(model => model.PostModel.IsBanStatusChanged, new { @autocomplete = "off" })
+                                @(Model.GetModel.Value.Contains(DefaultRole.BannedUser) ? Resource.UnbanUser : Resource.BanUser)
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resource.Cancel</button>
+            <button type="submit" class="btn btn-primary">@Resource.SaveChanges</button>
+        </div>
+    }
 </div>

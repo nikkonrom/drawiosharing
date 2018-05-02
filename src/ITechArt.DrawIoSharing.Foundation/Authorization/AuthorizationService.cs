@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ITechArt.DrawIoSharing.DomainModel;
+using ITechArt.Common;
 using ITechArt.DrawIoSharing.Foundation.RoleManagement;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using Microsoft.AspNet.Identity;
 
 namespace ITechArt.DrawIoSharing.Foundation.Authorization
 {
+    [UsedImplicitly]
     public class AuthorizationService : IAuthorizationService
     {
         private readonly IUserManager _userManager; 
@@ -20,39 +21,39 @@ namespace ITechArt.DrawIoSharing.Foundation.Authorization
         }
 
 
-        public void Approve(User user)
+        public async Task ApproveAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.AddToRoleAsync(userId, DefaultRole.ApprovedUser.ToString());
         }
 
-        public void Disapprove(User user)
+        public async Task DisapproveAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.RemoveFromRoleAsync(userId, DefaultRole.ApprovedUser.ToString());
         }
 
-        public void MakeAdmin(User user)
+        public async Task MakeAdminAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.AddToRoleAsync(userId, DefaultRole.Admin.ToString());
         }
 
-        public void RemoveAdmin(User user)
+        public async Task RemoveAdminAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.RemoveFromRoleAsync(userId, DefaultRole.Admin.ToString());
         }
 
-        public void BanUser(User user)
+        public async Task BanAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.AddToRoleAsync(userId, DefaultRole.BannedUser.ToString());
         }
 
-        public void UnbanUser(User user)
+        public async Task UnbanAsync(int userId)
         {
-            throw new System.NotImplementedException();
+            await _userManager.RemoveFromRoleAsync(userId, DefaultRole.BannedUser.ToString());
         }
 
-        public async Task<IdentityResult> SetInitialRoleAsync(User user)
+        public async Task<IdentityResult> SetInitialRoleAsync(int userId)
         {
-            return await _userManager.AddToRoleAsync(user.Id, DefaultRole.DefaultUser.ToString());
+            return await _userManager.AddToRoleAsync(userId, DefaultRole.DefaultUser.ToString());
         }
 
         public async Task<IList<DefaultRole>> GetRolesAsync(int userId)

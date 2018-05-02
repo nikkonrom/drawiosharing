@@ -1,12 +1,10 @@
-﻿@using ITechArt.DrawIoSharing.Foundation.RoleManagement
-@using ITechArt.DrawIoSharing.Resources;
+﻿@using ITechArt.DrawIoSharing.Resources;
 @{
-    ViewBag.Title = "Admin";
+    ViewBag.Title = Resource.AdminBoard;
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
-<h2>Admin board</h2>
+<h2>@Resource.AdminBoard</h2>
 
 <div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
     <div id="modalContent" class="modal-dialog" role="document">
@@ -19,7 +17,7 @@
             <th scope="col">#</th>
             <th scope="col">@Resource.UserName</th>
             <th scope="col">@Resource.Email</th>
-            <th scope="col">Status</th>
+            <th scope="col">@Resource.Status</th>
         </tr>
     </thead>
     <tbody>
@@ -40,12 +38,11 @@
 
 <script>
     $(function () {
-        $.ajaxSetup({ cache: false });
         $("tr").click(function (e) {
             e.preventDefault();
-            $.get($(this).data('href'), function (data) {
-                $('#modalContent').html(data);
-                $('#userSettingsModal').modal('show');
+            $.get($(this).data("href"), function (data) {
+                $("#modalContent").html(data);
+                $("#userSettingsModal").modal("show");
             });
         });
     })

@@ -22,5 +22,7 @@ namespace ITechArt.DrawIoSharing.Foundation.UserManagement
         Task<IList<string>> GetRolesAsync(int userId);
 
         Task<IdentityResult> AddToRoleAsync(int userId, string roleName);
+
+        Task<IdentityResult> RemoveFromRoleAsync(int userId, string roleName);
     }
 }

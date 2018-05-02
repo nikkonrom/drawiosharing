@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdminBoard" xml:space="preserve">
+    <value>Admin board</value>
+  </data>
+  <data name="AdminRoots" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="ApproveUser" xml:space="preserve">
+    <value>Approve</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="BanUser" xml:space="preserve">
+    <value>Ban</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="DefaultRoots" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DisapproveUser" xml:space="preserve">
+    <value>Disapprove</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -159,6 +177,12 @@
   <data name="HomePage" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="MakeAdmin" xml:space="preserve">
+    <value>Make Admin</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoAccountNotification" xml:space="preserve">
     <value>Don't have an account? %SIGNUP% now!</value>
   </data>
@@ -170,6 +194,12 @@
   </data>
   <data name="RegistrationSucceeded" xml:space="preserve">
     <value>Registration succeeded</value>
+  </data>
+  <data name="RemoveAdmin" xml:space="preserve">
+    <value>Remove Admin</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save changes</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
@@ -183,7 +213,28 @@
   <data name="SignUpWhenNoAccount" xml:space="preserve">
     <value>Sign up</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="UnbanUser" xml:space="preserve">
+    <value>Unban</value>
+  </data>
+  <data name="UserApproved" xml:space="preserve">
+    <value>User approved</value>
+  </data>
+  <data name="UserBanned" xml:space="preserve">
+    <value>User banned</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="UserRoots" xml:space="preserve">
+    <value>User roots</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>User settings</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

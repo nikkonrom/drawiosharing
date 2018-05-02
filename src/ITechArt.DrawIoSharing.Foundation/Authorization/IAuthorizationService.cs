@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ITechArt.DrawIoSharing.DomainModel;
 using ITechArt.DrawIoSharing.Foundation.RoleManagement;
 using Microsoft.AspNet.Identity;
 
@@ -8,19 +7,19 @@ namespace ITechArt.DrawIoSharing.Foundation.Authorization
 {
     public interface IAuthorizationService
     {
-        void Approve(User user);
+        Task ApproveAsync(int userId);
 
-        void Disapprove(User user);
+        Task DisapproveAsync(int userId);
 
-        void MakeAdmin(User user);
+        Task MakeAdminAsync(int userId);
 
-        void RemoveAdmin(User user);
+        Task RemoveAdminAsync(int userId);
 
-        void BanUser(User user);
+        Task BanAsync(int userId);
 
-        void UnbanUser(User user);
+        Task UnbanAsync(int userId);
 
-        Task<IdentityResult> SetInitialRoleAsync(User user);
+        Task<IdentityResult> SetInitialRoleAsync(int userId);
 
         Task<IList<DefaultRole>> GetRolesAsync(int userId);
     }

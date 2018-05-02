@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdminBoard" xml:space="preserve">
+    <value>Панель администратора</value>
+  </data>
+  <data name="AdminRoots" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="ApproveUser" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Назад</value>
   </data>
+  <data name="BanUser" xml:space="preserve">
+    <value>Заблокировать</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
+  </data>
+  <data name="DefaultRoots" xml:space="preserve">
+    <value>Стандартные</value>
+  </data>
+  <data name="DisapproveUser" xml:space="preserve">
+    <value>Убрать подтверждение</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -159,6 +177,12 @@
   <data name="HomePage" xml:space="preserve">
     <value>Домашняя страница</value>
   </data>
+  <data name="MakeAdmin" xml:space="preserve">
+    <value>Дать права администратора</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
   <data name="NoAccountNotification" xml:space="preserve">
     <value>До сих пор нет аккаунта? %SIGNUP% сейчас!</value>
   </data>
@@ -170,6 +194,12 @@
   </data>
   <data name="RegistrationSuccedeed" xml:space="preserve">
     <value>Регистрация прошла успешно</value>
+  </data>
+  <data name="RemoveAdmin" xml:space="preserve">
+    <value>Убрать права администратора</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Вход</value>
@@ -183,7 +213,28 @@
   <data name="SignUpWhenNoAccount" xml:space="preserve">
     <value>Зарегистрируйтесь</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="UnbanUser" xml:space="preserve">
+    <value>Разблокировать</value>
+  </data>
+  <data name="UserApproved" xml:space="preserve">
+    <value>Пользователь подтверждён</value>
+  </data>
+  <data name="UserBanned" xml:space="preserve">
+    <value>Пользователь заблокирован</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Имя пользователя</value>
+  </data>
+  <data name="UserRoots" xml:space="preserve">
+    <value>Права пользователя</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>Настройки пользователя</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
   </data>
 </root>

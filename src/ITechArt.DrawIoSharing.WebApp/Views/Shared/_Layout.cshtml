@@ -7,7 +7,7 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/drawiosharing.css" rel="stylesheet" />
-    @using ITechArt.DrawIoSharing.Resources;
+    @using ITechArt.DrawIoSharing.Foundation.RoleManagement    @using ITechArt.DrawIoSharing.Resources;
     @using ITechArt.Localization.Http
 </head>
 <body class="container">
@@ -21,6 +21,12 @@
             <ul class="navbar-nav ml-auto">
                 @if (User.Identity.IsAuthenticated || ViewBag.IsUserSignUp != null && ViewBag.IsUserSignUp == true)
                 {
+                    if (User.IsInRole(nameof(DefaultRole.Admin)))
+                    {
+                        <li class="nav-item active">
+                            <a href="@Url.Action("Admin", "Authorization")" class="nav-link">@Resource.AdminBoard</a>
+                        </li>
+                    }
                     using (Html.BeginForm("SignOut", "Authentication"))
                     {
                         @Html.AntiForgeryToken()

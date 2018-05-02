@@ -32,7 +32,7 @@ namespace ITechArt.DrawIoSharing.Foundation.Authentication
             if (identityResult.Succeeded)
             {
                 await SignInUserAsync(user);
-                await _authorizationService.SetInitialRoleAsync(user);
+                await _authorizationService.SetInitialRoleAsync(user.Id);
 
                 return OperationResult<SignUpError>.CreateSuccessful();
             }

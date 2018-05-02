@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 
 namespace ITechArt.DrawIoSharing.Foundation.UserManagement
 {
+    [UsedImplicitly]
     public class UserService : IUserService
     {
         private readonly IUserManager _userManager;
