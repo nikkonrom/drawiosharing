@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/drawiosharing.css" rel="stylesheet" />
+    @using ITechArt.DrawIoSharing.Foundation.RoleManagement    @using ITechArt.DrawIoSharing.Resources;
+    @using ITechArt.Localization.Http
+</head>
+<body class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">draw.io Sharing</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-3" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+                @if (User.Identity.IsAuthenticated || ViewBag.IsUserSignUp != null && ViewBag.IsUserSignUp == true)
+                {
+                    if (User.IsInRole(nameof(DefaultRole.Admin)))
+                    {
+                        <li class="nav-item active">
+                            <a href="@Url.Action("Admin", "Authorization")" class="nav-link">@Resource.AdminBoard</a>
+                        </li>
+                    }
+                    using (Html.BeginForm("SignOut", "Authentication"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li class="nav-item active"><button type="submit" class="btn btn-link nav-link">@Resource.SignOut</button></li>
+                    }
+                }
+                else
+                {
+                    <li class="nav-item active">
+                        <a href="@Url.Action("SignUp", "Authentication")" class="nav-link">@Resource.SignUp<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="@Url.Action("SignIn", "Authentication")" class="nav-link">@Resource.SignIn</a>
+                    </li>
+                }
+                <li class="dropdown">
+                    <script>
+                        var updateQueryStringParam = function (key, value) {
+                            const baseUrl = [location.protocol, "//", location.host, location.pathname].join("");
+                            const urlQueryString = document.location.search;
+                            const newParam = key + "=" + value;
+                            var params = "?" + newParam;
+
+                            if (urlQueryString) {
+                                const keyRegex = new RegExp("([\?&])" + key + "[^&]*");
+
+                                if (urlQueryString.match(keyRegex) !== null) {
+                                    params = urlQueryString.replace(keyRegex, "$1" + newParam);
+                                } else {
+                                    params = urlQueryString + "&" + newParam;
+                                }
+                            }
+                            window.location.href = baseUrl + params;
+                        };
+                        $(function () {
+                            $("#langSelect li").click(
+                                function () {
+                                    updateQueryStringParam("@HttpRequestLocalizationManager.QueryStringLanguageParameter", this.id);
+                                });
+                        });
+                    </script>
+                    <button class="btn btn-link nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @HttpContext.Current.GetCurrentLanguage().NativeName
+                    </button>
+                    <ul id="langSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var language in HttpContext.Current.GetSupportedLanguages())
+                        {
+                            <li id="@language.CultureName"><a class="dropdown-item" href="#">@language.NativeName</a></li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

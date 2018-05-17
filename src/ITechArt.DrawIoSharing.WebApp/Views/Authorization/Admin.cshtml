@@ -1,0 +1,49 @@
+﻿@using ITechArt.DrawIoSharing.Resources;
+@{
+    ViewBag.Title = Resource.AdminBoard;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resource.AdminBoard</h2>
+
+<div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
+    <div id="modalContent" class="modal-dialog" role="document">
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">@Resource.UserName</th>
+            <th scope="col">@Resource.Email</th>
+            <th scope="col">@Resource.Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userWithRoles in ViewBag.UsersWithRoles)
+        {
+            <tr data-href="@Url.Action("UserSettings", "Authorization", new {userId = userWithRoles.Key.Id}, null)">
+                <th scope="row">@userWithRoles.Key.Id</th>
+                <td>@userWithRoles.Key.UserName</td>
+                <td>@userWithRoles.Key.Email</td>
+                <td>
+                    @{foreach (var role in userWithRoles.Value)
+                        {<img alt="@role.ToString()" src=@Url.Content($"~/Resources/Icons/{role.ToString()}.svg") />}}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        $("tr").click(function (e) {
+            e.preventDefault();
+            $.get($(this).data("href"), function (data) {
+                $("#modalContent").html(data);
+                $("#userSettingsModal").modal("show");
+            });
+        });
+    })
+</script>

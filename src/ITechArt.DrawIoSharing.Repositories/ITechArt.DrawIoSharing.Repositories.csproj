@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{650FD09E-FE57-49E2-8485-040446FE41C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ITechArt.DrawIoSharing.Repositories</RootNamespace>
+    <AssemblyName>ITechArt.DrawIoSharing.Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\ITechArt.DrawIoSharing.WebApp\Bin\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201803191048143_InitialCreate.cs" />
+    <Compile Include="Migrations\201803191048143_InitialCreate.Designer.cs">
+      <DependentUpon>201803191048143_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804301524555_Authorization.cs" />
+    <Compile Include="Migrations\201804301524555_Authorization.Designer.cs">
+      <DependentUpon>201804301524555_Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DrawIoSharingDbContext.cs" />
+    <Compile Include="RoleStore.cs" />
+    <Compile Include="UserStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITechArt.Common\ITechArt.Common.csproj">
+      <Project>{94A9AFDF-EC33-420D-8B92-71DEA763B294}</Project>
+      <Name>ITechArt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.DomainModel\ITechArt.DrawIoSharing.DomainModel.csproj">
+      <Project>{e9ef15b5-4b1d-415d-8ccd-d4557b36a1f9}</Project>
+      <Name>ITechArt.DrawIoSharing.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.DrawIoSharing.Foundation\ITechArt.DrawIoSharing.Foundation.csproj">
+      <Project>{6E5E024F-B9F0-4AB5-9E7D-6140A1CD33AF}</Project>
+      <Name>ITechArt.DrawIoSharing.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITechArt.Repositories\ITechArt.Repositories.csproj">
+      <Project>{D354D449-6B30-4BA0-828C-D66A2AB9A445}</Project>
+      <Name>ITechArt.Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803191048143_InitialCreate.resx">
+      <DependentUpon>201803191048143_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301524555_Authorization.resx">
+      <DependentUpon>201804301524555_Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,36 @@
+﻿@model ITechArt.DrawIoSharing.WebApp.Models.SignInModel
+@using ITechArt.DrawIoSharing.Resources;
+@{
+    ViewBag.Title = Resource.SignIn;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3 align="left">@Resource.SignIn</h3>
+
+<div class="alert alert-secondary" role="alert">
+    @{
+        var stringParts = Resource.NoAccountNotification.Split(new[] {"%SIGNUP%"}, StringSplitOptions.None);
+    }
+    @stringParts[0]
+    <a href="@Url.Action("SignUp", "Authentication")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
+    @stringParts[1]
+</div>
+
+@Html.ValidationSummary(false)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.ReturnUrl, new { value = ViewBag.returnUrl })
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-primary" type="submit">@Resource.SignIn</button>
+
+}
