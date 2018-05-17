@@ -13,7 +13,7 @@
         var stringParts = Resource.NoAccountNotification.Split(new[] {"%SIGNUP%"}, StringSplitOptions.None);
     }
     @stringParts[0]
-    <a href="@Url.Action("SignUp", "User")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
+    <a href="@Url.Action("SignUp", "Authentication")" class="alert-link">@Resource.SignUpWhenNoAccount</a>
     @stringParts[1]
 </div>
 

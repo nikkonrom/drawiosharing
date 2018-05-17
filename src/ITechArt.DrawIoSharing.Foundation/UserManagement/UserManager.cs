@@ -1,4 +1,6 @@
-﻿using ITechArt.Common;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ITechArt.Common;
 using ITechArt.DrawIoSharing.DomainModel;
 using Microsoft.AspNet.Identity;
 

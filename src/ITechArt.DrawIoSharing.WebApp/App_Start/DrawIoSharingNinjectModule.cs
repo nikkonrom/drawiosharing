@@ -2,6 +2,8 @@
 using System.Web;
 using ITechArt.Common.Logging;
 using ITechArt.DrawIoSharing.DomainModel;
+using ITechArt.DrawIoSharing.Foundation.Authentication;
+using ITechArt.DrawIoSharing.Foundation.Authorization;
 using ITechArt.DrawIoSharing.Foundation.UserManagement;
 using ITechArt.DrawIoSharing.Repositories;
 using ITechArt.Localization.Http;
@@ -22,7 +24,7 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<ILogger>().To<Log4NetLogger>().InSingletonScope();
             Bind<DbContext>().To<DrawIoSharingDbContext>().InRequestScope();
             Bind<IUnitOfWork>().To<EfUnitOfWork>().InRequestScope();
-            Bind<IUserService>().To<UserService>().InRequestScope();
+            Bind<IAuthenticationService>().To<AuthenticationService>().InRequestScope();
             Bind<IUserStore<User, int>>().To<UserStore>().InRequestScope();
             Bind<IUserManager>().To<UserManager>().InRequestScope();
             Bind<IAuthenticationManager>().ToMethod(context => HttpContext.Current.GetOwinContext().Authentication);
@@ -32,6 +34,8 @@ namespace ITechArt.DrawIoSharing.WebApp
             Bind<IHttpRequestLocalizationManager>().To<HttpRequestLocalizationManager>().InRequestScope();
             Bind<IHttpRequestLocalizationManagerFactory>().To<HttpRequestLocalizationManagerFactory>().InSingletonScope();
             Bind<IHttpModule>().To<LocalizationModule>().InSingletonScope();
+            Bind<IUserService>().To<UserService>().InRequestScope();
+            Bind<IAuthorizationService>().To<AuthorizationService>().InRequestScope();
         }
     }
 }

@@ -61,6 +61,33 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin board.
+        /// </summary>
+        public static string AdminBoard {
+            get {
+                return ResourceManager.GetString("AdminBoard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string AdminRoots {
+            get {
+                return ResourceManager.GetString("AdminRoots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        public static string ApproveUser {
+            get {
+                return ResourceManager.GetString("ApproveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
@@ -70,11 +97,38 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ban.
+        /// </summary>
+        public static string BanUser {
+            get {
+                return ResourceManager.GetString("BanUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string DefaultRoots {
+            get {
+                return ResourceManager.GetString("DefaultRoots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disapprove.
+        /// </summary>
+        public static string DisapproveUser {
+            get {
+                return ResourceManager.GetString("DisapproveUser", resourceCulture);
             }
         }
         
@@ -187,6 +241,24 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make Admin.
+        /// </summary>
+        public static string MakeAdmin {
+            get {
+                return ResourceManager.GetString("MakeAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have an account? %SIGNUP% now!.
         /// </summary>
         public static string NoAccountNotification {
@@ -219,6 +291,24 @@ namespace ITechArt.DrawIoSharing.Resources {
         public static string RegistrationSucceeded {
             get {
                 return ResourceManager.GetString("RegistrationSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Admin.
+        /// </summary>
+        public static string RemoveAdmin {
+            get {
+                return ResourceManager.GetString("RemoveAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes.
+        /// </summary>
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
             }
         }
         
@@ -259,11 +349,74 @@ namespace ITechArt.DrawIoSharing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unban.
+        /// </summary>
+        public static string UnbanUser {
+            get {
+                return ResourceManager.GetString("UnbanUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User approved.
+        /// </summary>
+        public static string UserApproved {
+            get {
+                return ResourceManager.GetString("UserApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User banned.
+        /// </summary>
+        public static string UserBanned {
+            get {
+                return ResourceManager.GetString("UserBanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User roots.
+        /// </summary>
+        public static string UserRoots {
+            get {
+                return ResourceManager.GetString("UserRoots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User settings.
+        /// </summary>
+        public static string UserSettings {
+            get {
+                return ResourceManager.GetString("UserSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

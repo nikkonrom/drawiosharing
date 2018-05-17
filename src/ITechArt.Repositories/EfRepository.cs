@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -43,6 +44,16 @@ namespace ITechArt.Repositories
         public async Task<TEntity> GetSingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await _dbSet.SingleOrDefaultAsync(predicate);
+        }
+
+        public async Task<IQueryable<TEntity>> Where(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await Task.FromResult(_dbSet.Where(predicate));
+        }
+
+        public async Task<IQueryable<TEntity>> GetAllAsync()
+        {
+            return await Task.FromResult(_dbSet.AsQueryable());
         }
     }
 }
